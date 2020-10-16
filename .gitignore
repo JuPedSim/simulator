@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# vscode workspace file
+*.code-workspace
+
+# pycache
+__pycache__/
