@@ -3,6 +3,6 @@ namespace jps
     class Simulation
     {
     public:
-        int getValue() { return 1; }
+        static int getValue() { return 1; }
     };
 } // namespace jps
