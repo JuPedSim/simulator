@@ -1,0 +1,18 @@
+---
+Checks: >-
+  -*,
+  bugprone-*,
+  cppcoreguidelines-*,
+  -cppcoreguidelines-special-member-functions,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  misc-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  -modernize-use-nodiscard,
+  performance-*,
+  portability-*,
+  readability-*
+WarningsAsErrors:    '*'
+HeaderFilterRegex:   '.*'
+FormatStyle:         file
