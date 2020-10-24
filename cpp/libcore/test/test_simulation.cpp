@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-
 #include <simulation.hpp>
 
 TEST(Example, SimulationReturns1)
