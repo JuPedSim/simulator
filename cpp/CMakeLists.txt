@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.18)
 project(simulator CXX)
 
 ################################################################################
@@ -14,12 +14,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include(helper_functions)
 check_prefix_path()
-set(default_build_type "Release")
-if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
-  set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE
-      STRING "Choose the type of build." FORCE)
-endif()
+enforce_build_type_is_set()
+add_clang_tidy_support_option()
 
 ################################################################################
 # Dependencies
