@@ -1,0 +1,8 @@
+#! /bin/bash
+
+set -e
+
+origin=$(dirname $(readlink -f "$0"))
+root=$(readlink -f ${origin}/..)
+find ${root} -type f -regex "^.*\.\(hpp\|cpp\|h\|c\)$" \
+    | parallel clang-format-10 --dry-run -Werror
