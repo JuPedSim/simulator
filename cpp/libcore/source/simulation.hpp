@@ -1,8 +1,10 @@
 namespace jps
 {
-    class Simulation
-    {
-    public:
-        static int getValue() { return 1; }
-    };
+class Simulation
+{
+public:
+    // NOLINTNEXTLINE
+    int getValue() { return 1; }
+};
+
 } // namespace jps

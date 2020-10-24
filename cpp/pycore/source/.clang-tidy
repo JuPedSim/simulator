@@ -1,0 +1,20 @@
+---
+Checks: >-
+  -*,
+  bugprone-*,
+  cppcoreguidelines-*,
+  # The following three checks are disabled because macros from pybind11
+  # generate offending code
+  -cppcoreguidelines-macro-usage,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-vararg,
+  misc-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  -modernize-use-nodiscard,
+  performance-*,
+  portability-*,
+  readability-*
+WarningsAsErrors:    '*'
+HeaderFilterRegex:   '.*,-pybind11/.*'
+FormatStyle:         file

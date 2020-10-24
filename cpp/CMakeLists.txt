@@ -26,6 +26,7 @@ endif()
 ################################################################################
 find_package(GTest 1.10 CONFIG REQUIRED)
 include(GoogleTest)
+set(PYBIND11_CPP_STANDARD -std=c++17)
 find_package(pybind11 2.5 CONFIG REQUIRED)
 find_package(Python 3.8 REQUIRED)
 
