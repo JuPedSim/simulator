@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y wget \
                        git \
                        g++ \
                        clang \
+                       clang-format-10 \
+                       parallel \
                        cmake \
                        make \
                        python3 \
