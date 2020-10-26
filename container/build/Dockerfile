@@ -16,4 +16,6 @@ COPY cpp/scripts/setup-dependencies.sh /opt/
 
 RUN CXX=/usr/bin/g++ CC=/usr/bin/gcc /opt/setup-dependencies.sh /opt/deps
 
-RUN pip3 install pytest
+COPY requirements.txt /opt/
+
+RUN pip3 install -r /opt/requirements.txt
