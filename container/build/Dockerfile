@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y wget \
                        g++ \
                        clang \
                        clang-format-10 \
+                       clang-tidy-10 \
                        parallel \
                        cmake \
                        make \
@@ -14,7 +15,7 @@ RUN apt-get update && apt-get install -y wget \
 
 COPY cpp/scripts/setup-dependencies.sh /opt/
 
-RUN CXX=/usr/bin/g++ CC=/usr/bin/gcc /opt/setup-dependencies.sh /opt/deps
+RUN CXX=/usr/bin/g++ CC=/usr/bin/gcc /opt/setup-dependencies.sh /usr/local
 
 COPY requirements.txt /opt/
 
