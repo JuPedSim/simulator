@@ -42,7 +42,8 @@ class Application:
     def setup_generate_pedestrians_command(self):
         command = "generate-pedestrians"
         parser = self.subparsers.add_parser(
-            command, help="Will randomly place pedestrians in spawn areas",
+            command,
+            help="Will randomly place pedestrians in spawn areas",
         )
         self.commands[command] = lambda x: print("Not yet implemented")
 
