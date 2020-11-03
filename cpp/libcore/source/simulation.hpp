@@ -4,7 +4,8 @@ class Simulation
 {
 public:
     // NOLINTNEXTLINE
-    int getValue() { return 1; }
+    int getValue() {
+        return 1; }
 };
 
 } // namespace jps
