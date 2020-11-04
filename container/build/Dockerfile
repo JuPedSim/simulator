@@ -8,10 +8,12 @@ RUN apt-get update && apt-get install -y wget \
                        clang-format-10 \
                        clang-tidy-10 \
                        parallel \
-                       cmake \
                        make \
                        python3 \
                        python3-pip
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.18.4/cmake-3.18.4-Linux-x86_64.tar.gz && \
+    tar -xzvf cmake-3.18.4-Linux-x86_64.tar.gz -C /usr/local --strip-components=1
 
 COPY cpp/scripts/setup-dependencies.sh /opt/
 
