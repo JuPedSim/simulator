@@ -3,6 +3,8 @@ import logging
 import sys
 
 import jpscore
+
+from jupedsim.util.generator import process_generator
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
@@ -64,9 +66,67 @@ class Application:
         command = "generate-pedestrians"
         parser = self.subparsers.add_parser(
             command,
-            help="Will randomly place pedestrians in spawn areas",
+            help="Will randomly place pedestrian(s) in given areas",
         )
-        self.commands[command] = lambda x: print("Not yet implemented")
+        parser.add_argument(
+            "-x",
+            required=True,
+            type=float,
+            metavar="x-pos",
+            nargs="+",
+            help="x-coordinate(s) the pedestrian(s) should be generated",
+        )
+        parser.add_argument(
+            "-y",
+            required=True,
+            type=float,
+            metavar="y-pos",
+            nargs="+",
+            help="y-coordinate(s) the pedestrian(s) should be generated",
+        )
+
+        parser.add_argument(
+            "-floor",
+            required=False,
+            type=int,
+            metavar="floor ID",
+            default=0,
+            help="ID of the floor the pedestrian(s) should be generated",
+        )
+        parser.add_argument(
+            "-time",
+            required=False,
+            type=float,
+            metavar="time",
+            default=0,
+            help="Time the pedestrian(s) should be generated",
+        )
+        parser.add_argument(
+            "-overwrite",
+            required=False,
+            type=bool,
+            metavar="floor ID",
+            help="Overwriting all existing spawn_pedestrian events in events file",
+            default=False,
+        )
+        parser.add_argument(
+            "-n",
+            required=False,
+            type=int,
+            metavar="number pedestrians",
+            default=1,
+            help="Number of pedestrians generated",
+        )
+
+        parser.add_argument(
+            "-o",
+            required=True,
+            type=str,
+            metavar="output file",
+            help="Output file",
+        )
+
+        self.commands[command] = lambda x: process_generator(self.args)
 
     def setup_simulate_command(self):
         command = "simulate"
