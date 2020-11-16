@@ -1,7 +1,7 @@
 #! /bin/bash
 set -ex
 
-pybind11_version=2.5.0
+pybind11_version=2.6.1
 googletest_version=1.10.0
 fmt_version=7.1.2
 
