@@ -1,4 +1,6 @@
 add_library(core
+    log.cpp
+    log.hpp
     simulation.cpp
     simulation.hpp
 )
@@ -9,4 +11,8 @@ target_include_directories(core
 
 target_link_libraries(core
     PUBLIC fmt::fmt
+)
+
+target_compile_options(core PRIVATE
+    -fPIC
 )
