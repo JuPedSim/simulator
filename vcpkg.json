@@ -8,6 +8,6 @@
     "dependencies": [
         "pybind11",
         "fmt",
-	"gtest"
+        "gtest"
     ]
 }
