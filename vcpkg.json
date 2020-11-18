@@ -1,0 +1,13 @@
+{
+    "name": "jpssimulator",
+    "version-string": "0.1.0-dev",
+    "maintainers": [ "David Haensel <d.haensel@fz-juelich.de>" ],
+    "description": "Juelich Pedestrian Dynamics Simulator",
+    "homepage": "http://jupedsim.org",
+    "license": "MIT",
+    "dependencies": [
+        "pybind11",
+        "fmt",
+	"gtest"
+    ]
+}
