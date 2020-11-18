@@ -12,6 +12,6 @@ foreach(test ${python_tests})
     )
 
     set_tests_properties(${test} PROPERTIES
-        ENVIRONMENT PYTHONPATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}$<$<BOOL:${WIN32}>:/$<CONFIG>>
+        ENVIRONMENT PYTHONPATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/$<$<BOOL:${WIN32}>:$<CONFIG>>
     )
 endforeach()
