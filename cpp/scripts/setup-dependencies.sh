@@ -9,6 +9,12 @@ if [ ${1} ]; then
     install_path=${1}
 fi
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    CPUS=$(nproc)
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    CPUS=$(sysctl -n hw.logicalcpu)
+fi
+
 function setup_pybind11 {
     root=$(pwd)
     temp_folder=$(mktemp -d)
@@ -23,7 +29,7 @@ function setup_pybind11 {
         -DCMAKE_INSTALL_PREFIX=${install_path} \
         -DCMAKE_BUILD_TYPE=Release \
         -DPYBIND11_TEST=Off
-    cmake --build . -j $(nproc)
+    cmake --build . -j ${CPUS}
     cmake --install .
     cd ${root}
     rm -rf ${temp_folder}
@@ -42,7 +48,7 @@ function setup_googletest {
     cmake .. \
         -DCMAKE_INSTALL_PREFIX=${install_path} \
         -DCMAKE_BUILD_TYPE=Release
-    cmake --build . -j $(nproc)
+    cmake --build . -j ${CPUS}
     cmake --install .
     cd ${root}
     rm -rf ${temp_folder}
