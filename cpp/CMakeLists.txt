@@ -25,6 +25,7 @@ include(GoogleTest)
 set(PYBIND11_CPP_STANDARD -std=c++17)
 find_package(pybind11 2.5 CONFIG REQUIRED)
 find_package(Python 3.8 REQUIRED)
+find_package(fmt 7.1 CONFIG REQUIRED)
 
 ################################################################################
 # Build sources
