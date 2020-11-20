@@ -28,7 +28,7 @@ Language: Cpp
 MaxEmptyLinesToKeep: 2
 NamespaceIndentation: None
 PointerAlignment: Middle
-ReflowComments: false
+ReflowComments: true
 SortIncludes: true
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: true
