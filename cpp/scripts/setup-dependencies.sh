@@ -66,6 +66,7 @@ function setup_fmt {
     mkdir build
     cd build
     cmake .. \
+        -DCMAKE_CXX_FLAGS="-fPIC" \
         -DFMT_DOC=OFF \
         -DFMT_TEST=OFF \
         -DCMAKE_INSTALL_PREFIX=${install_path} \
