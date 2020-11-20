@@ -70,7 +70,7 @@ function setup_fmt {
         -DFMT_TEST=OFF \
         -DCMAKE_INSTALL_PREFIX=${install_path} \
         -DCMAKE_BUILD_TYPE=Release
-    cmake --build . -j $(nproc)
+    cmake --build . -j ${CPUS}
     cmake --install .
     cd ${root}
     rm -rf ${temp_folder}
