@@ -69,6 +69,14 @@ class Application:
             help="Will randomly place pedestrian(s) in given areas",
         )
         parser.add_argument(
+            "-time",
+            required=False,
+            type=float,
+            metavar="time",
+            default=0,
+            help="Time the pedestrian(s) should be generated",
+        )
+        parser.add_argument(
             "-x",
             required=True,
             type=float,
@@ -94,18 +102,10 @@ class Application:
             help="ID of the floor the pedestrian(s) should be generated",
         )
         parser.add_argument(
-            "-time",
-            required=False,
-            type=float,
-            metavar="time",
-            default=0,
-            help="Time the pedestrian(s) should be generated",
-        )
-        parser.add_argument(
             "-overwrite",
             required=False,
             type=bool,
-            metavar="floor ID",
+            metavar="overwrite",
             help="Overwriting all existing spawn_pedestrian events in events file",
             default=False,
         )
