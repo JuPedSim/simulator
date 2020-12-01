@@ -1,8 +1,8 @@
 import dataclasses
 import json
-from abc import abstractmethod
-from dataclasses import asdict, dataclass, is_dataclass
-from typing import Any, NamedTuple
+import numbers
+from dataclasses import dataclass
+from typing import Dict, List
 
 
 class DataclassJSONEncoder(json.JSONEncoder):
@@ -20,17 +20,21 @@ class EventType:
 
     type: str
 
-    @abstractmethod
     def get_json(self) -> str:
-        pass
+        return json.dumps(self, default=lambda o: o.__dict__)
 
     @classmethod
-    def from_json(cls, data):
-        if data["type"] == "spawn_pedestrian":
+    def from_json(cls, data: str):
+        json_data = json.loads(data)
+        event_type = json_data["type"]
+
+        if event_type == "spawn_pedestrian":
             spawn = SpawnPedestrianEvent.from_json(data)
             return spawn
 
-        return None
+        raise NotImplementedError(
+            "{} is a not supported EventType.".format(event_type)
+        )
 
 
 @dataclass
@@ -39,30 +43,37 @@ class SpawnPedestrianEvent(EventType):
     EventType for spawning pedestrians at a given position on a specific floor
     """
 
-    position: Any
+    position: List[float]
     floor: int
 
-    def __init__(self, position, floor: int):
+    def __init__(self, position: List[float], floor: int):
+        self.type = "spawn_pedestrian"
         self.position = position
         self.floor = floor
-        self.type = "spawn_pedestrian"
         return
 
-    def get_json(self) -> str:
-        return json.dumps(self, default=lambda o: o.__dict__)
-
     @classmethod
-    def from_json(cls, data):
-        position = data["position"]
-        floor = data["floor"]
-        return cls(position, floor)
-
-    def __eq__(self, other):
-        if type(self) is type(other):
-            return (
-                self.position == other.position and self.floor == other.floor
+    def from_json(cls, data: str):
+        json_data = json.loads(data)
+        position = json_data.get("position")
+        if (
+            not isinstance(position, List)
+            or not all(isinstance(x, numbers.Number) for x in position)
+            or not len(position) == 2
+        ):
+            raise ValueError(
+                '"position" needs to be a List of 2 numbers, but is {}.'.format(
+                    position
+                )
             )
-        return False
+
+        floor = json_data.get("floor")
+        if not isinstance(floor, int):
+            raise ValueError(
+                '"floor" needs to be a integer value, but is {}.'.format(floor)
+            )
+
+        return cls(position, floor)
 
 
 @dataclass
@@ -83,10 +94,27 @@ class Event:
         return json.dumps(self, default=lambda o: o.__dict__)
 
     @classmethod
-    def from_json(cls, data):
-        return cls(data["time"], EventType.from_json(data["event"]))
+    def from_json(cls, data: str):
+        json_data = json.loads(data)
+        time = json_data.get("time")
+        if not isinstance(time, numbers.Number):
+            raise ValueError(
+                '"time" needs to be a number, but is {}.'.format(time)
+            )
 
-    def __eq__(self, other):
-        if type(self) is type(other):
-            return self.time == other.time and self.event == other.event
-        return False
+        time = float(time)
+        if time < 0.0:
+            raise ValueError(
+                '"time" needs to be a positive number, but is {}.'.format(time)
+            )
+
+        event_type_json = json_data.get("event")
+        if not isinstance(event_type_json, Dict):
+            raise ValueError(
+                '"event" needs to be a json representation of EventType, but is {}.'.format(
+                    event_type_json
+                )
+            )
+        event_type = json.dumps(event_type_json)
+
+        return cls(time, EventType.from_json(event_type))

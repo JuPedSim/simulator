@@ -39,7 +39,7 @@ def read_events(file) -> List[Event]:
     with open(file) as json_file:
         objs = json.load(json_file)
         for obj in objs:
-            test = Event.from_json(obj)
+            test = Event.from_json(json.dumps(obj))
             events.append(test)
     return events
 
