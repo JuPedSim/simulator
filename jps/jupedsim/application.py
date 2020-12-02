@@ -3,7 +3,6 @@ import logging
 import sys
 
 import jpscore
-
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
@@ -17,8 +16,12 @@ class Application:
 
     def setup_logging(self):
         logging.basicConfig(format=logging.BASIC_FORMAT)
-        jpscore.logging.set_callback(level=jpscore.logging.Level.Error, func=log_error)
-        jpscore.logging.set_callback(level=jpscore.logging.Level.Warning, func=log_warning)
+        jpscore.logging.set_callback(
+            level=jpscore.logging.Level.Error, func=log_error
+        )
+        jpscore.logging.set_callback(
+            level=jpscore.logging.Level.Warning, func=log_warning
+        )
 
     def upgrade_logging(self):
         logger_name = "JuPedSim"
@@ -28,14 +31,18 @@ class Application:
             # if the messages are actually consumed. Otherwise
             # we pay the overhead of calling into python and then
             # discarding the log message.
-            jpscore.logging.set_callback(level=jpscore.logging.Level.Info, func=log_info)
+            jpscore.logging.set_callback(
+                level=jpscore.logging.Level.Info, func=log_info
+            )
         elif self.args.v == 2:
             logging.getLogger(logger_name).setLevel(logging.DEBUG)
             # Only register the callback from C++ back to python
             # if the messages are actually consumed. Otherwise
             # we pay the overhead of calling into python and then
             # discarding the log message.
-            jpscore.logging.set_callback(level=jpscore.logging.Level.Debug, func=log_debug)
+            jpscore.logging.set_callback(
+                level=jpscore.logging.Level.Debug, func=log_debug
+            )
         elif self.args.v >= 3:
             # Enables all log messages from 3rd party libraries
             logging.getLogger().setLevel(logging.DEBUG)
