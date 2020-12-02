@@ -13,7 +13,7 @@ namespace jps
 class Log
 {
 private:
-    std::array<Logging::LogCallback, 4> callbacks{};
+    std::array<Logging::LogCallback, 4> m_callbacks{};
 
 public:
     static Log & instance()
@@ -22,46 +22,46 @@ public:
         return log;
     }
 
-    void set_callback(Logging::Level level, Logging::LogCallback callback)
+    void setCallback(Logging::Level p_level, Logging::LogCallback p_callback)
     {
         // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-constant-array-index)
-        callbacks[to_underlying(level)] = std::move(callback);
+        m_callbacks[toUnderlying(p_level)] = std::move(p_callback);
     }
 
-    void msg(Logging::Level level, std::string_view msg)
+    void msg(Logging::Level p_level, std::string_view p_msg)
     {
         // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-constant-array-index)
-        if(auto & cb = callbacks[to_underlying(level)]; cb) {
-            cb(msg);
+        if(auto & cb = m_callbacks[toUnderlying(p_level)]; cb) {
+            cb(p_msg);
         }
     }
 };
 
 namespace Logging
 {
-void Debug(std::string_view msg)
+void debug(std::string_view p_msg)
 {
-    Log::instance().msg(Level::Debug, msg);
+    Log::instance().msg(Level::Debug, p_msg);
 }
 
-void Info(std::string_view msg)
+void info(std::string_view p_msg)
 {
-    Log::instance().msg(Level::Info, msg);
+    Log::instance().msg(Level::Info, p_msg);
 }
 
-void Warning(std::string_view msg)
+void warning(std::string_view p_msg)
 {
-    Log::instance().msg(Level::Warning, msg);
+    Log::instance().msg(Level::Warning, p_msg);
 }
 
-void Error(std::string_view msg)
+void error(std::string_view p_msg)
 {
-    Log::instance().msg(Level::Error, msg);
+    Log::instance().msg(Level::Error, p_msg);
 }
 
-void SetCallback(Level level, LogCallback callback)
+void setCallback(Level p_level, LogCallback p_callback)
 {
-    Log::instance().set_callback(level, std::move(callback));
+    Log::instance().setCallback(p_level, std::move(p_callback));
 }
 } // namespace Logging
 } // namespace jps
