@@ -32,9 +32,9 @@ CheckOptions:
     value: camelBack
   - key: readability-identifier-naming.MemberCase
     value: lower_case
-  - key: readability-identifier-naming.PublicMemberPrefix
-    value:
-  - key: readability-identifier-naming.MemberPrefix
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: m_
+  - key: readability-identifier-naming.ProtectedMemberPrefix
     value: m_
   - key: readability-identifier-naming.VariableCase
     value: lower_case

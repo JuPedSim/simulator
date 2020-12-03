@@ -14,23 +14,23 @@ using LogCallback = std::function<void(std::string_view)>;
 
 /// This function is not supposed to be called directly from library code, use LOG_DEBUG(...)
 /// instead.
-void Debug(std::string_view msg);
+void debug(std::string_view p_msg);
 /// This function is not supposed to be called directly from library code, use LOG_INFO(...)
 /// instead.
-void Info(std::string_view msg);
+void info(std::string_view p_msg);
 /// This function is not supposed to be called directly from library code, use LOG_WARNING(...)
 /// instead.
-void Warning(std::string_view msg);
+void warning(std::string_view p_msg);
 /// This function is not supposed to be called directly from library code, use LOG_ERROR(...)
 /// instead.
-void Error(std::string_view msg);
+void error(std::string_view p_msg);
 /// Inject callbacks to receive log messages for the respective log level.
 /// If not explicitly set all logging calls are effectively no-ops.
 /// Note: To unset the log callback call this function with an empty LogCallback
 ///       e.g. SetCallback(Logging::Level::Debug, Logging::LogCallback{});
 /// @param log_level to receive messages for
 /// @param callback function to call with log message
-void SetCallback(Level log_level, LogCallback callback);
+void setCallback(Level p_level, LogCallback p_callback);
 
 } // namespace jps::Logging
 
@@ -47,23 +47,23 @@ void SetCallback(Level log_level, LogCallback callback);
 #define __LOG(Level, FormatString, ...)                                                            \
     Logging::Level(fmt::format(FMT_STRING(FormatString), __VA_ARGS__))
 // NOLINTNEXTLINE
-#define LOG_DEBUG(FormatString, ...) __LOG(Debug, FormatString, __VA_ARGS__)
+#define LOG_DEBUG(FormatString, ...) __LOG(debug, FormatString, __VA_ARGS__)
 // NOLINTNEXTLINE
-#define LOG_INFO(FormatString, ...) __LOG(Info, FormatString, __VA_ARGS__)
+#define LOG_INFO(FormatString, ...) __LOG(info, FormatString, __VA_ARGS__)
 // NOLINTNEXTLINE
-#define LOG_WARNING(FormatString, ...) __LOG(Warning, FormatString, __VA_ARGS__)
+#define LOG_WARNING(FormatString, ...) __LOG(warning, FormatString, __VA_ARGS__)
 // NOLINTNEXTLINE
-#define LOG_ERROR(FormatString, ...) __LOG(Error, FormatString, __VA_ARGS__)
+#define LOG_ERROR(FormatString, ...) __LOG(error, FormatString, __VA_ARGS__)
 #else
 // NOLINTNEXTLINE
 #define __LOG(Level, FormatString, ...)                                                            \
     Logging::Level(fmt::format(FMT_STRING(FormatString), ##__VA_ARGS__))
 // NOLINTNEXTLINE
-#define LOG_DEBUG(FormatString, ...) __LOG(Debug, FormatString, ##__VA_ARGS__)
+#define LOG_DEBUG(FormatString, ...) __LOG(debug, FormatString, ##__VA_ARGS__)
 // NOLINTNEXTLINE
-#define LOG_INFO(FormatString, ...) __LOG(Info, FormatString, ##__VA_ARGS__)
+#define LOG_INFO(FormatString, ...) __LOG(info, FormatString, ##__VA_ARGS__)
 // NOLINTNEXTLINE
-#define LOG_WARNING(FormatString, ...) __LOG(Warning, FormatString, ##__VA_ARGS__)
+#define LOG_WARNING(FormatString, ...) __LOG(warning, FormatString, ##__VA_ARGS__)
 // NOLINTNEXTLINE
-#define LOG_ERROR(FormatString, ...) __LOG(Error, FormatString, ##__VA_ARGS__)
+#define LOG_ERROR(FormatString, ...) __LOG(error, FormatString, ##__VA_ARGS__)
 #endif

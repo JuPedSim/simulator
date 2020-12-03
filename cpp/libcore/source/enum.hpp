@@ -1,7 +1,7 @@
 #include <type_traits>
 
 template <typename T>
-constexpr auto to_underlying(const T & t) noexcept
+constexpr auto toUnderlying(const T & p_t) noexcept
 {
-    return static_cast<std::underlying_type_t<T>>(t);
+    return static_cast<std::underlying_type_t<T>>(p_t);
 }
