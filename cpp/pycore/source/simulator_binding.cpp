@@ -23,7 +23,7 @@ PYBIND11_MODULE(jpscore, m)
     m_logging.def(
         "set_callback",
         [](jps::Logging::Level level, jps::Logging::LogCallback callback) {
-            jps::Logging::SetCallback(
+            jps::Logging::setCallback(
                 level, [callback = std::move(callback)](std::string_view msg) {
                     py::gil_scoped_acquire lock;
                     callback(msg);
@@ -38,9 +38,9 @@ PYBIND11_MODULE(jpscore, m)
     /// on shutdown registering an atexit handler is probably the most robust way to ensure
     /// destruction.
     py::module_::import("atexit").attr("register")(py::cpp_function([]() {
-        jps::Logging::SetCallback(jps::Logging::Level::Debug, jps::Logging::LogCallback{});
-        jps::Logging::SetCallback(jps::Logging::Level::Info, jps::Logging::LogCallback{});
-        jps::Logging::SetCallback(jps::Logging::Level::Warning, jps::Logging::LogCallback{});
-        jps::Logging::SetCallback(jps::Logging::Level::Error, jps::Logging::LogCallback{});
+        jps::Logging::setCallback(jps::Logging::Level::Debug, jps::Logging::LogCallback{});
+        jps::Logging::setCallback(jps::Logging::Level::Info, jps::Logging::LogCallback{});
+        jps::Logging::setCallback(jps::Logging::Level::Warning, jps::Logging::LogCallback{});
+        jps::Logging::setCallback(jps::Logging::Level::Error, jps::Logging::LogCallback{});
     }));
 }
