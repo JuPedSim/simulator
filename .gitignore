@@ -36,3 +36,6 @@
 
 # pycache
 __pycache__/
+
+# vim
+.vim/
