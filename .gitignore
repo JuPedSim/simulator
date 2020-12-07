@@ -39,3 +39,22 @@ __pycache__/
 
 # vim
 .vim/
+
+# emacs
+\#*\#
+tramp
+.\#*
+
+# emacs projectiles files
+.projectile
+
+# emacs directory configuration
+.dir-locals.el
+
+# emacs flymake-mode
+*_flymake.*
+
+# lsp server
+.clangd/
+.cache/
+.ccls/
