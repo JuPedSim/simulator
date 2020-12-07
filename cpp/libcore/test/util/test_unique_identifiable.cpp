@@ -33,28 +33,6 @@ TEST(UniqueIdentifiable, EmptyConstructed)
     EXPECT_EQ(obj3.getUID(), 3);
 }
 
-
-TEST(UniqueIdentifiable, Copy)
-{
-    // Copying increases the UID
-
-    class Identified1 : public jps::UniqueIdentifiable<Identified1>
-    {
-    };
-
-
-    Identified1 obj1;
-    Identified1 obj2{obj1}; // NOLINT(performance-unnecessary-copy-initialization)
-
-    EXPECT_EQ(obj1.getUID(), 0);
-    EXPECT_EQ(obj2.getUID(), 1);
-
-    obj2 = obj1;
-    EXPECT_EQ(obj1.getUID(), 0);
-    EXPECT_EQ(obj2.getUID(), 2);
-}
-
-
 TEST(UniqueIdentifiable, Move)
 {
     // Moving keeps the UID

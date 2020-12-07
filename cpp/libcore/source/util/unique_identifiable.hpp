@@ -21,13 +21,9 @@ class UniqueIdentifiable
 public:
     UniqueIdentifiable() = default;
 
-    /// A copy of a UniqueIdentifiable object should get a new UID
-    UniqueIdentifiable(UniqueIdentifiable const & /*p_other*/) noexcept : m_uid{uid_counter++} {};
-    UniqueIdentifiable & operator=(UniqueIdentifiable const & /*p_other*/) noexcept
-    {
-        m_uid = uid_counter++;
-        return *this;
-    }
+    /// Identified object should not be copied to avoid objects with same ID
+    UniqueIdentifiable(UniqueIdentifiable const & /*p_other*/) = delete;
+    UniqueIdentifiable & operator=(UniqueIdentifiable const & /*p_other*/) = delete;
 
     /// For moved objects the same UID is used.
     UniqueIdentifiable(UniqueIdentifiable && p_other) noexcept : m_uid{p_other.m_uid} {};
