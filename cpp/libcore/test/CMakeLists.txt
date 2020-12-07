@@ -2,7 +2,7 @@ add_executable(test-core
     test_simulation.cpp
     test_dependency_availability.cpp
 
-    util/test_unique_identifiable.cpp
+    util/test_identifiable.cpp
 )
 
 target_link_libraries(test-core

@@ -4,7 +4,7 @@ add_library(core
     simulation.cpp
     simulation.hpp
 
-    util/unique_identifiable.hpp
+    util/identifiable.hpp
 )
 
 target_include_directories(core
