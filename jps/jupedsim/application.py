@@ -3,7 +3,6 @@ import logging
 import sys
 
 import jpscore
-
 from jupedsim.util.generator import process_generator
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
