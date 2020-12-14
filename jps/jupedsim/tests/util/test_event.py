@@ -1,16 +1,8 @@
 from dataclasses import dataclass
 
 import pytest
+from jupedsim.tests.util.conftest import DummyEvent
 from jupedsim.util.event import Event, EventType, SpawnPedestrianEvent
-
-
-@dataclass
-class DummyEvent(EventType):
-    name: str
-
-    def __init__(self, name: str):
-        self.type = "dummy"
-        self.name = name
 
 
 class TestEventType:

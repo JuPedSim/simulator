@@ -12,7 +12,7 @@ class DataclassJSONEncoder(json.JSONEncoder):
         return super().default(o)
 
 
-@dataclass
+@dataclass(frozen=True, eq=True)
 class EventType:
     """
     Abstract base class defining the type of events.
@@ -37,7 +37,7 @@ class EventType:
         )
 
 
-@dataclass
+@dataclass(init=False, frozen=True, eq=True)
 class SpawnPedestrianEvent(EventType):
     """
     EventType for spawning pedestrians at a given position on a specific floor
@@ -47,9 +47,9 @@ class SpawnPedestrianEvent(EventType):
     floor: int
 
     def __init__(self, position: List[float], floor: int):
-        self.type = "spawn_pedestrian"
-        self.position = position
-        self.floor = floor
+        object.__setattr__(self, "position", position)
+        object.__setattr__(self, "floor", floor)
+        object.__setattr__(self, "type", "spawn_pedestrian")
         return
 
     @classmethod
@@ -76,7 +76,7 @@ class SpawnPedestrianEvent(EventType):
         return cls(position, floor)
 
 
-@dataclass
+@dataclass(frozen=True, eq=True)
 class Event:
     """
     Class for storing the information which EventType is triggered at a given time.
@@ -86,8 +86,8 @@ class Event:
     event: EventType
 
     def __init__(self, time: float, event: EventType):
-        self.time = time
-        self.event = event
+        object.__setattr__(self, "time", time)
+        object.__setattr__(self, "event", event)
         return
 
     def get_json(self) -> str:
