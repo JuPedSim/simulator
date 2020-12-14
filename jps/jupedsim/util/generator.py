@@ -58,6 +58,35 @@ def generate_pedestrian_on_position(
     return [Event(time, spawn_event)]
 
 
+def merge_spawn_pedestrian_events(
+    events: List[Event], existing_events: List[Event], overwrite: bool
+) -> List[Event]:
+    """
+    Merges the two lists according to overwrite strategy.
+
+    overwrite == True:
+        Create a List from events and all not SpawnPedestrianEvents in existing_events
+    overwrite == False:
+        Concat events and existing_events
+
+    :param events: List of Events, which will be kept
+    :param existing_events: List of Events, where depending on overwrite SpawnPedestrianEvents may not be kept
+    :param overwrite: SpawnPedestrianEvents in existing_events will be overwritten
+    :return: Merged list of events
+    """
+    if overwrite:
+        other_events = [
+            event
+            for event in existing_events
+            if event.event.type != "spawn_pedestrian"
+        ]
+        merged_events = other_events + events
+    else:
+        merged_events = existing_events + events
+
+    return merged_events
+
+
 def write_to_event_file(
     file: str, events: List[Event], overwrite: bool
 ) -> bool:
@@ -70,16 +99,7 @@ def write_to_event_file(
     :return: success
     """
     existing_events = read_events(file)
-
-    if overwrite:
-        other_events = [
-            event
-            for event in existing_events
-            if event.event.type == "spawn_pedestrians"
-        ]
-        events = other_events + events
-    else:
-        events = existing_events + events
+    events = merge_spawn_pedestrian_events(events, existing_events, overwrite)
 
     with open(file, "w+") as json_file:
         json_file.write(json.dumps(events, indent=4, cls=DataclassJSONEncoder))
