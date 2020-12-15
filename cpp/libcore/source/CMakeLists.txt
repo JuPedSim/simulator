@@ -32,6 +32,15 @@ add_library(core
     util/jpsexception.hpp
     util/simulation_clock.hpp
 )
+    operational/operational.hpp
+
+    strategic/strategic.hpp
+
+    tactical/tactical.hpp
+
+    util/identifiable.hpp
+    util/jpsexception.hpp
+    )
 
 target_include_directories(core
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
