@@ -11,7 +11,9 @@ Checks: >-
   -modernize-use-nodiscard,
   performance-*,
   portability-*,
-  readability-*
+  readability-*,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-magic-numbers
 WarningsAsErrors:    '*'
 HeaderFilterRegex:   '.*'
 FormatStyle:         file
