@@ -5,6 +5,8 @@ add_library(core
     simulation.hpp
 
     util/identifiable.hpp
+
+    math/int_pow.hpp
 )
 
 target_include_directories(core

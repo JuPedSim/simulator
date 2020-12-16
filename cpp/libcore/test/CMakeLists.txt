@@ -3,6 +3,8 @@ add_executable(test-core
     test_dependency_availability.cpp
 
     util/test_identifiable.cpp
+
+    math/test_int_pow.cpp
 )
 
 target_link_libraries(test-core
