@@ -6,6 +6,8 @@ add_library(core
 
     util/identifiable.hpp
 
+    geometry/length_unit.hpp
+
     math/int_pow.hpp
 )
 

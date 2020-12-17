@@ -4,6 +4,8 @@ add_executable(test-core
 
     util/test_identifiable.cpp
 
+    geometry/test_length_unit.cpp
+
     math/test_int_pow.cpp
 )
 
