@@ -2,6 +2,75 @@
 
 #include <gtest/gtest.h>
 
+TEST(LengthUnit, NonHelperConstruction)
+{
+    using namespace jps;
+    using namespace details;
+
+    // Same unit
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::km>{10}}.get<Units::km>()),
+        10);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::m>{10}}.get<Units::m>()), 10);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::dm>{10}}.get<Units::dm>()),
+        10);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::cm>{10}}.get<Units::cm>()),
+        10);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::mm>{10}}.get<Units::mm>()),
+        10);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::mum>{10}}.get<Units::mum>()),
+        10);
+
+    // Check if scaling is used in constructor
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::km>{1}}
+             .get<LengthUnit::RESOLUTION>()),
+        1000000000);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::m>{1}}
+             .get<LengthUnit::RESOLUTION>()),
+        1000000);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::dm>{1}}
+             .get<LengthUnit::RESOLUTION>()),
+        100000);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::cm>{1}}
+             .get<LengthUnit::RESOLUTION>()),
+        10000);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, Units::mm>{1}}
+             .get<LengthUnit::RESOLUTION>()),
+        1000);
+
+    // Check if scaling is used in get method
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, LengthUnit::RESOLUTION>{1000000000}}
+             .get<Units::km>()),
+        1);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, LengthUnit::RESOLUTION>{1000000}}
+             .get<Units::m>()),
+        1);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, LengthUnit::RESOLUTION>{100000}}
+             .get<Units::dm>()),
+        1);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, LengthUnit::RESOLUTION>{10000}}
+             .get<Units::cm>()),
+        1);
+    EXPECT_EQ(
+        (LengthUnit{LengthUnitParams<LengthUnit::QuantityType, LengthUnit::RESOLUTION>{1000}}
+             .get<Units::mm>()),
+        1);
+}
+
 TEST(LengthUnit, scaleQuantity)
 {
     using namespace jps;

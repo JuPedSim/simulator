@@ -34,5 +34,64 @@ constexpr T scaleQuantity(T p_quantity)
         return p_quantity * jps::math::intPow<T, DECIMAL_BASE, diff_exp>();
     }
 }
+
+template <typename QuantityType, Units Unit>
+struct LengthUnitParams {
+    const QuantityType quantity; // NOLINT(misc-non-private-member-variables-in-classes)
+
+    LengthUnitParams()                                 = delete;
+    LengthUnitParams(LengthUnitParams const & p_other) = delete;
+    LengthUnitParams & operator=(LengthUnitParams const & p_other) = delete;
+
+    LengthUnitParams(LengthUnitParams && p_other) noexcept = default;
+    LengthUnitParams & operator=(LengthUnitParams && p_other) noexcept = default;
+
+    ~LengthUnitParams() = default;
+
+    LengthUnitParams(QuantityType p_quantity) : quantity{p_quantity} {}
+};
 } // namespace details
+
+class LengthUnit
+{
+public:
+    using QuantityType = std::int_least64_t;
+
+    const static Units RESOLUTION = Units::mum;
+
+    LengthUnit() = default;
+
+    LengthUnit(LengthUnit const & p_other) = default;
+    LengthUnit & operator=(LengthUnit const & p_other) = default;
+
+    LengthUnit(LengthUnit && p_moved) noexcept = default;
+    LengthUnit & operator=(LengthUnit && p_moved) noexcept = default;
+
+    ~LengthUnit() = default;
+
+    template <Units Unit>
+    LengthUnit(details::LengthUnitParams<QuantityType, Unit> const & p_params) :
+        m_quantity{details::scaleQuantity<Unit, RESOLUTION>(p_params.quantity)}
+    {
+    }
+
+    bool operator==(QuantityType p_other) const { return m_quantity == p_other; }
+
+    template <Units unit = RESOLUTION>
+    QuantityType get() const
+    {
+        return details::scaleQuantity<RESOLUTION, unit>(m_quantity);
+    }
+
+private:
+    // Stores the length unit quantity in micro meter
+    QuantityType m_quantity{};
+};
+
+template <Units Unit>
+LengthUnit makeLengthUnit(LengthUnit::QuantityType p_quantity)
+{
+    return LengthUnit{details::LengthUnitParams<LengthUnit::QuantityType, Unit>{p_quantity}};
+}
+
 } // namespace jps
