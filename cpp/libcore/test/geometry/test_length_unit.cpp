@@ -71,6 +71,34 @@ TEST(LengthUnit, NonHelperConstruction)
         1);
 }
 
+TEST(LengthUnit, makeLengthUnit)
+{
+    using namespace jps;
+    using namespace details;
+    // Same unit
+    EXPECT_EQ((makeLengthUnit<Units::km>(10).get<Units::km>()), 10);
+    EXPECT_EQ((makeLengthUnit<Units::m>(10).get<Units::m>()), 10);
+    EXPECT_EQ((makeLengthUnit<Units::dm>(10).get<Units::dm>()), 10);
+    EXPECT_EQ((makeLengthUnit<Units::cm>(10).get<Units::cm>()), 10);
+    EXPECT_EQ((makeLengthUnit<Units::mm>(10).get<Units::mm>()), 10);
+    EXPECT_EQ((makeLengthUnit<Units::mum>(10).get<Units::mum>()), 10);
+
+    // Check if scaling is used in constructor
+    EXPECT_EQ((makeLengthUnit<Units::km>(1).get<LengthUnit::RESOLUTION>()), 1000000000);
+    EXPECT_EQ((makeLengthUnit<Units::m>(1).get<LengthUnit::RESOLUTION>()), 1000000);
+    EXPECT_EQ((makeLengthUnit<Units::dm>(1).get<LengthUnit::RESOLUTION>()), 100000);
+    EXPECT_EQ((makeLengthUnit<Units::cm>(1).get<LengthUnit::RESOLUTION>()), 10000);
+    EXPECT_EQ((makeLengthUnit<Units::mm>(1).get<LengthUnit::RESOLUTION>()), 1000);
+
+    // Check if scaling is used in get method
+    EXPECT_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1000000000).get<Units::km>()), 1);
+    EXPECT_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1000000).get<Units::m>()), 1);
+    EXPECT_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(100000).get<Units::dm>()), 1);
+    EXPECT_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(10000).get<Units::cm>()), 1);
+    EXPECT_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1000).get<Units::mm>()), 1);
+}
+
+
 TEST(LengthUnit, scaleQuantity)
 {
     using namespace jps;
