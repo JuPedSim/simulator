@@ -1,50 +1,67 @@
 import sys
 import ezdxf
 
-#TODO: object-oriented structure to get rid of global variable
 #TODO: read in unit and convert data to mm
 
-def readData(input_file):
-    try:
-        doc = ezdxf.readfile(input_file)
-    except IOError:
-        #TODO throw exception. file not found
-    except ezdxf.DXFStructureError:
-        #TODO throw exception. invalid dxf file.
+class WorldParser:
 
-    global msp
-    msp = doc.modelspace()
+    def __init__(self, p_input_file):
+        self.m_input_file = p_input_file
 
-def parseLevels():
-    global msp
+        # open file and create modelspace
+        try:
+            doc = ezdxf.readfile(self.m_input_file)
+        except IOError:
+            #TODO throw exception. file not found
+            print("File not found")
+        except ezdxf.DXFStructureError:
+            #TODO throw exception. invalid dxf file.
+            print("Invalid dxf file format")
 
-    #TODO: error if no level information
-    #TODO: implement for several levels
-    for line in msp.query('LINE[layer=="Level0"]'):
-        #TODO: pybind
-        #WorldBuilder.addBoundaryLine(int(level), [line.dxf.start, line.dxf.end])
+        self.m_msp = doc.modelspace()
 
-def parseSpecialAreas():
-    global msp
+        self.m_unit = doc.header['$INSUNITS'] # allow only 6 for meters chec diff to LUNITS
+        if self.m_unit != 6:
+            #TODO accept other units as well (but not all)
+            #TODO throw exception
+            print("Length unit is not meter. Not yet implemented")
 
-    #TODO: implement for several special area-layers
-    #loop over lines, store: key=color, value=segment list [[[startX, startY],[endX, endY]], ...]
+        print("unit: "+str(self.m_unit))
+        # check $MEASUREMENT = 0 English not metric
 
-    color_to_segments={}
+        # NOTE: these headers are not available in qcad file
+        #upper_right_corner = doc.header['$EXTMAX']
+        #lower_left_corner = doc.header['$EXTMIN']
 
-    for line in msp.query('LINE[layer=="Level0_SpecialAreas"]'):
-        #create empty list for new color
-        if line.dxf.color not in color_to_segments.keys():
-            color_to_segments[line.dxf.color] = []
-
-        #append segment to list
-        #TODO: convert format of dxf.start/end
-        color_to_segments[line.dxf.color].append([line.dxf.start, line.dxf.end])
-
-    #add to world builder
-    for color in color_to_segments:
-        #TODO: pybind
-        #WorldBuilder.addSpecialArea(int(color), color_to_segments[color])
+        #self.__parseLevels()
+        #self.__parseSpecialAreas()
 
 
+    def __parseLevels(self):
+        #TODO: error if no level information
+        #TODO: implement for several levels
+        for line in self.m_msp.query('LINE[layer=="Level0"]'):
+            print("not yet implemented")
+            #TODO: pybind
+            #WorldBuilder.addBoundaryLine(int(level), [line.dxf.start, line.dxf.end])
 
+    def __parseSpecialAreas(self):
+        #TODO: implement for several special area-layers
+        #loop over lines, store: key=color, value=segment list [[[startX, startY],[endX, endY]], ...]
+
+        color_to_segments={}
+
+        for line in self.m_msp.query('LINE[layer=="Level0_SpecialAreas"]'):
+            #create empty list for new color
+            if line.dxf.color not in color_to_segments.keys():
+                color_to_segments[line.dxf.color] = []
+
+            #append segment to list
+            #TODO: convert format of dxf.start/end
+            color_to_segments[line.dxf.color].append([line.dxf.start, line.dxf.end])
+
+        #add to world builder
+        for color in color_to_segments:
+            print("not yet implemented")
+            #TODO: pybind
+            #WorldBuilder.addSpecialArea(int(color), color_to_segments[color])
