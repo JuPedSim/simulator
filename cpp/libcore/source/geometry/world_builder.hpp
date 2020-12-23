@@ -1,10 +1,9 @@
-#ifndef SIMULATOR_WORLDBUILDER_HPP
-#define SIMULATOR_WORLDBUILDER_HPP
+#ifndef SIMULATOR_WORLD_BUILDER_HPP
+#define SIMULATOR_WORLD_BUILDER_HPP
 
 #include <vector>
 #include <map>
 
-// 2D positions in mm
 struct Point{
     int x;
     int y;
@@ -28,9 +27,12 @@ private:
     std::map<int, std::vector<Area>> m_level_to_special_areas;
 
 public:
+
+    WorldBuilder() = default;
+
     //TODO: somehow check for maximum dimensions and shift if necessary (to not exceed the int range)
     void addBoundaryLine(int p_level, std::vector<int> p_segment);
     void addSpecialArea(int p_level, int p_id, std::vector<int> p_segments);
 };
 
-#endif //SIMULATOR_WORLDBUILDER_HPP
+#endif //SIMULATOR_WORLD_BUILDER_HPP
