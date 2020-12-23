@@ -3,6 +3,8 @@ add_library(core
     log.hpp
     simulation.cpp
     simulation.hpp
+
+    util/identifiable.hpp
 )
 
 target_include_directories(core
