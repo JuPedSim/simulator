@@ -83,6 +83,13 @@ public:
         return details::scaleQuantity<RESOLUTION, unit>(m_quantity);
     }
 
+    LengthUnit & operator+=(LengthUnit const & p_other) noexcept
+    {
+        m_quantity += p_other.m_quantity;
+        return *this;
+    }
+
+
 private:
     // Stores the length unit quantity in micro meter
     QuantityType m_quantity{};
@@ -95,3 +102,35 @@ LengthUnit makeLengthUnit(LengthUnit::QuantityType p_quantity)
 }
 
 } // namespace jps
+
+inline jps::LengthUnit operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs)
+{
+    p_lhs += p_rhs;
+    return p_lhs;
+}
+
+/// User defined literals for all units
+inline jps::LengthUnit operator"" _mum(unsigned long long p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::mum>(p_quantity);
+}
+inline jps::LengthUnit operator"" _mm(unsigned long long p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::mm>(p_quantity);
+}
+inline jps::LengthUnit operator"" _cm(unsigned long long p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::cm>(p_quantity);
+}
+inline jps::LengthUnit operator"" _dm(unsigned long long p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::dm>(p_quantity);
+}
+inline jps::LengthUnit operator"" _m(unsigned long long p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::m>(p_quantity);
+}
+inline jps::LengthUnit operator"" _km(unsigned long long p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::km>(p_quantity);
+}

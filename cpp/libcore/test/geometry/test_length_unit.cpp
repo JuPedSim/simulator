@@ -98,6 +98,28 @@ TEST(LengthUnit, makeLengthUnit)
     EXPECT_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1000).get<Units::mm>()), 1);
 }
 
+TEST(LengthUnit, UserDefinedLiterals)
+{
+    EXPECT_EQ((1_mum).get<jps::Units::mum>(), 1);
+    EXPECT_EQ((1_mm).get<jps::Units::mm>(), 1);
+    EXPECT_EQ((1_cm).get<jps::Units::cm>(), 1);
+    EXPECT_EQ((1_dm).get<jps::Units::dm>(), 1);
+    EXPECT_EQ((1_m).get<jps::Units::m>(), 1);
+    EXPECT_EQ((1_km).get<jps::Units::km>(), 1);
+}
+
+TEST(LengthUnit, arithmetics)
+{
+    using namespace jps;
+
+    auto lu       = makeLengthUnit<Units::mm>(1);
+    auto other_lu = makeLengthUnit<Units::mum>(1);
+
+    lu += other_lu;
+    EXPECT_EQ(lu.get(), 1001);
+    EXPECT_EQ(other_lu.get(), 1);
+}
+
 
 TEST(LengthUnit, scaleQuantity)
 {
