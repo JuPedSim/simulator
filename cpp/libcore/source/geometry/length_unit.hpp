@@ -75,8 +75,6 @@ public:
     {
     }
 
-    bool operator==(QuantityType p_other) const { return m_quantity == p_other; }
-
     template <Units unit = RESOLUTION>
     QuantityType get() const
     {
