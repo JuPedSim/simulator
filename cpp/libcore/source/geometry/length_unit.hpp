@@ -10,7 +10,7 @@ namespace jps
 {
 /// Enumeration for supported length units.
 /// Underlying integer must be set to the decimal exponent relative to meter (like SI).
-enum class Units { mum = -6, mm = -3, cm = -2, dm = -1, m = 0, km = 3 };
+enum class Units { um = -6, mm = -3, cm = -2, dm = -1, m = 0, km = 3 };
 const int DECIMAL_BASE = 10;
 
 namespace details
@@ -57,7 +57,7 @@ class LengthUnit
 public:
     using QuantityType = std::int_least64_t;
 
-    const static Units RESOLUTION = Units::mum;
+    const static Units RESOLUTION = Units::um;
 
     LengthUnit() = default;
 
@@ -110,9 +110,9 @@ inline jps::LengthUnit operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & 
 }
 
 /// User defined literals for all units
-inline jps::LengthUnit operator"" _mum(unsigned long long p_quantity)
+inline jps::LengthUnit operator"" _um(unsigned long long p_quantity)
 {
-    return jps::makeLengthUnit<jps::Units::mum>(p_quantity);
+    return jps::makeLengthUnit<jps::Units::um>(p_quantity);
 }
 inline jps::LengthUnit operator"" _mm(unsigned long long p_quantity)
 {
