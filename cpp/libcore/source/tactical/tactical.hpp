@@ -8,16 +8,22 @@
 class TacticalModelInterface
 {
     /// Sets up all needed data structures for the strategic model
-    virtual void setup(/** World **/) = 0;
+    virtual void setup(/** const Simulation & p_simulation **/){};
 
     /// Determines the desired direction towards a specific goal
-    /// TODO Return type: Displacement vector?
-    virtual void computeStep(/** const Simulation &, Result of strategic level **/) = 0;
+    /// Computes the next position of the agents / an agent
+    /// 
+    /// @param p_simulation simulation context, including geometry
+    /// @param p_tactical_results result from the strategic level for the agent
+    /// @param p_agent agent for whom the next direction is computed
+    ///
+    /// @return
+    virtual TacticalModelResult computeStep(/** const Simulation &, const StrategicModelResult & p_strategic_result, const Agent & p_agent **/) const = 0;
 
     /// Update the global state of the tactical model, e.g., when the geometry is changed or
     /// similar
-    virtual void update() = 0;
+    virtual void update(/** const Simulation & p_simulation **/){};
 
     /// Tears down everything needed in the tactical model
-    virtual void tearDown() = 0;
+    virtual void tearDown(/** const Simulation & p_simulation **/){};
 };

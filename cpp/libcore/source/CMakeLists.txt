@@ -33,14 +33,17 @@ add_library(core
     util/simulation_clock.hpp
 )
     operational/operational.hpp
+    operational/result.hpp
 
+    strategic/result.hpp
     strategic/strategic.hpp
 
+    tactical/result.hpp
     tactical/tactical.hpp
 
     util/identifiable.hpp
     util/jpsexception.hpp
-    )
+)
 
 target_include_directories(core
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
