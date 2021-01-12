@@ -28,4 +28,6 @@ private:
     SimulationData m_simulation_data;
 };
 
+void computeNextStep(Simulation & simulation);
+
 } // namespace jps
