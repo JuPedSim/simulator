@@ -3,7 +3,6 @@
 #include "enum.hpp"
 #include "math/int_pow.hpp"
 
-#include <cstdint>
 #include <type_traits>
 
 namespace jps
@@ -51,9 +50,10 @@ struct LengthUnitParams {
 class LengthUnit
 {
 public:
-    using QuantityType = std::int_least64_t;
+    using QuantityType = double;
 
-    const static Units RESOLUTION = Units::um;
+    /// Defines the unit which is used to store the quantity internally
+    const static Units RESOLUTION = Units::m;
 
     LengthUnit() = default;
 
@@ -104,6 +104,32 @@ inline jps::LengthUnit operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & 
 }
 
 /// User defined literals for all units
+inline jps::LengthUnit operator"" _um(long double p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::um>(p_quantity);
+}
+inline jps::LengthUnit operator"" _mm(long double p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::mm>(p_quantity);
+}
+inline jps::LengthUnit operator"" _cm(long double p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::cm>(p_quantity);
+}
+inline jps::LengthUnit operator"" _dm(long double p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::dm>(p_quantity);
+}
+inline jps::LengthUnit operator"" _m(long double p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::m>(p_quantity);
+}
+inline jps::LengthUnit operator"" _km(long double p_quantity)
+{
+    return jps::makeLengthUnit<jps::Units::km>(p_quantity);
+}
+
+/// User defined literals for integrals
 inline jps::LengthUnit operator"" _um(unsigned long long p_quantity)
 {
     return jps::makeLengthUnit<jps::Units::um>(p_quantity);
