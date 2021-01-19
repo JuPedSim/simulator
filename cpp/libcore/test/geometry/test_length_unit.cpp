@@ -73,18 +73,18 @@ TEST(LengthUnit, makeLengthUnit)
     EXPECT_DOUBLE_EQ((makeLengthUnit<Units::um>(10.).get<Units::um>()), 10.);
 
     // Check if scaling is used in constructor
-    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::km>(1.).get<LengthUnit::RESOLUTION>()), 1e3);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1.).get<LengthUnit::RESOLUTION>()), 1.);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::dm>(1.).get<LengthUnit::RESOLUTION>()), 1e-1);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::cm>(1.).get<LengthUnit::RESOLUTION>()), 1e-2);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::mm>(1.).get<LengthUnit::RESOLUTION>()), 1e-3);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::km>(1.).get<Units::m>()), 1e3);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1.).get<Units::m>()), 1.);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::dm>(1.).get<Units::m>()), 1e-1);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::cm>(1.).get<Units::m>()), 1e-2);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::mm>(1.).get<Units::m>()), 1e-3);
 
     // Check if scaling is used in get method
-    EXPECT_DOUBLE_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1e3).get<Units::km>()), 1.);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1.).get<Units::m>()), 1.);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1e-1).get<Units::dm>()), 1.);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1e-2).get<Units::cm>()), 1.);
-    EXPECT_DOUBLE_EQ((makeLengthUnit<LengthUnit::RESOLUTION>(1e-3).get<Units::mm>()), 1.);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1e3).get<Units::km>()), 1.);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1.).get<Units::m>()), 1.);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1e-1).get<Units::dm>()), 1.);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1e-2).get<Units::cm>()), 1.);
+    EXPECT_DOUBLE_EQ((makeLengthUnit<Units::m>(1e-3).get<Units::mm>()), 1.);
 }
 
 TEST(LengthUnit, UserDefinedLiterals)

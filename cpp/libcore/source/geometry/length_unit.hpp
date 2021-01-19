@@ -49,11 +49,11 @@ struct LengthUnitParams {
 
 class LengthUnit
 {
-public:
-    using QuantityType = double;
-
     /// Defines the unit which is used to store the quantity internally
     const static Units RESOLUTION = Units::m;
+
+public:
+    using QuantityType = double;
 
     LengthUnit() = default;
 
