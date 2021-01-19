@@ -83,10 +83,23 @@ public:
         return *this;
     }
 
+    LengthUnit & operator-=(LengthUnit const & p_other) noexcept
+    {
+        m_quantity -= p_other.m_quantity;
+        return *this;
+    }
+
 
 private:
     // Stores the length unit quantity in micro meter
     QuantityType m_quantity{};
+
+    /// friend functions
+    friend jps::LengthUnit operator-(jps::LengthUnit p_lu)
+    {
+        p_lu.m_quantity = -p_lu.m_quantity;
+        return p_lu;
+    }
 };
 
 template <Units Unit>
@@ -97,9 +110,17 @@ LengthUnit makeLengthUnit(LengthUnit::QuantityType p_quantity)
 
 } // namespace jps
 
+
+/// arithmetic operations
 inline jps::LengthUnit operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs)
 {
     p_lhs += p_rhs;
+    return p_lhs;
+}
+
+inline jps::LengthUnit operator-(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs)
+{
+    p_lhs -= p_rhs;
     return p_lhs;
 }
 

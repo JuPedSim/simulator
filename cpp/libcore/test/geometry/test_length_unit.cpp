@@ -112,9 +112,61 @@ TEST(LengthUnit, arithmetics)
     auto lu       = makeLengthUnit<Units::mm>(1.);
     auto other_lu = makeLengthUnit<Units::um>(1.);
 
+    /// test +=
     lu += other_lu;
     EXPECT_DOUBLE_EQ(lu.get<Units::um>(), 1001.);
     EXPECT_DOUBLE_EQ(other_lu.get<Units::m>(), 1e-6);
+
+    other_lu += other_lu;
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::um>(), 2.);
+
+    lu       = 1_mm;
+    other_lu = 1_mm;
+
+    /// Test symmetric + operator
+    auto result = lu + other_lu;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 2.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 1.);
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
+
+    result = other_lu + lu;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 2.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 1.);
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
+
+    /// negativ
+    result = -lu;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), -1.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 1.);
+
+    lu = -lu;
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), -1.);
+
+    /// operator -=
+    lu       = 1_mm;
+    other_lu = 1_mm;
+
+    lu -= other_lu;
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 0.);
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
+
+    other_lu -= other_lu;
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 0.);
+
+    /// symmetric operator-
+    lu       = 10_mm;
+    other_lu = 1_mm;
+    result   = lu - other_lu;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 9.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
+
+    lu       = 10_mm;
+    other_lu = 1_mm;
+    result   = other_lu - lu;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), -9.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
+    EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
 }
 
 
