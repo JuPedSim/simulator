@@ -18,20 +18,16 @@ namespace details
 /// Scales the given quantity of a length unit from `from` unit to `to` unit.
 /// The used  quantity type T can be deduced automatically.
 /// If from < to the quantity is divided and truncated towards zero for integral T.
-/// Integer overflow is not checked.
 /// Can be called like: `scaleQuantity<Units::mm, Units::cm>(10)`
-/// @tparam T should be of integral type
 template <Units from, Units to, typename T>
 constexpr T scaleQuantity(T p_quantity)
 {
-    static_assert(std::is_integral_v<T>, "T in scaleQuantity() should be of integral type.");
-
     const int diff_exp = toUnderlying(from) - toUnderlying(to);
 
     if constexpr(diff_exp < 0) {
-        return p_quantity / jps::math::intPow<T, DECIMAL_BASE, -diff_exp>();
+        return p_quantity / jps::math::intPow<DECIMAL_BASE, -diff_exp>();
     } else {
-        return p_quantity * jps::math::intPow<T, DECIMAL_BASE, diff_exp>();
+        return p_quantity * jps::math::intPow<DECIMAL_BASE, diff_exp>();
     }
 }
 
