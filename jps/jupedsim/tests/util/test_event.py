@@ -14,8 +14,8 @@ class TestEventType:
                 SpawnPedestrianEvent([0, 0], 0).get_json(),
             ),
             (
-                SpawnPedestrianEvent([1.12, 56.5], 17),
-                SpawnPedestrianEvent([1.12, 56.5], 17).get_json(),
+                SpawnPedestrianEvent([1.12, -56.5], 17),
+                SpawnPedestrianEvent([1.12, -56.5], 17).get_json(),
             ),
             (
                 SpawnPedestrianEvent([5.21, 0], 0),
@@ -26,8 +26,20 @@ class TestEventType:
                 SpawnPedestrianEvent([0, 1.5], 42).get_json(),
             ),
             (
+                SpawnPedestrianEvent([0, 1.5], -2),
+                SpawnPedestrianEvent([0, 1.5], -2).get_json(),
+            ),
+            (
+                SpawnPedestrianEvent([-12.54, 23.1], -2),
+                SpawnPedestrianEvent([-12.54, 23.1], -2).get_json(),
+            ),
+            (
+                SpawnPedestrianEvent([-12.54, -3.81], -2),
+                SpawnPedestrianEvent([-12.54, -3.81], -2).get_json(),
+            ),
+            (
                 SpawnPedestrianEvent([0, 1.5], 42),
-                '{"type": "spawn_pedestrian", "position": [0, 1.5], "floor": 42}',
+                '{"type": "spawn_pedestrian", "position": [0, 1.5], "level": 42}',
             ),
         ],
     )
@@ -38,7 +50,7 @@ class TestEventType:
     @pytest.mark.parametrize(
         "json_str",
         [
-            '{"type": "foo", "position": [0, 0], "floor": 0}',
+            '{"type": "foo", "position": [0, 0], "level": 0}',
             DummyEvent("test").get_json(),
         ],
     )
@@ -61,11 +73,11 @@ class TestSpawnPedestrianEvent:
             ),
             (
                 SpawnPedestrianEvent([0, 0], 1),
-                '{"type": "spawn_pedestrian", "position": [0, 0], "floor": 1}',
+                '{"type": "spawn_pedestrian", "position": [0, 0], "level": 1}',
             ),
             (
                 SpawnPedestrianEvent([0, 0], 1),
-                '{"type": "spawn_pedestrian", "position": [0, 0], "floor": 1, "test": [0, 0]}',
+                '{"type": "spawn_pedestrian", "position": [0, 0], "level": 1, "test": [0, 0]}',
             ),
         ],
     )
@@ -77,13 +89,13 @@ class TestSpawnPedestrianEvent:
         "json_str",
         [
             (SpawnPedestrianEvent(["test", 0], 0).get_json()),
-            (SpawnPedestrianEvent([0, 0], "floor").get_json()),
+            (SpawnPedestrianEvent([0, 0], "level").get_json()),
             (SpawnPedestrianEvent([0, 0, 0], 0).get_json()),
             (SpawnPedestrianEvent(0, 0).get_json()),
-            '{"type": "spawn_pedestrian", "position": 0, "floor": 0}',
-            '{"type": "spawn_pedestrian", "floor": 0}',
+            '{"type": "spawn_pedestrian", "position": 0, "level": 0}',
+            '{"type": "spawn_pedestrian", "level": 0}',
             '{"type": "spawn_pedestrian", "position": 0}',
-            '{"type": "spawn_pedestrian", "position": 0, "floor": 0, "test": [0, 0]}',
+            '{"type": "spawn_pedestrian", "position": 0, "level": 0, "test": [0, 0]}',
             '{"type": }',
         ],
     )
@@ -105,9 +117,13 @@ class TestEvent:
                 Event(0.5, SpawnPedestrianEvent([0.25, 0], 6)).get_json(),
             ),
             (
+                Event(0.5, SpawnPedestrianEvent([0.25, 0], 6)),
+                Event(0.5, SpawnPedestrianEvent([0.25, 0], 6)).get_json(),
+            ),
+            (
                 Event(0, SpawnPedestrianEvent([0, 0], 0)),
                 '{"time": 0, "event": '
-                '{"type": "spawn_pedestrian", "position": [0, 0], "floor": 0}, "test":"still_correct"}',
+                '{"type": "spawn_pedestrian", "position": [0, 0], "level": 0}, "test":"still_correct"}',
             ),
         ],
     )
@@ -119,9 +135,9 @@ class TestEvent:
         "json_str",
         [
             Event(0.5, DummyEvent("test")).get_json(),
-            '{"time": -1, "event": {"type": "spawn_pedestrian", "position": [0, 0], "floor": 0}}',
-            '{"time": "test", "event": {"type": "spawn_pedestrian", "position": [0, 0], "floor": 0}}',
-            '{"time": 0, "no_event": {"type": "spawn_pedestrian", "position": [0, 0], "floor": 0}}',
+            '{"time": -1, "event": {"type": "spawn_pedestrian", "position": [0, 0], "level": 0}}',
+            '{"time": "test", "event": {"type": "spawn_pedestrian", "position": [0, 0], "level": 0}}',
+            '{"time": 0, "no_event": {"type": "spawn_pedestrian", "position": [0, 0], "level": 0}}',
             '{"time": 0,',
         ],
     )

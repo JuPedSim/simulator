@@ -40,15 +40,15 @@ class EventType:
 @dataclass(init=False, frozen=True, eq=True)
 class SpawnPedestrianEvent(EventType):
     """
-    EventType for spawning pedestrians at a given position on a specific floor
+    EventType for spawning pedestrians at a given position on a specific level
     """
 
     position: List[float]
-    floor: int
+    level: int
 
-    def __init__(self, position: List[float], floor: int):
+    def __init__(self, position: List[float], level: int):
         object.__setattr__(self, "position", position)
-        object.__setattr__(self, "floor", floor)
+        object.__setattr__(self, "level", level)
         object.__setattr__(self, "type", "spawn_pedestrian")
         return
 
@@ -67,13 +67,13 @@ class SpawnPedestrianEvent(EventType):
                 )
             )
 
-        floor = json_data.get("floor")
-        if not isinstance(floor, int):
+        level = json_data.get("level")
+        if not isinstance(level, int):
             raise ValueError(
-                '"floor" needs to be a integer value, but is {}.'.format(floor)
+                '"level" needs to be a integer value, but is {}.'.format(level)
             )
 
-        return cls(position, floor)
+        return cls(position, level)
 
 
 @dataclass(frozen=True, eq=True)

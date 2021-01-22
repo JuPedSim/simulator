@@ -1,4 +1,5 @@
 import json
+from collections import Counter, Hashable
 from typing import List
 
 import pytest
@@ -36,14 +37,15 @@ class TestGenerator:
         ],
     )
     def test_read_events_incorrect(
-        self, tmpdir, filename, events: List[Event], exception
+        self, tmp_path, filename, events: List[Event], exception
     ):
-        foo = SpawnPedestrianEvent([0, 0], 1)
         if not filename:
             file = filename
         else:
-            file = tmpdir / filename
-            file.write(json.dumps(events, indent=4, cls=DataclassJSONEncoder))
+            file = tmp_path / filename
+            file.write_text(
+                json.dumps(events, indent=4, cls=DataclassJSONEncoder)
+            )
 
         with pytest.raises(exception):
             read_events(file)
@@ -57,12 +59,13 @@ class TestGenerator:
                 Event(30, SpawnPedestrianEvent([11, 5], -1)),
                 Event(432, SpawnPedestrianEvent([-12, -5], 0)),
                 Event(123, SpawnPedestrianEvent([21, -5], 1)),
+                Event(12.5, SpawnPedestrianEvent([21, -5], 1)),
             ],
         ),
     )
-    def test_read_events_correct(self, tmpdir, events: List[Event]):
-        file = tmpdir / "read_events_correct.json"
-        file.write(json.dumps(events, indent=4, cls=DataclassJSONEncoder))
+    def test_read_events_correct(self, tmp_path, events: List[Event]):
+        file = tmp_path / "read_events_correct.json"
+        file.write_text(json.dumps(events, indent=4, cls=DataclassJSONEncoder))
         result = read_events(file)
         assert events == result
 
@@ -71,13 +74,15 @@ class TestGenerator:
         [
             Event(0, SpawnPedestrianEvent([0, 0], 1)),
             Event(50, SpawnPedestrianEvent([6, -34], -1)),
+            Event(64.32, SpawnPedestrianEvent([6, -34], -1)),
             Event(123, SpawnPedestrianEvent([-1221, 435], 2)),
-            Event(56123, SpawnPedestrianEvent([12, 85], 4)),
+            Event(1123.5211, SpawnPedestrianEvent([-1221, 435], 2)),
+            Event(5123.0001, SpawnPedestrianEvent([12, 85], 4)),
         ],
     )
     def test_generate_pedestrian_position(self, event: Event):
         generated_ped = generate_pedestrian_on_position(
-            event.time, event.event.position, event.event.floor
+            event.time, event.event.position, event.event.level
         )
         assert len(generated_ped) == 1
         assert generated_ped[0] == event
@@ -223,6 +228,20 @@ class TestGenerator:
                 [
                     Event(0, DummyEvent("dummy")),
                     Event(123, DummyEvent("dummy")),
+                ],
+            ),
+            (
+                [
+                    Event(432, SpawnPedestrianEvent([-12, -5], 0)),
+                ],
+                [
+                    Event(0, DummyEvent("dummy")),
+                    Event(432, SpawnPedestrianEvent([-12, -5], 0)),
+                ],
+                [
+                    Event(0, DummyEvent("dummy")),
+                    Event(432, SpawnPedestrianEvent([-12, -5], 0)),
+                    Event(432, SpawnPedestrianEvent([-12, -5], 0)),
                 ],
             ),
             (

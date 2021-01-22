@@ -9,24 +9,20 @@ from jupedsim.util.event import (
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
-def process_generator(args) -> None:
+def generate_spawn_events(args) -> None:
     """
-    Processes the event file generator
+    Generates all spawn events defined in args. Args contains time and position of the pedestrian, and also the
+    output information (file, overwriting).
     :param args: Commandline arguments
     :return:
     """
-    events = []
-    if args.floor is not None:
-        log_error("need floor")
-    if len(args.x) == 1 and len(args.y) == 1 and args.floor is not None:
-        if args.n != 1:
-            log_warning("number of pedestrians != 1")
-        else:
-            events = generate_pedestrian_on_position(
-                args.time, [args.x[0], args.y[0]], args.floor
-            )
-
+    events = generate_pedestrian_on_position(
+        args.time, [args.x, args.y], args.level
+    )
     write_to_event_file(args.o, events, args.overwrite)
+    log_info(
+        "Generate pedestrian events have been written to: {}".format(args.o)
+    )
 
 
 def read_events(file) -> List[Event]:
@@ -45,16 +41,16 @@ def read_events(file) -> List[Event]:
 
 
 def generate_pedestrian_on_position(
-    time: float, position, floor: int
+    time: float, position, level: int
 ) -> List[Event]:
     """
-    Generates one pedestrian at time at position in floor.
+    Generates one pedestrian at time at position in level.
     :param time: Time the pedestrian is spawned
     :param position: Position the pedestrian is spawned
-    :param floor: Floor the pedestrian is spawned
+    :param level: Level the pedestrian is spawned
     :return: List of length one containing the spawn pedestrian event
     """
-    spawn_event = SpawnPedestrianEvent(position, floor)
+    spawn_event = SpawnPedestrianEvent(position, level)
     return [Event(time, spawn_event)]
 
 
@@ -98,7 +94,7 @@ def write_to_event_file(
     :param overwrite: Existing SpawnPedestrianEvents will be overwritten
     :return: success
     """
-    existing_events = read_events(file)
+    existing_events = read_events(file) if overwrite else []
     events = merge_spawn_pedestrian_events(events, existing_events, overwrite)
 
     with open(file, "w+") as json_file:
