@@ -21,17 +21,17 @@ public:
 
     /// Identified object should not be copied to avoid objects with same ID
     Identifiable(Identifiable const & /*p_other*/) = delete;
-    Identifiable & operator=(Identifiable const & /*p_other*/) = delete;
+    auto operator=(Identifiable const & /*p_other*/) -> Identifiable & = delete;
 
     /// For moved objects the same UID is used.
     Identifiable(Identifiable && p_other) noexcept : m_id{p_other.m_id} {};
-    Identifiable & operator=(Identifiable && p_other) noexcept
+    auto operator=(Identifiable && p_other) noexcept -> Identifiable &
     {
         m_id = p_other.m_id;
         return *this;
     }
 
 
-    unsigned int getID() const noexcept { return m_id; }
+    auto getID() const noexcept -> unsigned int { return m_id; }
 };
 } // namespace jps
