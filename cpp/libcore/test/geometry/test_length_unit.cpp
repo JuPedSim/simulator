@@ -1,5 +1,6 @@
 #include "geometry/length_unit.hpp"
 
+#include <cmath>
 #include <gtest/gtest.h>
 
 TEST(LengthUnit, NonHelperConstruction)
@@ -96,7 +97,7 @@ TEST(LengthUnit, UserDefinedLiterals)
     EXPECT_DOUBLE_EQ((1._m).get<jps::Units::m>(), 1.);
     EXPECT_DOUBLE_EQ((1._km).get<jps::Units::km>(), 1.);
 
-    /// Test integral literals
+    // Test integral literals
     EXPECT_DOUBLE_EQ((1_um).get<jps::Units::um>(), 1.);
     EXPECT_DOUBLE_EQ((1_mm).get<jps::Units::mm>(), 1.);
     EXPECT_DOUBLE_EQ((1_cm).get<jps::Units::cm>(), 1.);
@@ -112,7 +113,7 @@ TEST(LengthUnit, arithmetics)
     auto lu       = makeLengthUnit<Units::mm>(1.);
     auto other_lu = makeLengthUnit<Units::um>(1.);
 
-    /// test +=
+    // test +=
     lu += other_lu;
     EXPECT_DOUBLE_EQ(lu.get<Units::um>(), 1001.);
     EXPECT_DOUBLE_EQ(other_lu.get<Units::m>(), 1e-6);
@@ -123,7 +124,7 @@ TEST(LengthUnit, arithmetics)
     lu       = 1_mm;
     other_lu = 1_mm;
 
-    /// Test symmetric + operator
+    // Test symmetric + operator
     auto result = lu + other_lu;
     EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 2.);
     EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 1.);
@@ -134,7 +135,7 @@ TEST(LengthUnit, arithmetics)
     EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 1.);
     EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
 
-    /// negativ
+    // negativ
     result = -lu;
     EXPECT_DOUBLE_EQ(result.get<Units::mm>(), -1.);
     EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 1.);
@@ -142,7 +143,7 @@ TEST(LengthUnit, arithmetics)
     lu = -lu;
     EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), -1.);
 
-    /// operator -=
+    // operator -=
     lu       = 1_mm;
     other_lu = 1_mm;
 
@@ -153,7 +154,7 @@ TEST(LengthUnit, arithmetics)
     other_lu -= other_lu;
     EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 0.);
 
-    /// symmetric operator-
+    // symmetric operator-
     lu       = 10_mm;
     other_lu = 1_mm;
     result   = lu - other_lu;
@@ -167,6 +168,28 @@ TEST(LengthUnit, arithmetics)
     EXPECT_DOUBLE_EQ(result.get<Units::mm>(), -9.);
     EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
     EXPECT_DOUBLE_EQ(other_lu.get<Units::mm>(), 1.);
+
+    // division by scalar
+    lu     = 10_mm;
+    result = lu / 10;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 1.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
+
+    result = lu / 0;
+    EXPECT_TRUE(std::isinf(result.get<Units::mm>()));
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
+
+    // multiplication with scalar
+    lu     = 10_mm;
+    result = lu * 5;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 50.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
+
+    // symmetric multiplication operation
+    lu     = 10_mm;
+    result = 5 * lu;
+    EXPECT_DOUBLE_EQ(result.get<Units::mm>(), 50.);
+    EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
 }
 
 

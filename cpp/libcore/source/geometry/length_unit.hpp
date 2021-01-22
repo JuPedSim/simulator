@@ -91,13 +91,25 @@ public:
 
 
 private:
-    // Stores the length unit quantity in micro meter
+    // Stores the length unit quantity stored in RESOLUTION
     QuantityType m_quantity{};
 
     /// friend functions
     friend jps::LengthUnit operator-(jps::LengthUnit p_lu)
     {
         p_lu.m_quantity = -p_lu.m_quantity;
+        return p_lu;
+    }
+
+    friend jps::LengthUnit operator*(jps::LengthUnit p_lu, double p_scalar)
+    {
+        p_lu.m_quantity *= p_scalar;
+        return p_lu;
+    }
+
+    friend jps::LengthUnit operator/(jps::LengthUnit p_lu, double p_scalar)
+    {
+        p_lu.m_quantity /= p_scalar;
         return p_lu;
     }
 };
@@ -124,6 +136,10 @@ inline jps::LengthUnit operator-(jps::LengthUnit p_lhs, jps::LengthUnit const & 
     return p_lhs;
 }
 
+inline jps::LengthUnit operator*(double p_scalar, jps::LengthUnit p_lu)
+{
+    return p_lu * p_scalar;
+}
 /// User defined literals for all units
 inline jps::LengthUnit operator"" _um(long double p_quantity)
 {
