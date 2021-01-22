@@ -9,7 +9,7 @@ namespace jps::math
 /// @tparam int base
 /// @tparam exp exponent as unsigned short
 template <int base, unsigned short exp>
-constexpr int intPow()
+constexpr auto intPow() -> int
 {
     if constexpr(exp == 0) {
         return 1;

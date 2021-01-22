@@ -19,7 +19,7 @@ namespace details
 /// If from < to the quantity is divided and truncated towards zero for integral T.
 /// Can be called like: `scaleQuantity<Units::mm, Units::cm>(10)`
 template <Units from, Units to, typename T>
-constexpr T scaleQuantity(T p_quantity)
+constexpr auto scaleQuantity(T p_quantity) -> T
 {
     const int diff_exp = toUnderlying(from) - toUnderlying(to);
 
@@ -36,10 +36,10 @@ struct LengthUnitParams {
 
     LengthUnitParams()                                 = delete;
     LengthUnitParams(LengthUnitParams const & p_other) = delete;
-    LengthUnitParams & operator=(LengthUnitParams const & p_other) = delete;
+    auto operator=(LengthUnitParams const & p_other) -> LengthUnitParams & = delete;
 
     LengthUnitParams(LengthUnitParams && p_other) noexcept = default;
-    LengthUnitParams & operator=(LengthUnitParams && p_other) noexcept = default;
+    auto operator=(LengthUnitParams && p_other) noexcept -> LengthUnitParams & = default;
 
     ~LengthUnitParams() = default;
 
@@ -58,10 +58,10 @@ public:
     LengthUnit() = default;
 
     LengthUnit(LengthUnit const & p_other) = default;
-    LengthUnit & operator=(LengthUnit const & p_other) = default;
+    auto operator=(LengthUnit const & p_other) -> LengthUnit & = default;
 
     LengthUnit(LengthUnit && p_moved) noexcept = default;
-    LengthUnit & operator=(LengthUnit && p_moved) noexcept = default;
+    auto operator=(LengthUnit && p_moved) noexcept -> LengthUnit & = default;
 
     ~LengthUnit() = default;
 
@@ -72,18 +72,18 @@ public:
     }
 
     template <Units unit = RESOLUTION>
-    QuantityType get() const
+    auto get() const -> QuantityType
     {
         return details::scaleQuantity<RESOLUTION, unit>(m_quantity);
     }
 
-    LengthUnit & operator+=(LengthUnit const & p_other) noexcept
+    auto operator+=(LengthUnit const & p_other) noexcept -> LengthUnit &
     {
         m_quantity += p_other.m_quantity;
         return *this;
     }
 
-    LengthUnit & operator-=(LengthUnit const & p_other) noexcept
+    auto operator-=(LengthUnit const & p_other) noexcept -> LengthUnit &
     {
         m_quantity -= p_other.m_quantity;
         return *this;
@@ -95,19 +95,19 @@ private:
     QuantityType m_quantity{};
 
     /// friend functions
-    friend jps::LengthUnit operator-(jps::LengthUnit p_lu)
+    friend auto operator-(jps::LengthUnit p_lu) -> jps::LengthUnit
     {
         p_lu.m_quantity = -p_lu.m_quantity;
         return p_lu;
     }
 
-    friend jps::LengthUnit operator*(jps::LengthUnit p_lu, double p_scalar)
+    friend auto operator*(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit
     {
         p_lu.m_quantity *= p_scalar;
         return p_lu;
     }
 
-    friend jps::LengthUnit operator/(jps::LengthUnit p_lu, double p_scalar)
+    friend auto operator/(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit
     {
         p_lu.m_quantity /= p_scalar;
         return p_lu;
@@ -115,7 +115,7 @@ private:
 };
 
 template <Units Unit>
-LengthUnit makeLengthUnit(LengthUnit::QuantityType p_quantity)
+auto makeLengthUnit(LengthUnit::QuantityType p_quantity) -> LengthUnit
 {
     return LengthUnit{details::LengthUnitParams<LengthUnit::QuantityType, Unit>{p_quantity}};
 }
@@ -124,70 +124,70 @@ LengthUnit makeLengthUnit(LengthUnit::QuantityType p_quantity)
 
 
 /// arithmetic operations
-inline jps::LengthUnit operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs)
+inline auto operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs) -> jps::LengthUnit
 {
     p_lhs += p_rhs;
     return p_lhs;
 }
 
-inline jps::LengthUnit operator-(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs)
+inline auto operator-(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs) -> jps::LengthUnit
 {
     p_lhs -= p_rhs;
     return p_lhs;
 }
 
-inline jps::LengthUnit operator*(double p_scalar, jps::LengthUnit p_lu)
+inline auto operator*(double p_scalar, jps::LengthUnit p_lu) -> jps::LengthUnit
 {
     return p_lu * p_scalar;
 }
 /// User defined literals for all units
-inline jps::LengthUnit operator"" _um(long double p_quantity)
+inline auto operator"" _um(long double p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::um>(p_quantity);
 }
-inline jps::LengthUnit operator"" _mm(long double p_quantity)
+inline auto operator"" _mm(long double p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::mm>(p_quantity);
 }
-inline jps::LengthUnit operator"" _cm(long double p_quantity)
+inline auto operator"" _cm(long double p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::cm>(p_quantity);
 }
-inline jps::LengthUnit operator"" _dm(long double p_quantity)
+inline auto operator"" _dm(long double p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::dm>(p_quantity);
 }
-inline jps::LengthUnit operator"" _m(long double p_quantity)
+inline auto operator"" _m(long double p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::m>(p_quantity);
 }
-inline jps::LengthUnit operator"" _km(long double p_quantity)
+inline auto operator"" _km(long double p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::km>(p_quantity);
 }
 
 /// User defined literals for integrals
-inline jps::LengthUnit operator"" _um(unsigned long long p_quantity)
+inline auto operator"" _um(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::um>(p_quantity);
 }
-inline jps::LengthUnit operator"" _mm(unsigned long long p_quantity)
+inline auto operator"" _mm(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::mm>(p_quantity);
 }
-inline jps::LengthUnit operator"" _cm(unsigned long long p_quantity)
+inline auto operator"" _cm(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::cm>(p_quantity);
 }
-inline jps::LengthUnit operator"" _dm(unsigned long long p_quantity)
+inline auto operator"" _dm(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::dm>(p_quantity);
 }
-inline jps::LengthUnit operator"" _m(unsigned long long p_quantity)
+inline auto operator"" _m(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::m>(p_quantity);
 }
-inline jps::LengthUnit operator"" _km(unsigned long long p_quantity)
+inline auto operator"" _km(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::km>(p_quantity);
 }
