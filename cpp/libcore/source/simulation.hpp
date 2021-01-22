@@ -14,11 +14,11 @@ public:
     /// Non-copyable
     Simulation(const Simulation &) = delete;
     /// Non-copyable
-    Simulation & operator=(const Simulation &) = delete;
+    auto operator=(const Simulation &) -> Simulation & = delete;
     /// Non-movable
     Simulation(Simulation &&) = delete;
     /// Non-movable
-    Simulation & operator=(Simulation &&) = delete;
+    auto operator=(Simulation &&) -> Simulation & = delete;
     // NOLINTNEXTLINE
     int getValue() { return 1; }
 };

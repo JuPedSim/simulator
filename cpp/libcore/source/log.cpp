@@ -16,7 +16,7 @@ private:
     std::array<Logging::LogCallback, 4> m_callbacks{};
 
 public:
-    static Log & instance()
+    static auto instance() -> Log &
     {
         static Log log{};
         return log;
