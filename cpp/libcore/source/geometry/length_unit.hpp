@@ -34,29 +34,31 @@ constexpr auto scaleQuantity(T p_quantity) -> T
     }
 }
 
+
+/// Helper struct to encapsulate the params required for LengthUnit construction
+/// @tparam QuantityType floating point type used to represent the quantity
+/// @tparam Unit of the quantity
 template <typename QuantityType, Units Unit>
 struct LengthUnitParams {
+    /// The quantity for the LengthUnit creation in Unit
     const QuantityType quantity; // NOLINT(misc-non-private-member-variables-in-classes)
-
-    LengthUnitParams()                                 = delete;
-    LengthUnitParams(LengthUnitParams const & p_other) = delete;
-    auto operator=(LengthUnitParams const & p_other) -> LengthUnitParams & = delete;
-
-    LengthUnitParams(LengthUnitParams && p_other) noexcept = default;
-    auto operator=(LengthUnitParams && p_other) noexcept -> LengthUnitParams & = default;
-
-    ~LengthUnitParams() = default;
-
     LengthUnitParams(QuantityType p_quantity) : quantity{p_quantity} {}
 };
 } // namespace details
 
+/// Stores the quantity of a length unit
+///
+/// LengthUnit is the base unit for all spatial data structures.
+/// It represents a quantity in RESOLUTION unit.
+/// It can only be created by explicitly passing the unit of the quantity.
+/// The construction has to be done using LengthUnitParams.
 class LengthUnit
 {
     /// Defines the unit which is used to store the quantity internally
     const static Units RESOLUTION = Units::m;
 
 public:
+    /// Type used for the quantity.
     using QuantityType = double;
 
     LengthUnit() = default;
@@ -69,16 +71,30 @@ public:
 
     ~LengthUnit() = default;
 
+    /// Constructors using LengthUnitParams
+    ///
+    /// Template parameters in constructors have to be auto deducible.
+    /// Otherwise it is not possible to distinguish class template params and constructor template
+    /// params.
+    /// The quantity is scaled towards the RESOLUTION unit.
+    ///
+    /// @tparam Unit is the input unit of the quantity.
     template <Units Unit>
     LengthUnit(details::LengthUnitParams<QuantityType, Unit> const & p_params) :
         m_quantity{details::scaleQuantity<Unit, RESOLUTION>(p_params.quantity)}
     {
     }
 
-    template <Units unit = RESOLUTION>
+    /// Retrieves the quantity in the desired Unit
+    ///
+    /// The quantity will be scaled to the target Unit.
+    ///
+    /// @tparam Unit target unit for the quantity
+    /// @returns the quantity in the target Unit
+    template <Units Unit = RESOLUTION>
     auto get() const -> QuantityType
     {
-        return details::scaleQuantity<RESOLUTION, unit>(m_quantity);
+        return details::scaleQuantity<RESOLUTION, Unit>(m_quantity);
     }
 
     auto operator+=(LengthUnit const & p_other) noexcept -> LengthUnit &
@@ -95,10 +111,10 @@ public:
 
 
 private:
-    // Stores the length unit quantity stored in RESOLUTION
+    /// Stores the length unit quantity stored in RESOLUTION
     QuantityType m_quantity{};
 
-    /// friend functions
+    // friend functions
     friend auto operator-(jps::LengthUnit p_lu) -> jps::LengthUnit
     {
         p_lu.m_quantity = -p_lu.m_quantity;
@@ -118,6 +134,11 @@ private:
     }
 };
 
+/// Helper for creating LengthUnit
+///
+/// @tparam Unit is the input Unit of p_quantity
+/// @param p_quantity the quantity of the LengthUnit
+/// @returns LengthUnit with the quantity
 template <Units Unit>
 auto makeLengthUnit(LengthUnit::QuantityType p_quantity) -> LengthUnit
 {
