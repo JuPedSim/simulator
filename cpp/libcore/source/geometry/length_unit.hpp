@@ -21,6 +21,10 @@ namespace details
 template <Units from, Units to, typename T>
 constexpr auto scaleQuantity(T p_quantity) -> T
 {
+    static_assert(
+        std::is_floating_point_v<T>,
+        "scaleQuantity should be used with floating point types only.");
+
     const int diff_exp = toUnderlying(from) - toUnderlying(to);
 
     if constexpr(diff_exp < 0) {
