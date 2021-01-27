@@ -109,6 +109,25 @@ public:
         return *this;
     }
 
+    auto operator<(LengthUnit const & p_other) const noexcept -> bool
+    {
+        return m_quantity < p_other.m_quantity;
+    }
+
+    auto operator>(LengthUnit const & p_other) const noexcept -> bool
+    {
+        return m_quantity > p_other.m_quantity;
+    }
+
+    auto operator==(LengthUnit const & p_other) const noexcept -> bool
+    {
+        return m_quantity == p_other.m_quantity;
+    }
+
+    auto operator!=(LengthUnit const & p_other) const noexcept -> bool
+    {
+        return m_quantity != p_other.m_quantity;
+    }
 
 private:
     /// Stores the length unit quantity stored in RESOLUTION

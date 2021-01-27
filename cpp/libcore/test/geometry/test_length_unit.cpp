@@ -192,7 +192,47 @@ TEST(LengthUnit, arithmetics)
     EXPECT_DOUBLE_EQ(lu.get<Units::mm>(), 10.);
 }
 
+TEST(LengthUnit, comparisonOperators)
+{
+    using namespace jps;
+    using namespace details;
 
+    // ==
+    EXPECT_TRUE(1_m == 1_m);
+    EXPECT_TRUE(1.000001_m == 1000001_um);
+    EXPECT_TRUE(1_m == 1000_mm);
+    EXPECT_TRUE(1_km == 1000000000_um);
+    EXPECT_TRUE(1.0_m == 1_m);
+
+    EXPECT_FALSE(1_m == 1_cm);
+    EXPECT_FALSE(999_cm == 999.00001_cm);
+
+    // !=
+    EXPECT_TRUE(1_m != 2_m);
+    EXPECT_TRUE(1.000001_m != 1_m);
+    EXPECT_TRUE(1_m != 1_mm);
+
+    EXPECT_FALSE(100_m != 0.1_km);
+    EXPECT_FALSE(1_m != 1_m);
+
+    // <
+    EXPECT_TRUE(1._m < 2._m);
+    EXPECT_TRUE(1_mm < 1_cm);
+    EXPECT_TRUE(999_m < 1_km);
+
+    EXPECT_FALSE(2_m < 1_m);
+    EXPECT_FALSE(2_m < 1_cm);
+    EXPECT_FALSE(1_km < 999_m);
+
+    // >
+    EXPECT_TRUE(2_m > 1_m);
+    EXPECT_TRUE(2_m > 1_cm);
+    EXPECT_TRUE(1_km > 999_m);
+
+    EXPECT_FALSE(1._m > 2._m);
+    EXPECT_FALSE(1_mm > 1_cm);
+    EXPECT_FALSE(999_m > 1_km);
+}
 TEST(LengthUnit, scaleQuantity)
 {
     using namespace jps;
