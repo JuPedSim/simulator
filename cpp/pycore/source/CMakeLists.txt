@@ -9,8 +9,6 @@ pybind11_add_module(jpscore
 
     geometry/world_builder_binding.hpp
     geometry/world_builder_binding.cpp
-    geometry/length_unit_binding.hpp
-    geometry/length_unit_binding.cpp
 )
 
 target_link_libraries(jpscore
