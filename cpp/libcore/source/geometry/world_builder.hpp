@@ -10,14 +10,15 @@
 class WorldBuilder
 {
 private:
-    std::map<int, std::vector<jps::LineSegment>> m_level_to_boundary_lines;
+    std::map<int, std::vector<jps::LineSegment>> m_level_to_line_segments;
     std::map<int, std::vector<jps::SpecialArea>> m_level_to_special_areas;
 
 public:
     WorldBuilder() = default;
 
-    void addBoundaryLine(const jps::LineSegment &p_segment);
-    void addSpecialArea(const jps::SpecialArea &p_area);
+    void addLineSegment(int p_level, const jps::LineSegment &p_segment);
+    void addSpecialArea(int p_level, const jps::SpecialArea &p_area);
+
 };
 
 #endif // SIMULATOR_WORLD_BUILDER_HPP

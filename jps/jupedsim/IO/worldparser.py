@@ -44,9 +44,9 @@ class WorldParser:
 
         for line in self.m_msp.query('LINE[layer=="Level0"]'):
             print(line, line.dxf.start, line.dxf.end)
-            geometry.WorldBuilder.addBoundaryLine(
+            geometry.WorldBuilder.addLineSegment(0,
                 geometry.LineSegment(geometry.Coordinate(line.dxf.start[0], line.dxf.start[1], 0),
-                                     geometry.Coordinate(line.dxf.end[0], line.dxf.end[1], 0)));
+                                     geometry.Coordinate(line.dxf.end[0], line.dxf.end[1], 0)))
 
     def __parseSpecialAreas(self):
         # TODO: implement for several special area-layers
@@ -61,10 +61,11 @@ class WorldParser:
 
             # append segment to list
             # TODO: convert format of dxf.start/end
-            color_to_segments[line.dxf.color].append([line.dxf.start, line.dxf.end])
+            color_to_segments[line.dxf.color].append(geometry.LineSegment(geometry.Coordinate(line.dxf.start[0], line.dxf.start[1], 0),
+                                     geometry.Coordinate(line.dxf.end[0], line.dxf.end[1], 0)))
 
         # add to world builder
         for color in color_to_segments:
             print("not yet implemented")
             # TODO: pybind
-            # WorldBuilder.addSpecialArea(int(color), color_to_segments[color])
+            geometry.WorldBuilder.addSpecialArea(int(color), color_to_segments[color])
