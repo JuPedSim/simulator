@@ -1,10 +1,7 @@
 import sys
 import ezdxf
 
-import worldbuilder
-
-
-# TODO: read in unit and convert data to mm
+import geometry
 
 class WorldParser:
 
@@ -30,13 +27,13 @@ class WorldParser:
             print("Length unit is not meter. Not yet implemented")
 
         print("unit: " + str(self.m_unit))
-        # check $MEASUREMENT = 0 English not metric
 
+        # TODO check $MEASUREMENT = 0 English not metric
         # NOTE: these headers are not available in qcad file
         # upper_right_corner = doc.header['$EXTMAX']
         # lower_left_corner = doc.header['$EXTMIN']
 
-        worldbuilder.WorldBuilder()
+        geometry.WorldBuilder()
 
         self.__parseLevels()
         # self.__parseSpecialAreas()
@@ -44,9 +41,12 @@ class WorldParser:
     def __parseLevels(self):
         # TODO: error if no level information
         # TODO: implement for several levels
+
         for line in self.m_msp.query('LINE[layer=="Level0"]'):
             print(line, line.dxf.start, line.dxf.end)
-            worldbuilder.addBoundaryLine(0, [line.dxf.start, line.dxf.end])
+            geometry.WorldBuilder.addBoundaryLine(
+                geometry.LineSegment(geometry.Coordinate(line.dxf.start[0], line.dxf.start[1], 0),
+                                     geometry.Coordinate(line.dxf.end[0], line.dxf.end[1], 0)));
 
     def __parseSpecialAreas(self):
         # TODO: implement for several special area-layers

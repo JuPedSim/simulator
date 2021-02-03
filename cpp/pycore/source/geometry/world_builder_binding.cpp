@@ -8,6 +8,6 @@ void bind_world_builder(pybind11::module_ & m)
 {
     pybind11::class_<WorldBuilder>(m, "WorldBuilder")
         .def(pybind11::init<>())
-        .def("addBoundaryLine", &WorldBuilder::addBoundaryLine, "level"_a, "segment"_a)
-        .def("addSpecialArea", &WorldBuilder::addSpecialArea, "level"_a, "id"_a, "segments"_a);
+        .def("addBoundaryLine", &WorldBuilder::addBoundaryLine, "segment"_a)
+        .def("addSpecialArea", &WorldBuilder::addSpecialArea, "area"_a);
 }
