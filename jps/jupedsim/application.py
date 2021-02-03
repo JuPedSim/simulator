@@ -87,7 +87,7 @@ class Application:
             required=True,
             type=float,
             metavar="y-pos",
-            help="y-coordinate the pedestrian(s) should be generated [m]",
+            help="y-coordinate the pedestrian should be generated [m]",
         )
         parser.add_argument(
             "-level",
