@@ -12,5 +12,8 @@ class SpatialVector
 {
     LengthUnit m_x;
     LengthUnit m_y;
+
+public:
+    SpatialVector(LengthUnit p_x, LengthUnit p_y) : m_x(p_x), m_y(p_y){};
 };
 } // namespace jps
