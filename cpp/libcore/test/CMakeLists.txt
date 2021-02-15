@@ -4,7 +4,9 @@ add_executable(test-core
 
     util/test_identifiable.cpp
 
+    geometry/test_area.cpp
     geometry/test_coordinate.cpp
+    geometry/test_helper.cpp
     geometry/test_level.cpp
     geometry/test_length_unit.cpp
     geometry/test_line_segment.cpp
