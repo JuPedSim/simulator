@@ -3,6 +3,7 @@
 #include "enum.hpp"
 #include "math/int_pow.hpp"
 
+#include <fmt/ostream.h>
 #include <type_traits>
 
 namespace jps
@@ -235,3 +236,21 @@ inline auto operator"" _km(unsigned long long p_quantity) -> jps::LengthUnit
 {
     return jps::makeLengthUnit<jps::Units::km>(p_quantity);
 }
+
+namespace fmt
+{
+template <>
+struct formatter<jps::LengthUnit> {
+    template <typename ParseContext>
+    constexpr auto parse(ParseContext & p_ctx)
+    {
+        return p_ctx.begin();
+    }
+
+    template <typename FormatContext>
+    auto format(jps::LengthUnit const & p_lu, FormatContext & p_ctx)
+    {
+        return format_to(p_ctx.out(), "{:.4} m", p_lu.get<jps::Units::m>());
+    }
+};
+} // namespace fmt
