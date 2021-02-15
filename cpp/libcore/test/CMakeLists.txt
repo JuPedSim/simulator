@@ -11,6 +11,7 @@ add_executable(test-core
     geometry/test_length_unit.cpp
     geometry/test_line_segment.cpp
     geometry/test_spatial_vector.cpp
+    geometry/test_special_area.cpp
 
     math/test_int_pow.cpp
 )
