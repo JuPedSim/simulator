@@ -7,18 +7,20 @@
 #include <map>
 #include <vector>
 
+namespace jps
+{
 class WorldBuilder
 {
 private:
-    std::map<int, std::vector<jps::LineSegment>> m_level_to_line_segments;
-    std::map<int, std::vector<jps::SpecialArea>> m_level_to_special_areas;
+    std::map<jps::Level, std::vector<jps::LineSegment>> m_level_to_line_segments;
+    std::map<jps::Level, std::vector<jps::SpecialArea>> m_level_to_special_areas;
 
 public:
     WorldBuilder() = default;
 
-    void addLineSegment(int p_level, const jps::LineSegment &p_segment);
-    void addSpecialArea(int p_level, const jps::SpecialArea &p_area);
-
+    void addLineSegment(const jps::Level & p_level, const jps::LineSegment & p_segment);
+    void addSpecialArea(const jps::Level & p_level, const jps::SpecialArea & p_area);
 };
+} // namespace jps
 
 #endif // SIMULATOR_WORLD_BUILDER_HPP
