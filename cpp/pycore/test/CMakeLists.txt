@@ -2,6 +2,7 @@ set(python_tests
     import_test.py
     example_test.py
     logging_test.py
+    geometry/level_test.py
 )
 
 foreach(test ${python_tests})

@@ -7,6 +7,8 @@ pybind11_add_module(jpscore
     logging_binding.hpp
     logging_binding.cpp
 
+    geometry/level_binding.hpp
+    geometry/level_binding.cpp
     geometry/length_unit_binding.hpp
     geometry/length_unit_binding.cpp
     geometry/world_builder_binding.hpp
