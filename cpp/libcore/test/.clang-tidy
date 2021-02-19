@@ -6,13 +6,17 @@ Checks: >-
   -cppcoreguidelines-special-member-functions,
   -cppcoreguidelines-owning-memory,
   -cppcoreguidelines-avoid-non-const-global-variables,
+  -cppcoreguidelines-avoid-goto,
   misc-*,
   modernize-*,
   -modernize-use-nodiscard,
   performance-*,
+  -performance-move-const-arg,
+  -performance-unnecessary-copy-initialization,
   portability-*,
   readability-*,
   -readability-magic-numbers,
+  -readability-function-cognitive-complexity,
   -cppcoreguidelines-avoid-magic-numbers
 WarningsAsErrors:    '*'
 HeaderFilterRegex:   '.*'
