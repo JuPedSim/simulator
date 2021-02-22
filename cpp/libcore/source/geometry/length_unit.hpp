@@ -42,7 +42,7 @@ template <typename QuantityType, Units Unit>
 struct LengthUnitParams {
     /// The quantity for the LengthUnit creation in Unit
     const QuantityType quantity; // NOLINT(misc-non-private-member-variables-in-classes)
-    LengthUnitParams(QuantityType p_quantity) : quantity{p_quantity} {}
+    explicit LengthUnitParams(QuantityType p_quantity) : quantity{p_quantity} {}
 };
 } // namespace details
 
@@ -80,7 +80,7 @@ public:
     ///
     /// @tparam Unit is the input unit of the quantity.
     template <Units Unit>
-    LengthUnit(details::LengthUnitParams<QuantityType, Unit> const & p_params) :
+    explicit LengthUnit(details::LengthUnitParams<QuantityType, Unit> const & p_params) :
         m_quantity{details::scaleQuantity<Unit, RESOLUTION>(p_params.quantity)}
     {
     }
