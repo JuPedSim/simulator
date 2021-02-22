@@ -8,7 +8,8 @@ Checks: >-
   -modernize-use-nodiscard,
   performance-*,
   portability-*,
-  readability-*
+  readability-*,
+  google-explicit-constructor
 WarningsAsErrors:    '*'
 HeaderFilterRegex:   '.*'
 FormatStyle:         file
