@@ -1,7 +1,5 @@
 #include "world_builder.hpp"
 
-#include <utility>
-
 auto jps::WorldBuilder::addLineSegment(
     const jps::Level & p_level,
     const jps::LineSegment & p_segment) -> void
