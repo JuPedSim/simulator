@@ -6,18 +6,13 @@
 
 namespace jps
 {
+/// Represents levels in the geometry.
 class Level
 {
     std::int32_t m_id{};
 
 public:
-    Level(std::int32_t p_id) : m_id(p_id){};
-
-    Level(Level const & p_other) = default;
-    auto operator=(Level const & p_other) -> Level & = default;
-    Level(Level && p_other)                          = default;
-    auto operator=(Level && p_other) -> Level & = default;
-    ~Level()                                    = default;
+    explicit Level(std::int32_t p_id) : m_id(p_id){};
 
     auto operator==(Level const & p_other) const noexcept -> bool { return m_id == p_other.m_id; }
     auto operator!=(Level const & p_other) const noexcept -> bool { return !(*this == p_other); }

@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(Level, Constructors) // NOLINTLINE
+TEST(Level, Constructors)
 {
     using namespace jps;
 
@@ -27,17 +27,17 @@ TEST(Level, Constructors) // NOLINTLINE
 
         // move constructor
         Level before_move_constructor{reference_value};
-        Level move_constructed{std::move(before_move_constructor)}; // NOLINTLINE
+        Level move_constructed{std::move(before_move_constructor)};
         EXPECT_EQ(reference_value, move_constructed);
 
         // move assignment operator
         Level before_move_assigned{reference_value};
-        Level move_assigned = std::move(before_move_assigned); // NOLINTLINE
+        Level move_assigned = std::move(before_move_assigned);
         EXPECT_EQ(reference_value, move_assigned);
     }
 }
 
-TEST(Level, comparisonOperators) // NOLINTLINE
+TEST(Level, comparisonOperators)
 {
     using namespace jps;
 

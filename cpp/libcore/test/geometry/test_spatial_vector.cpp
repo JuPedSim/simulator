@@ -3,7 +3,7 @@
 #include <cmath>
 #include <gtest/gtest.h>
 
-TEST(SpatialVector, Constructors) // NOLINTLINE
+TEST(SpatialVector, Constructors)
 {
     using namespace jps;
 
@@ -19,8 +19,8 @@ TEST(SpatialVector, Constructors) // NOLINTLINE
     // Simple constructor
     for(auto const & [x, y] : values) {
         SpatialVector spatial_vector{x, y};
-        EXPECT_EQ(spatial_vector.x(), x);
-        EXPECT_EQ(spatial_vector.y(), y);
+        EXPECT_EQ(spatial_vector.m_x, x);
+        EXPECT_EQ(spatial_vector.m_y, y);
         reference_values.emplace_back(spatial_vector);
     }
 
@@ -35,17 +35,17 @@ TEST(SpatialVector, Constructors) // NOLINTLINE
 
         // move constructor
         SpatialVector before_move_constructor{reference_value};
-        SpatialVector move_constructed{std::move(before_move_constructor)}; // NOLINTLINE
+        SpatialVector move_constructed{std::move(before_move_constructor)};
         EXPECT_EQ(reference_value, move_constructed);
 
         // move assignment operator
         SpatialVector before_move_assigned{reference_value};
-        SpatialVector move_assigned = std::move(before_move_assigned); // NOLINTLINE
+        SpatialVector move_assigned = std::move(before_move_assigned);
         EXPECT_EQ(reference_value, move_assigned);
     }
 }
 
-TEST(SpatialVector, comparisonOperators) // NOLINTLINE
+TEST(SpatialVector, comparisonOperators)
 {
     using namespace jps;
 
@@ -74,52 +74,4 @@ TEST(SpatialVector, comparisonOperators) // NOLINTLINE
     EXPECT_FALSE((SpatialVector{-909.1873_km, 5.3_mm}) != (SpatialVector{-909.1873_km, 5.3_mm}));
     EXPECT_FALSE((SpatialVector{-1632_cm, -554.345_dm}) != (SpatialVector{-1632_cm, -554.345_dm}));
     EXPECT_FALSE((SpatialVector{12_mm, 5.3_cm}) != (SpatialVector{12_mm, 5.3_cm}));
-}
-
-TEST(SpatialVector, setters) // NOLINTLINE
-{
-    using namespace jps;
-    SpatialVector spatial_vector{1.12_mm, 2312._cm};
-
-    // Setting x value
-    LengthUnit new_x   = 9324.123_m;
-    spatial_vector.x() = new_x;
-    EXPECT_EQ(spatial_vector.x(), new_x);
-
-    new_x              = -123.67_km;
-    spatial_vector.x() = new_x;
-    EXPECT_EQ(spatial_vector.x(), new_x);
-
-    new_x              = 324234932_um;
-    spatial_vector.x() = new_x;
-    EXPECT_EQ(spatial_vector.x(), new_x);
-
-    new_x              = -843543.435_um;
-    spatial_vector.x() = new_x;
-    EXPECT_EQ(spatial_vector.x(), new_x);
-
-    new_x              = 0.912_m;
-    spatial_vector.x() = new_x;
-    EXPECT_EQ(spatial_vector.x(), new_x);
-
-    // Setting y value
-    LengthUnit new_y   = 94.653_m;
-    spatial_vector.y() = new_y;
-    EXPECT_EQ(spatial_vector.y(), new_y);
-
-    new_y              = -234.78_km;
-    spatial_vector.y() = new_y;
-    EXPECT_EQ(spatial_vector.y(), new_y);
-
-    new_y              = 23_um;
-    spatial_vector.y() = new_y;
-    EXPECT_EQ(spatial_vector.y(), new_y);
-
-    new_y              = 576.238_um;
-    spatial_vector.y() = new_y;
-    EXPECT_EQ(spatial_vector.y(), new_y);
-
-    new_y              = 0.912_m;
-    spatial_vector.y() = new_y;
-    EXPECT_EQ(spatial_vector.y(), new_y);
 }

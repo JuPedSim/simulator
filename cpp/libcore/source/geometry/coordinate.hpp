@@ -7,36 +7,20 @@
 
 namespace jps
 {
-/// Spatial Coordinate
-///
 /// Represents a spatial coordinate in the world (geometry).
-class Coordinate
-{
-    LengthUnit m_x;
-    LengthUnit m_y;
-    Level m_lvl;
+struct Coordinate {
+    LengthUnit m_x; // NOLINTLINE
+    LengthUnit m_y; // NOLINTLINE
+    Level m_lvl;    // NOLINTLINE
 
 public:
     Coordinate(LengthUnit p_x, LengthUnit p_y, Level p_lvl) : m_x(p_x), m_y(p_y), m_lvl(p_lvl){};
-    Coordinate(Coordinate const & p_other) = default;
-    auto operator=(Coordinate const & p_other) -> Coordinate & = default;
-    Coordinate(Coordinate && p_other)                          = default;
-    auto operator=(Coordinate && p_other) -> Coordinate & = default;
-    ~Coordinate()                                         = default;
 
     auto operator==(Coordinate const & p_other) const noexcept -> bool;
     auto operator!=(Coordinate const & p_other) const noexcept -> bool;
-
-    auto x() const -> LengthUnit { return m_x; };
-    auto x() -> LengthUnit & { return m_x; }
-
-    auto y() const -> LengthUnit { return m_y; };
-    auto y() -> LengthUnit & { return m_y; }
-
-    auto lvl() const -> Level { return m_lvl; }
-    auto lvl() -> Level & { return m_lvl; }
 };
 } // namespace jps
+
 
 namespace fmt
 {
@@ -49,14 +33,14 @@ struct formatter<jps::Coordinate> {
     }
 
     template <typename FormatContext>
-    auto format(const jps::Coordinate & p_coordinate, FormatContext & p_ctx)
+    auto format(jps::Coordinate const & p_coordinate, FormatContext & p_ctx)
     {
         return format_to(
             p_ctx.out(),
             "COORDINATE: ({}, {}) -- {}",
-            p_coordinate.x(),
-            p_coordinate.y(),
-            p_coordinate.lvl());
+            p_coordinate.m_x,
+            p_coordinate.m_y,
+            p_coordinate.m_lvl);
     }
 };
 } // namespace fmt

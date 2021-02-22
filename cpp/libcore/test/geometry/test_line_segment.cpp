@@ -3,7 +3,6 @@
 #include <cmath>
 #include <gtest/gtest.h>
 
-// NOLINTNEXTLINE
 TEST(LineSegment, Constructor)
 {
     using namespace jps;
@@ -37,46 +36,40 @@ TEST(LineSegment, Constructor)
 
         // move constructor
         LineSegment before_move_constructor{reference_value};
-        LineSegment move_constructed{std::move(before_move_constructor)}; // NOLINTLINE
+        LineSegment move_constructed{std::move(before_move_constructor)};
         EXPECT_EQ(reference_value, move_constructed);
 
         // move assignment operator
         LineSegment before_move_assigned{reference_value};
-        LineSegment move_assigned = std::move(before_move_assigned); // NOLINTLINE
+        LineSegment move_assigned = std::move(before_move_assigned);
         EXPECT_EQ(reference_value, move_assigned);
     }
 
     // Failing constructors
     // Start and end not on same level
-    // NOLINTNEXTLINE
     EXPECT_THROW(
         (LineSegment{{-12.1_m, 93_m, Level{21}}, {91_m, 0.12_km, Level{23}}}),
         std::invalid_argument);
-    // NOLINTNEXTLINE
     EXPECT_THROW(
         (LineSegment{{990_mm, 0.1_dm, Level{0}}, {6_mm, 58.1_um, Level{1}}}),
         std::invalid_argument);
-    // NOLINTNEXTLINE
     EXPECT_THROW(
         (LineSegment{{-51.5_cm, -1.68_cm, Level{-10}}, {83_mm, 1.2_mm, Level{-20}}}),
         std::invalid_argument);
 
     // Start and end point not different
-    // NOLINTNEXTLINE
     EXPECT_THROW(
         (LineSegment{{-12.1_m, 93_m, Level{21}}, {-12.1_m, 93_m, Level{21}}}),
         std::invalid_argument);
-    // NOLINTNEXTLINE
     EXPECT_THROW(
         (LineSegment{{990_mm, 0.1_dm, Level{0}}, {990_mm, 0.1_dm, Level{0}}}),
         std::invalid_argument);
-    // NOLINTNEXTLINE
     EXPECT_THROW(
         (LineSegment{{-51.5_cm, -1.68_cm, Level{-10}}, {-51.5_cm, -1.68_cm, Level{-10}}}),
         std::invalid_argument);
 }
 
-TEST(LineSegment, comparisonOperators) // NOLINTLINE
+TEST(LineSegment, comparisonOperators)
 {
     using namespace jps;
 
@@ -94,8 +87,15 @@ TEST(LineSegment, comparisonOperators) // NOLINTLINE
         (LineSegment{{565._cm, -1239.1_cm, Level{21}}, {94.3_cm, 8.54_cm, Level{21}}}) ==
         (LineSegment{{565._cm, -1239.1_cm, Level{21}}, {94.3_cm, 8.54_cm, Level{21}}}));
     EXPECT_TRUE(
-        (LineSegment{{-167.32_m, -272.5_m, Level{-192}}, {-0.111_mm, -11.90_um, Level{-192}}}) ==
-        (LineSegment{{-167.32_m, -272.5_m, Level{-192}}, {-0.111_mm, -11.90_um, Level{-192}}}));
+        (LineSegment{{0.0_m, 1_m, Level{0}}, {0_m, 1.1_m, Level{0}}}) ==
+        (LineSegment{{0_m, 1.1_m, Level{0}}, {0_m, 1_m, Level{0}}}));
+    EXPECT_TRUE(
+        (LineSegment{{565._cm, -1239.1_cm, Level{21}}, {94.3_cm, 8.54_cm, Level{21}}}) ==
+        (LineSegment{{94.3_cm, 8.54_cm, Level{21}}, {565._cm, -1239.1_cm, Level{21}}}));
+    EXPECT_TRUE(
+        (LineSegment{{0.0_m, 1_m, Level{0}}, {0_m, 1.1_m, Level{0}}}) ==
+        (LineSegment{{0_m, 1.1_m, Level{0}}, {0_m, 1_m, Level{0}}}));
+
     EXPECT_FALSE(
         (LineSegment{{-12.1_m, 93_m, Level{21}}, {-12.1_m, 123_m, Level{21}}}) ==
         (LineSegment{{-167.32_m, -272.5_m, Level{-19214}}, {-0.111_mm, -11.90_um, Level{-19214}}}));
@@ -108,9 +108,6 @@ TEST(LineSegment, comparisonOperators) // NOLINTLINE
     EXPECT_FALSE(
         (LineSegment{{-09.1_m, 7_m, Level{21}}, {-3.1_m, 2_m, Level{21}}}) ==
         (LineSegment{{-6.32_m, -65.5_m, Level{-56}}, {-0.123_mm, -12.2_um, Level{-56}}}));
-    EXPECT_FALSE(
-        (LineSegment{{0.0_m, 1_m, Level{0}}, {0_m, 1.1_m, Level{0}}}) ==
-        (LineSegment{{0_m, 1.1_m, Level{0}}, {0_m, 1_m, Level{0}}}));
 
     // !=
     EXPECT_TRUE(
@@ -125,7 +122,8 @@ TEST(LineSegment, comparisonOperators) // NOLINTLINE
     EXPECT_TRUE(
         (LineSegment{{-09.1_m, 7_m, Level{21}}, {-3.1_m, 2_m, Level{21}}}) !=
         (LineSegment{{-6.32_m, -65.5_m, Level{-56}}, {-0.123_mm, -12.2_um, Level{-56}}}));
-    EXPECT_TRUE(
+
+    EXPECT_FALSE(
         (LineSegment{{0.0_m, 1_m, Level{0}}, {0_m, 1.1_m, Level{0}}}) !=
         (LineSegment{{0_m, 1.1_m, Level{0}}, {0_m, 1_m, Level{0}}}));
     EXPECT_FALSE(
@@ -145,7 +143,7 @@ TEST(LineSegment, comparisonOperators) // NOLINTLINE
         (LineSegment{{-167.32_m, -272.5_m, Level{-192}}, {-0.111_mm, -11.90_um, Level{-192}}}));
 }
 
-TEST(LineSegment, rotate) // NOLINTLINE
+TEST(LineSegment, rotate)
 {
     using namespace jps;
     std::vector<LineSegment> line_segments{

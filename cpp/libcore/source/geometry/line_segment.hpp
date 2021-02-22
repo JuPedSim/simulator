@@ -7,6 +7,7 @@
 
 namespace jps
 {
+/// Represents a line segment defined by two end-points.
 class LineSegment
 {
     Coordinate m_start;
@@ -14,27 +15,22 @@ class LineSegment
 
 public:
     LineSegment(Coordinate p_start, Coordinate p_end);
-    LineSegment(LineSegment const & p_other) = default;
-    auto operator=(LineSegment const & p_other) -> LineSegment & = default;
-    LineSegment(LineSegment && p_other)                          = default;
-    auto operator=(LineSegment && p_other) -> LineSegment & = default;
-    ~LineSegment()                                          = default;
 
     auto operator==(LineSegment const & p_other) const noexcept -> bool
     {
-        // TODO are rotated line segments the same?
-        return m_start == p_other.m_start && m_end == p_other.m_end;
+        return (m_start == p_other.m_start && m_end == p_other.m_end) ||
+               (m_start == p_other.m_end && m_end == p_other.m_start);
     }
     auto operator!=(LineSegment const & p_other) const noexcept -> bool
     {
         return !(*this == p_other);
     }
 
-    auto getStart() const -> Coordinate const & { return m_start; }
+    auto getStart() const noexcept -> Coordinate const & { return m_start; }
 
-    auto getEnd() const -> Coordinate const & { return m_end; }
+    auto getEnd() const noexcept -> Coordinate const & { return m_end; }
 
-    auto rotate() -> void;
+    auto rotate() noexcept -> void;
 };
 
 } // namespace jps
@@ -50,7 +46,7 @@ struct formatter<jps::LineSegment> {
     }
 
     template <typename FormatContext>
-    auto format(const jps::LineSegment & p_line_segment, FormatContext & p_ctx)
+    auto format(jps::LineSegment const & p_line_segment, FormatContext & p_ctx)
     {
         return format_to(
             p_ctx.out(),

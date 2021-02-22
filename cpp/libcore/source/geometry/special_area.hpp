@@ -1,6 +1,7 @@
 #pragma once
 
 #include "area.hpp"
+#include "util/identifiable.hpp"
 
 #include <cstdint>
 #include <fmt/ostream.h>
@@ -8,32 +9,21 @@
 
 namespace jps
 {
-class SpecialArea
+/// Represents a special area which can be annotated with properties.
+///
+/// Note: after discussion, operator==/operator!= are not implemented yet as Identifiable classes
+/// are not copyable and hence it is not possible that two SpecialAreas are the same.
+class SpecialArea : public Identifiable<SpecialArea>
 {
     Area m_area;
-    std::uint32_t m_id{};
+    std::uint32_t m_external_id{};
 
 public:
-    SpecialArea(std::uint32_t p_id, Area p_area) : m_area(std::move(p_area)), m_id(p_id){};
-    SpecialArea(SpecialArea const & p_other) = default;
-    auto operator=(SpecialArea const & p_other) -> SpecialArea & = default;
-    SpecialArea(SpecialArea && p_other)                          = default;
-    auto operator=(SpecialArea && p_other) -> SpecialArea & = default;
-    ~SpecialArea()                                          = default;
+    SpecialArea(std::uint32_t p_id, Area p_area) : m_area(std::move(p_area)), m_external_id(p_id){};
 
-    auto operator==(SpecialArea const & p_other) const noexcept -> bool
-    {
-        // TODO also check if same area?
-        return m_id == p_other.m_id;
-    }
-    auto operator!=(SpecialArea const & p_other) const noexcept -> bool
-    {
-        return !(*this == p_other);
-    }
+    auto getArea() const noexcept -> Area const & { return m_area; }
 
-    auto getArea() const -> Area const & { return m_area; }
-
-    auto getID() const -> std::uint32_t { return m_id; }
+    auto getExternalID() const noexcept -> std::uint32_t { return m_external_id; }
 };
 } // namespace jps
 
@@ -48,7 +38,7 @@ struct formatter<jps::SpecialArea> {
     }
 
     template <typename FormatContext>
-    auto format(const jps::SpecialArea & p_area, FormatContext & p_ctx)
+    auto format(jps::SpecialArea const & p_area, FormatContext & p_ctx)
     {
         return format_to(p_ctx.out(), "SPECIAL_AREA ({}, {})", p_area.getID(), p_area.getArea());
     }

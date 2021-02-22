@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <tuple>
 
-TEST(Coordinate, Constructors) // NOLINTLINE
+TEST(Coordinate, Constructors)
 {
     using namespace jps;
 
@@ -19,9 +19,9 @@ TEST(Coordinate, Constructors) // NOLINTLINE
     // Simple constructor
     for(auto const & [x, y, lvl] : values) {
         Coordinate coordinate{x, y, lvl};
-        EXPECT_EQ(coordinate.x(), x);
-        EXPECT_EQ(coordinate.y(), y);
-        EXPECT_EQ(coordinate.lvl(), lvl);
+        EXPECT_EQ(coordinate.m_x, x);
+        EXPECT_EQ(coordinate.m_y, y);
+        EXPECT_EQ(coordinate.m_lvl, lvl);
         reference_values.emplace_back(coordinate);
     }
 
@@ -36,17 +36,17 @@ TEST(Coordinate, Constructors) // NOLINTLINE
 
         // move constructor
         Coordinate before_move_constructor{reference_value};
-        Coordinate move_constructed{std::move(before_move_constructor)}; // NOLINTLINE
+        Coordinate move_constructed{std::move(before_move_constructor)};
         EXPECT_EQ(reference_value, move_constructed);
 
         // move assignment operator
         Coordinate before_move_assigned{reference_value};
-        Coordinate move_assigned = std::move(before_move_assigned); // NOLINTLINE
+        Coordinate move_assigned = std::move(before_move_assigned);
         EXPECT_EQ(reference_value, move_assigned);
     }
 }
 
-TEST(Coordinate, comparisonOperators) // NOLINTLINE
+TEST(Coordinate, comparisonOperators)
 {
     using namespace jps;
 
@@ -103,129 +103,4 @@ TEST(Coordinate, comparisonOperators) // NOLINTLINE
         (Coordinate{-1632_cm, -55467.345_dm, Level{67}}) !=
         (Coordinate{-1632_cm, -55467.345_dm, Level{67}}));
     EXPECT_FALSE((Coordinate{12_mm, 5.3_cm, Level{12}}) != (Coordinate{12_mm, 5.3_cm, Level{12}}));
-}
-
-TEST(Coordinate, setters) // NOLINTLINE
-{
-    using namespace jps;
-    Coordinate coordinate{120.12_mm, 21312._m, Level{213}};
-
-    // Setting x value
-    LengthUnit new_x = 9324.123_m;
-    coordinate.x()   = new_x;
-    EXPECT_EQ(coordinate.x(), new_x);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.x(), new_x);
-    }
-
-    new_x          = -123.67_km;
-    coordinate.x() = new_x;
-    EXPECT_EQ(coordinate.x(), new_x);
-
-    new_x          = 324234932_um;
-    coordinate.x() = new_x;
-    EXPECT_EQ(coordinate.x(), new_x);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.x(), new_x);
-    }
-
-    new_x          = -843543.435_um;
-    coordinate.x() = new_x;
-    EXPECT_EQ(coordinate.x(), new_x);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.x(), new_x);
-    }
-
-    new_x          = 0.912_m;
-    coordinate.x() = new_x;
-    EXPECT_EQ(coordinate.x(), new_x);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.x(), new_x);
-    }
-
-    // Setting y value
-    LengthUnit new_y = 94.653_m;
-    coordinate.y()   = new_y;
-    EXPECT_EQ(coordinate.y(), new_y);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.y(), new_y);
-    }
-
-    new_y          = -234.78_km;
-    coordinate.y() = new_y;
-    EXPECT_EQ(coordinate.y(), new_y);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.y(), new_y);
-    }
-
-    new_y          = 23_um;
-    coordinate.y() = new_y;
-    EXPECT_EQ(coordinate.y(), new_y);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.y(), new_y);
-    }
-
-    new_y          = 576.238_um;
-    coordinate.y() = new_y;
-    EXPECT_EQ(coordinate.y(), new_y);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.y(), new_y);
-    }
-
-    new_y          = 0.912_m;
-    coordinate.y() = new_y;
-    EXPECT_EQ(coordinate.y(), new_y);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.y(), new_y);
-    }
-
-    // Setting lvl value
-    Level new_lvl_0{-54};
-    coordinate.lvl() = new_lvl_0;
-    EXPECT_EQ(coordinate.lvl(), new_lvl_0);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.lvl(), new_lvl_0);
-    }
-
-    Level new_lvl_1{-4};
-    coordinate.lvl() = new_lvl_1;
-    EXPECT_EQ(coordinate.lvl(), new_lvl_1);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.lvl(), new_lvl_1);
-    }
-
-    Level new_lvl_2{0};
-    coordinate.lvl() = new_lvl_2;
-    EXPECT_EQ(coordinate.lvl(), new_lvl_2);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.lvl(), new_lvl_2);
-    }
-
-    Level new_lvl_3{18};
-    coordinate.lvl() = new_lvl_3;
-    EXPECT_EQ(coordinate.lvl(), new_lvl_3);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.lvl(), new_lvl_3);
-    }
-
-    Level new_lvl_4{41};
-    coordinate.lvl() = new_lvl_4;
-    EXPECT_EQ(coordinate.lvl(), new_lvl_4);
-    {
-        const Coordinate & const_coordinate = coordinate;
-        EXPECT_EQ(const_coordinate.lvl(), new_lvl_4);
-    }
 }

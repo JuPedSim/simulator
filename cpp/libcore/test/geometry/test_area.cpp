@@ -4,7 +4,6 @@
 #include <gtest/gtest.h>
 #include <random>
 
-// NOLINTNEXTLINE
 TEST(Area, ConstructorFromCoordinate)
 {
     using namespace jps;
@@ -29,13 +28,13 @@ TEST(Area, ConstructorFromCoordinate)
 
     // Failing
     std::vector<Coordinate> empty;
-    EXPECT_THROW(Area{empty}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{empty}, std::runtime_error);
 
     std::vector<Coordinate> two_elements{
         {10_m, 10_m, Level{1}},
         {10_m, 5_m, Level{1}},
     };
-    EXPECT_THROW(Area{two_elements}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{two_elements}, std::runtime_error);
 
     std::vector<Coordinate> different_lvl{
         {10_m, 10_m, Level{1}},
@@ -43,10 +42,9 @@ TEST(Area, ConstructorFromCoordinate)
         {5_m, 1_m, Level{3}},
         {5_m, 10_m, Level{1}},
     };
-    EXPECT_THROW(Area{different_lvl}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{different_lvl}, std::runtime_error);
 }
 
-// NOLINTNEXTLINE
 TEST(Area, ConstructorFromLineSegments)
 {
     using namespace jps;
@@ -82,20 +80,20 @@ TEST(Area, ConstructorFromLineSegments)
 
     // Failing
     std::vector<LineSegment> empty;
-    EXPECT_THROW(Area{empty}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{empty}, std::runtime_error);
 
     std::vector<LineSegment> two_elements{
         {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
         {{15_m, 10_m, Level{1}}, {10_m, 10_m, Level{1}}},
     };
-    EXPECT_THROW(Area{two_elements}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{two_elements}, std::runtime_error);
 
     std::vector<LineSegment> different_lvl{
         {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
         {{15_m, 10_m, Level{1}}, {20_m, 10_m, Level{1}}},
         {{20_m, 10_m, Level{2}}, {10_m, 10_m, Level{2}}},
     };
-    EXPECT_THROW(Area{different_lvl}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{different_lvl}, std::runtime_error);
 
     std::vector<LineSegment> not_sortable_lines_not_connected{
         {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
@@ -103,17 +101,17 @@ TEST(Area, ConstructorFromLineSegments)
         {{20_m, 10_m, Level{1}}, {30_m, 10_m, Level{1}}},
         {{40_m, 10_m, Level{1}}, {10_m, 10_m, Level{1}}},
     };
-    EXPECT_THROW(Area{not_sortable_lines_not_connected}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{not_sortable_lines_not_connected}, std::runtime_error);
 
     std::vector<LineSegment> not_closed{
         {{-1_m, 1_m, Level{-1}}, {1_m, 1_m, Level{-1}}},
         {{1_m, 1_m, Level{-1}}, {1_m, -1_m, Level{-1}}},
         {{1_m, -1_m, Level{-1}}, {-1_m, -1_m, Level{-1}}},
     };
-    EXPECT_THROW(Area{not_closed}, std::runtime_error); // NOLINTLINE
+    EXPECT_THROW(Area{not_closed}, std::runtime_error);
 }
 
-TEST(Area, comparisonOperators) // NOLINTLINE
+TEST(Area, comparisonOperators)
 {
     using namespace jps;
     using namespace details;
@@ -188,6 +186,7 @@ TEST(Area, comparisonOperators) // NOLINTLINE
                                                    {-6.3_cm, -2.1_cm, Level{1}}}}));
 
 
+    // !=
     EXPECT_TRUE(
         (Area{std::vector<Coordinate>{
             {-4.1_cm, 3.7_cm, Level{1}},
@@ -255,4 +254,35 @@ TEST(Area, comparisonOperators) // NOLINTLINE
             {1_cm, -1.5_cm, Level{1}},
             {-2_cm, -4.7_cm, Level{1}},
             {-6.3_cm, -2.1_cm, Level{1}}}}));
+
+    // rotated
+    EXPECT_FALSE(
+        (Area{std::vector<Coordinate>{
+            {-4.1_cm, 3.7_cm, Level{1}},
+            {3.1_cm, 4.9_cm, Level{1}},
+            {7.5_cm, 2.3_cm, Level{1}},
+            {1_cm, -1.5_cm, Level{1}},
+            {-2_cm, -4.7_cm, Level{1}},
+            {-6.3_cm, -2.1_cm, Level{1}}}}) == (Area{std::vector<Coordinate>{
+                                                   {3.1_cm, 4.9_cm, Level{1}},
+                                                   {1_cm, -1.5_cm, Level{1}},
+                                                   {7.5_cm, 2.3_cm, Level{1}},
+                                                   {-4.1_cm, 3.7_cm, Level{1}},
+                                                   {-2_cm, -4.7_cm, Level{1}},
+                                                   {-6.3_cm, -2.1_cm, Level{1}}}}));
+
+    EXPECT_TRUE(
+        (Area{std::vector<Coordinate>{
+            {-4.1_cm, 3.7_cm, Level{1}},
+            {3.1_cm, 4.9_cm, Level{1}},
+            {7.5_cm, 2.3_cm, Level{1}},
+            {1_cm, -1.5_cm, Level{1}},
+            {-2_cm, -4.7_cm, Level{1}},
+            {-6.3_cm, -2.1_cm, Level{1}}}}) == (Area{std::vector<Coordinate>{
+                                                   {1_cm, -1.5_cm, Level{1}},
+                                                   {-2_cm, -4.7_cm, Level{1}},
+                                                   {-6.3_cm, -2.1_cm, Level{1}},
+                                                   {-4.1_cm, 3.7_cm, Level{1}},
+                                                   {3.1_cm, 4.9_cm, Level{1}},
+                                                   {7.5_cm, 2.3_cm, Level{1}}}}));
 }
