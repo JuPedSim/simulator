@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 import ezdxf
 import jpscore
@@ -9,16 +10,14 @@ class WorldParser:
     Class for parsing dxf files of the world and creating corresponding geometry objects.
     """
 
-    def __init__(self, p_input_file):
+    def __init__(self, p_input_file: str):
         """
         Initialization with a dxf file. In case of valid file format Lines and SpecialAreas are parsed.
         :param p_input_file: name of the dxf file
         """
         self.m_input_file = p_input_file
 
-        # open file and create modelspace
-
-        print(p_input_file)
+        # try to open file
         try:
             doc = ezdxf.readfile(self.m_input_file)
         except IOError:
@@ -30,11 +29,12 @@ class WorldParser:
             print("Invalid dxf file format")
             return
 
+        # create modelspace
         self.m_msp = doc.modelspace()
 
-        self.m_unit = doc.header[
-            "$INSUNITS"
-        ]  # allow only 6 for meters chec diff to LUNITS
+        # read in meta data
+        self.m_unit = doc.header["$INSUNITS"]
+        # allow only 6 for meters, TODO: check diff to LUNITS
         if self.m_unit != 6:
             # TODO accept other units as well (but not all)
             # TODO throw exception
@@ -50,7 +50,7 @@ class WorldParser:
         self.__parseLevels()
 
     @staticmethod
-    def parseCoordinates(line):
+    def parseCoordinates(line: str) -> List[float]:
         """
         Method parses a dxf line with coordinates to a list
         :param line: start and end coordinate of a dxf line formatted as string '(start_x, start_y, start_z) (end_x, end_x, end_z)'
@@ -76,7 +76,7 @@ class WorldParser:
         self.__parseSpecialAreas("Level0_SpecialAreas")
         # TODO: parse polylines
 
-    def __parseLineSegment(self, p_layer):
+    def __parseLineSegment(self, p_layer: str):
         """
         Method parses dxf entities of type LINE that represent a LineSegment at the given layer. Corresponding LineSegments are added to the World.
         :param p_layer: name of the layer (string)
@@ -100,7 +100,7 @@ class WorldParser:
                 ),
             )
 
-    def __parseSpecialAreas(self, p_layer):
+    def __parseSpecialAreas(self, p_layer: str):
         """
         Method parses dxf entities of type LINE that represent Special Areas at the given layer. Corresponding group of LineSegments are added to the World.
         :param p_layer: name of the layer (string)
