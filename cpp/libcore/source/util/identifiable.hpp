@@ -31,6 +31,7 @@ public:
         return *this;
     }
 
+    ~Identifiable() noexcept = default;
 
     auto getID() const noexcept -> unsigned int { return m_id; }
 };
