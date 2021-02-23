@@ -49,12 +49,12 @@ auto jps::geometry::getPolygonCoordinates(std::vector<LineSegment> & p_line_segm
     }
 
     // Check if all elements are on same level
-    auto level = p_line_segments.front().getStart().m_lvl;
+    auto level = p_line_segments.front().getStart().lvl;
     if(!std::all_of(
            std::begin(p_line_segments),
            std::end(p_line_segments),
            [level](const LineSegment & p_coordinate) {
-               return p_coordinate.getStart().m_lvl == level;
+               return p_coordinate.getStart().lvl == level;
            })) {
         throw std::runtime_error(fmt::format(
             FMT_STRING("Could not create Polygon. Not all line segments are on the same level.")));

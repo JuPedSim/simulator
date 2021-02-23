@@ -19,8 +19,8 @@ TEST(SpatialVector, Constructors)
     // Simple constructor
     for(auto const & [x, y] : values) {
         SpatialVector spatial_vector{x, y};
-        EXPECT_EQ(spatial_vector.m_x, x);
-        EXPECT_EQ(spatial_vector.m_y, y);
+        EXPECT_EQ(spatial_vector.x, x);
+        EXPECT_EQ(spatial_vector.y, y);
         reference_values.emplace_back(spatial_vector);
     }
 

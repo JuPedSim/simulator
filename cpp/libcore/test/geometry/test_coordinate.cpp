@@ -19,9 +19,9 @@ TEST(Coordinate, Constructors)
     // Simple constructor
     for(auto const & [x, y, lvl] : values) {
         Coordinate coordinate{x, y, lvl};
-        EXPECT_EQ(coordinate.m_x, x);
-        EXPECT_EQ(coordinate.m_y, y);
-        EXPECT_EQ(coordinate.m_lvl, lvl);
+        EXPECT_EQ(coordinate.x, x);
+        EXPECT_EQ(coordinate.y, y);
+        EXPECT_EQ(coordinate.lvl, lvl);
         reference_values.emplace_back(coordinate);
     }
 

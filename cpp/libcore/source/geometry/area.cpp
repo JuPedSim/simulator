@@ -18,11 +18,11 @@ jps::Area::Area(std::vector<Coordinate> p_area_polygon) : m_area_polygon(p_area_
     }
 
     // Check if all elements are on same level
-    auto level = p_area_polygon.front().m_lvl;
+    auto level = p_area_polygon.front().lvl;
     if(!std::all_of(
            std::begin(p_area_polygon),
            std::end(p_area_polygon),
-           [level](const Coordinate & p_coordinate) { return p_coordinate.m_lvl == level; })) {
+           [level](const Coordinate & p_coordinate) { return p_coordinate.lvl == level; })) {
         throw std::runtime_error(fmt::format(
             FMT_STRING("Could not create Area. Not all coordinates are on the same level.")));
     }

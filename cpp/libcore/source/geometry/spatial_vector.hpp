@@ -11,15 +11,15 @@ namespace jps
 /// SpatialVectors origin is not the point of origin of coordinates [(0,0)].
 /// It gives a direction in the plane and has no level.
 struct SpatialVector {
-    LengthUnit m_x; // NOLINTLINE
-    LengthUnit m_y; // NOLINTLINE
+    LengthUnit x; // NOLINTLINE
+    LengthUnit y; // NOLINTLINE
 
 public:
-    SpatialVector(LengthUnit p_x, LengthUnit p_y) : m_x(p_x), m_y(p_y){};
+    SpatialVector(LengthUnit p_x, LengthUnit p_y) : x(p_x), y(p_y){};
 
     auto operator==(SpatialVector const & p_other) const noexcept -> bool
     {
-        return m_x == p_other.m_x && m_y == p_other.m_y;
+        return x == p_other.x && y == p_other.y;
     }
     auto operator!=(SpatialVector const & p_other) const noexcept -> bool
     {
@@ -41,7 +41,7 @@ struct formatter<jps::SpatialVector> {
     template <typename FormatContext>
     auto format(jps::SpatialVector const & p_sv, FormatContext & p_ctx)
     {
-        return format_to(p_ctx.out(), "SPATIAL_VECTOR ({}, {})", p_sv.m_x, p_sv.m_y);
+        return format_to(p_ctx.out(), "SPATIAL_VECTOR ({}, {})", p_sv.x, p_sv.y);
     }
 };
 } // namespace fmt
