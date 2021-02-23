@@ -2,7 +2,7 @@ import re
 from typing import List
 
 import ezdxf
-import jpscore
+from jpscore import geometry
 
 
 class WorldParser:
@@ -65,7 +65,7 @@ class WorldParser:
 
         return [start_x, start_y, end_x, end_y]
 
-    def __parseLevels(self):
+    def __parseLevels(self) -> None:
         """
         Method initiates parsing of Lines and Areas for each level provided in the dxf file
         :return:
@@ -76,7 +76,7 @@ class WorldParser:
         self.__parseSpecialAreas("Level0_SpecialAreas")
         # TODO: parse polylines
 
-    def __parseLineSegment(self, p_layer: str):
+    def __parseLineSegment(self, p_layer: str) -> None:
         """
         Method parses dxf entities of type LINE that represent a LineSegment at the given layer. Corresponding LineSegments are added to the World.
         :param p_layer: name of the layer (string)
@@ -100,7 +100,7 @@ class WorldParser:
                 ),
             )
 
-    def __parseSpecialAreas(self, p_layer: str):
+    def __parseSpecialAreas(self, p_layer: str) -> None:
         """
         Method parses dxf entities of type LINE that represent Special Areas at the given layer. Corresponding group of LineSegments are added to the World.
         :param p_layer: name of the layer (string)
