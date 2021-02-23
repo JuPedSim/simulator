@@ -3,6 +3,7 @@ from typing import List
 
 import ezdxf
 from jpscore import geometry
+from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
 class WorldParser:
@@ -22,11 +23,11 @@ class WorldParser:
             doc = ezdxf.readfile(self.m_input_file)
         except IOError:
             # TODO throw exception. file not found
-            print("File not found")
+            log_error("File not found")
             return
         except ezdxf.DXFStructureError:
             # TODO throw exception. invalid dxf file.
-            print("Invalid dxf file format")
+            log_error("Invalid dxf file format")
             return
 
         # create modelspace
@@ -38,7 +39,7 @@ class WorldParser:
         if self.m_unit != 6:
             # TODO accept other units as well (but not all)
             # TODO throw exception
-            print("Length unit is not meter. Not yet implemented")
+            log_error("Length unit is not meter. Not yet implemented")
 
         # TODO check $MEASUREMENT = 0 English not metric
         # NOTE: these headers are not available in qcad file
@@ -46,24 +47,33 @@ class WorldParser:
         # lower_left_corner = doc.header['$EXTMIN']
 
         # build World
-        self.m_jps_world_builder = jpscore.geometry.WorldBuilder()
+        log_info("Building world ...")
+        self.m_jps_world_builder = geometry.WorldBuilder()
         self.__parseLevels()
 
     @staticmethod
-    def parseCoordinates(line: str) -> List[float]:
+    def parseCoordinates(
+        line: str, p_level: geometry.Level
+    ) -> List[geometry.Coordinate]:
         """
         Method parses a dxf line with coordinates to a list
         :param line: start and end coordinate of a dxf line formatted as string '(start_x, start_y, start_z) (end_x, end_x, end_z)'
-        :return: coordinates as a list [start_x, start_y, end_x, end_y]
+        :return: coordinates as a list [start Coordinate, end Coordinate]
         """
-        start_coords = re.split(",", str(line.dxf.start))
-        start_x = float(start_coords[0][1:])
-        start_y = float(start_coords[1])
-        end_coords = re.split(",", str(line.dxf.end))
-        end_x = float(end_coords[0][1:])
-        end_y = float(end_coords[1])
+        start_coord_tmp = re.split(",", str(line.dxf.start))
+        start_coord = geometry.Coordinate(
+            geometry.LengthUnit(float(start_coord_tmp[0][1:])),
+            geometry.LengthUnit(float(start_coord_tmp[1])),
+            p_level,
+        )
+        end_coord_tmp = re.split(",", str(line.dxf.end))
+        end_coord = geometry.Coordinate(
+            geometry.LengthUnit(float(end_coord_tmp[0][1:])),
+            geometry.LengthUnit(float(end_coord_tmp[1])),
+            p_level,
+        )
 
-        return [start_x, start_y, end_x, end_y]
+        return [start_coord, end_coord]
 
     def __parseLevels(self) -> None:
         """
@@ -71,39 +81,39 @@ class WorldParser:
         :return:
         """
 
-        # TODO: loop over several levels, error handling
-        self.__parseLineSegment("Level0")
-        self.__parseSpecialAreas("Level0_SpecialAreas")
+        # TODO: loop over several layer, error handling
+        # TODO: extract Level from layer name
+        current_level = geometry.Level()
+        self.__parseLineSegment("Level0", current_level)
+        self.__parseSpecialAreas("Level0_SpecialAreas", current_level)
         # TODO: parse polylines
 
-    def __parseLineSegment(self, p_layer: str) -> None:
+    def __parseLineSegment(
+        self, p_layer_name: str, p_level: geometry.Level
+    ) -> None:
         """
         Method parses dxf entities of type LINE that represent a LineSegment at the given layer. Corresponding LineSegments are added to the World.
-        :param p_layer: name of the layer (string)
+        :param p_layer_name: name of the layer (string)
+        :param p_level: Level object for the given layer
         :return:
         """
-        for line in self.m_msp.query('LINE[layer=="' + p_layer + '"]'):
-            coords = WorldParser.parseCoordinates(line)
+        for line in self.m_msp.query('LINE[layer=="' + p_layer_name + '"]'):
+            coords = WorldParser.parseCoordinates(line, p_level)
             self.m_jps_world_builder.addLineSegment(
-                jpscore.geometry.Level(),
-                jpscore.geometry.LineSegment(
-                    jpscore.geometry.Coordinate(
-                        jpscore.geometry.LengthUnit(coords[0]),
-                        jpscore.geometry.LengthUnit(coords[1]),
-                        jpscore.geometry.Level(),
-                    ),
-                    jpscore.geometry.Coordinate(
-                        jpscore.geometry.LengthUnit(coords[2]),
-                        jpscore.geometry.LengthUnit(coords[3]),
-                        jpscore.geometry.Level(),
-                    ),
+                p_level,
+                geometry.LineSegment(
+                    coords[0],
+                    coords[1],
                 ),
             )
 
-    def __parseSpecialAreas(self, p_layer: str) -> None:
+    def __parseSpecialAreas(
+        self, p_layer: str, p_level: geometry.Level
+    ) -> None:
         """
         Method parses dxf entities of type LINE that represent Special Areas at the given layer. Corresponding group of LineSegments are added to the World.
         :param p_layer: name of the layer (string)
+        :param p_level: Level object for the given layer
         :return:
         """
         color_to_segments = {}
@@ -114,24 +124,16 @@ class WorldParser:
                 color_to_segments[line.dxf.color] = []
 
             # append segment to list
-            coords = WorldParser.parseCoordinates(line)
+            coords = WorldParser.parseCoordinates(line, p_level)
             color_to_segments[line.dxf.color].append(
-                jpscore.geometry.LineSegment(
-                    jpscore.geometry.Coordinate(
-                        jpscore.geometry.LengthUnit(coords[0]),
-                        jpscore.geometry.LengthUnit(coords[1]),
-                        jpscore.geometry.Level(),
-                    ),
-                    jpscore.geometry.Coordinate(
-                        jpscore.geometry.LengthUnit(coords[2]),
-                        jpscore.geometry.LengthUnit(coords[3]),
-                        jpscore.geometry.Level(),
-                    ),
+                geometry.LineSegment(
+                    coords[0],
+                    coords[1],
                 )
             )
 
         # add to world builder
         for color in color_to_segments:
-            print("not yet implemented")
+            log_warning("not yet implemented")
             # TODO pybind for area-constructor with LineSegments
-            # self._jps_world_builder.addSpecialArea(jpscore.geometry.Level(), jpscore.geometry.SpecialArea(jpscore.geometry.Area(color_to_segments[color]),int(color)))
+            # self._jps_world_builder.addSpecialArea(p_level, geometry.SpecialArea(geometry.Area(color_to_segments[color]),int(color)))
