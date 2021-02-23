@@ -1,6 +1,7 @@
 #include "geometry/coordinate_binding.hpp"
 #include "geometry/length_unit_binding.hpp"
 #include "geometry/level_binding.hpp"
+#include "geometry/line_segment_binding.hpp"
 #include "geometry/spatial_vector_binding.hpp"
 #include "geometry/world_builder_binding.hpp"
 #include "logging_binding.hpp"
@@ -23,6 +24,7 @@ PYBIND11_MODULE(jpscore, m)
     bind_coordinate(m_geometry);
     bind_length_unit(m_geometry);
     bind_level(m_geometry);
+    bind_line_segment(m_geometry);
     bind_spatial_vector(m_geometry);
     bind_world_builder(m_geometry);
 }
