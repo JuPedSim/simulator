@@ -7,6 +7,10 @@ pybind11_add_module(jpscore
     logging_binding.hpp
     logging_binding.cpp
 
+    geometry/area_binding.hpp
+    geometry/area_binding.cpp
+    geometry/coordinate_binding.hpp
+    geometry/coordinate_binding.cpp
     geometry/length_unit_binding.hpp
     geometry/length_unit_binding.cpp
     geometry/level_binding.hpp
