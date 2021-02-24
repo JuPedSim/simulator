@@ -1,5 +1,4 @@
-#ifndef SIMULATOR_WORLD_BUILDER_HPP
-#define SIMULATOR_WORLD_BUILDER_HPP
+#pragma once
 
 #include "line_segment.hpp"
 #include "special_area.hpp"
@@ -22,5 +21,3 @@ public:
     auto addSpecialArea(const jps::Level & p_level, const jps::SpecialArea & p_area) -> void;
 };
 } // namespace jps
-
-#endif // SIMULATOR_WORLD_BUILDER_HPP
