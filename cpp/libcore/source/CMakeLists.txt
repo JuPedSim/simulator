@@ -19,8 +19,8 @@ add_library(core
     geometry/spatial_vector.hpp
     geometry/special_area.cpp
     geometry/special_area.hpp
-        geometry/helper/polygon_helper.hpp
-        geometry/helper/polygon_helper.cpp
+    geometry/helper/polygon_helper.hpp
+    geometry/helper/polygon_helper.cpp
 
     math/int_pow.hpp
 )
