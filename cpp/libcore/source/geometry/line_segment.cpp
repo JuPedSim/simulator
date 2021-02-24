@@ -27,7 +27,5 @@ jps::LineSegment::LineSegment(jps::Coordinate p_start, jps::Coordinate p_end) :
 
 auto jps::LineSegment::rotate() noexcept -> void
 {
-    auto tmp = m_start;
-    m_start  = m_end;
-    m_end    = tmp;
+    std::swap(m_start, m_end);
 }

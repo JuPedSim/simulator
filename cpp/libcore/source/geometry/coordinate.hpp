@@ -9,11 +9,10 @@ namespace jps
 {
 /// Represents a spatial coordinate in the world (geometry).
 struct Coordinate {
-    LengthUnit x; // NOLINTLINE
-    LengthUnit y; // NOLINTLINE
-    Level lvl;    // NOLINTLINE
+    LengthUnit x; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
+    LengthUnit y; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
+    Level lvl;    // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
 
-public:
     Coordinate(LengthUnit p_x, LengthUnit p_y, Level p_lvl) : x(p_x), y(p_y), lvl(p_lvl){};
 
     auto operator==(Coordinate const & p_other) const noexcept -> bool;

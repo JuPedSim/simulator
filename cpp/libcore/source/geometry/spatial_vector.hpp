@@ -11,10 +11,9 @@ namespace jps
 /// SpatialVectors origin is not the point of origin of coordinates [(0,0)].
 /// It gives a direction in the plane and has no level.
 struct SpatialVector {
-    LengthUnit x; // NOLINTLINE
-    LengthUnit y; // NOLINTLINE
+    LengthUnit x; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
+    LengthUnit y; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
 
-public:
     SpatialVector(LengthUnit p_x, LengthUnit p_y) : x(p_x), y(p_y){};
 
     auto operator==(SpatialVector const & p_other) const noexcept -> bool

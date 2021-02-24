@@ -1,7 +1,7 @@
 #pragma once
 
 #include "geometry/coordinate.hpp"
-#include "geometry/helper.hpp"
+#include "geometry/helper/polygon_helper.hpp"
 #include "geometry/line_segment.hpp"
 
 #include <fmt/ostream.h>
