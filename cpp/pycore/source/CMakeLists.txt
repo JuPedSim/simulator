@@ -19,6 +19,8 @@ pybind11_add_module(jpscore
     geometry/line_segment_binding.cpp
     geometry/spatial_vector_binding.hpp
     geometry/spatial_vector_binding.cpp
+    geometry/special_area_binding.hpp
+    geometry/special_area_binding.cpp
     geometry/world_builder_binding.hpp
     geometry/world_builder_binding.cpp
 )
