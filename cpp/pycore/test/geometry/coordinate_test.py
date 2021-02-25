@@ -60,37 +60,6 @@ class TestCoordinate:
         assert coordinate.lvl == new_lvl
 
     @pytest.mark.parametrize(
-        "coordinate, expected",
-        [
-            (
-                Coordinate(LengthUnit(-10.12), LengthUnit(34.12), Level(5)),
-                "COORDINATE: (-10.12 m, 34.12 m) -- LEVEL: 5",
-            ),
-            (
-                Coordinate(LengthUnit(-10.1254), LengthUnit(6.12), Level(-15)),
-                "COORDINATE: (-10.13 m, 6.120 m) -- LEVEL: -15",
-            ),
-            (
-                Coordinate(LengthUnit(3.56), LengthUnit(-12.67), Level(1)),
-                "COORDINATE: (3.560 m, -12.67 m) -- LEVEL: 1",
-            ),
-            (
-                Coordinate(LengthUnit(-78.34), LengthUnit(65.712), Level(-27)),
-                "COORDINATE: (-78.34 m, 65.71 m) -- LEVEL: -27",
-            ),
-            (
-                Coordinate(
-                    LengthUnit(0.0000001), LengthUnit(851.1), Level(912)
-                ),
-                "COORDINATE: (1.000e-07 m, 851.1 m) -- LEVEL: 912",
-            ),
-        ],
-    )
-    def test_to_string(self, coordinate, expected):
-        assert str(coordinate) == expected
-        assert repr(coordinate) == expected
-
-    @pytest.mark.parametrize(
         "coordinate, other, result",
         [
             (

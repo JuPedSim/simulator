@@ -25,20 +25,6 @@ class TestLevel:
             level = Level(level_id)
 
     @pytest.mark.parametrize(
-        "level, expected",
-        [
-            (Level(34), "LEVEL: 34"),
-            (Level(123), "LEVEL: 123"),
-            (Level(0), "LEVEL: 0"),
-            (Level(-1243), "LEVEL: -1243"),
-            (Level(-782), "LEVEL: -782"),
-        ],
-    )
-    def test_to_string(self, level, expected):
-        assert str(level) == expected
-        assert repr(level) == expected
-
-    @pytest.mark.parametrize(
         "level, other, result",
         [
             (Level(0), Level(0), True),

@@ -56,35 +56,6 @@ class TestSpatialVector:
         assert spatial_vector.y == new_y
 
     @pytest.mark.parametrize(
-        "spatial_vector, expected",
-        [
-            (
-                SpatialVector(LengthUnit(-10.12), LengthUnit(34.12)),
-                "SPATIAL_VECTOR (-10.12 m, 34.12 m)",
-            ),
-            (
-                SpatialVector(LengthUnit(325.1), LengthUnit(5.111)),
-                "SPATIAL_VECTOR (325.1 m, 5.111 m)",
-            ),
-            (
-                SpatialVector(LengthUnit(0.12), LengthUnit(-0)),
-                "SPATIAL_VECTOR (0.1200 m, 0.000 m)",
-            ),
-            (
-                SpatialVector(LengthUnit(-1.001), LengthUnit(-0.00001)),
-                "SPATIAL_VECTOR (-1.001 m, -1.000e-05 m)",
-            ),
-            (
-                SpatialVector(LengthUnit(94.1), LengthUnit(6.120000001)),
-                "SPATIAL_VECTOR (94.10 m, 6.120 m)",
-            ),
-        ],
-    )
-    def test_to_string(self, spatial_vector, expected):
-        assert str(spatial_vector) == expected
-        assert repr(spatial_vector) == expected
-
-    @pytest.mark.parametrize(
         "spatial_vector, other, result",
         [
             (
