@@ -2,7 +2,12 @@ set(python_tests
     import_test.py
     example_test.py
     logging_test.py
+    geometry/area_test.py
+    geometry/coordinate_test.py
     geometry/level_test.py
+    geometry/line_segment_test.py
+    geometry/spatial_vector_test.py
+    geometry/special_area_test.py
 )
 
 foreach(test ${python_tests})
