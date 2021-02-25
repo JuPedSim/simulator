@@ -1,7 +1,7 @@
 import copy
 
 import pytest
-from jpscore.geometry import LineSegment, Coordinate, Level, LengthUnit
+from jpscore.geometry import Coordinate, LengthUnit, Level, LineSegment
 
 
 class TestLineSegment:

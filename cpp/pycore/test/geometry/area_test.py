@@ -1,5 +1,5 @@
 import pytest
-from jpscore.geometry import Area, LineSegment, Coordinate, LengthUnit, Level
+from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
 
 
 def is_cyclic(to_search, to_find) -> bool:

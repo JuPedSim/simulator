@@ -1,5 +1,5 @@
 import pytest
-from jpscore.geometry import SpatialVector, LengthUnit
+from jpscore.geometry import LengthUnit, SpatialVector
 
 
 class TestSpatialVector:
