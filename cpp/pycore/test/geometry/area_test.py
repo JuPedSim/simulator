@@ -1,7 +1,9 @@
+from random import shuffle
+from typing import List
+
 import pytest
 from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
-from typing import List
-from random import shuffle
+
 
 def is_cyclic(to_search: List, to_find: List) -> bool:
     """
