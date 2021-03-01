@@ -68,7 +68,53 @@ class TestSpecialArea:
             ),
         ],
     )
-    def test_constructor_from_coordinates(self, external_id, area):
+    def test_constructor(self, external_id, area):
         special_area = SpecialArea(external_id, area)
         assert special_area.external_id == external_id
         assert special_area.area == area
+
+    @pytest.mark.parametrize(
+        "special_area, new_id, new_external_id, new_area",
+        [
+            (
+                SpecialArea(
+                    4,
+                    Area(
+                        [
+                            Coordinate(
+                                LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            ),
+                            Coordinate(
+                                LengthUnit(1.41), LengthUnit(34.1), Level(-3)
+                            ),
+                            Coordinate(
+                                LengthUnit(-1.6), LengthUnit(12.1), Level(-3)
+                            ),
+                        ]
+                    ),
+                ),
+                1,
+                123,
+                Area(
+                    [
+                        Coordinate(
+                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                        ),
+                        Coordinate(
+                            LengthUnit(1.41), LengthUnit(34.1), Level(-3)
+                        ),
+                        Coordinate(
+                            LengthUnit(-1.6), LengthUnit(12.1), Level(-3)
+                        ),
+                    ],
+                ),
+            ),
+        ],
+    )
+    def test_read_only(self, special_area, new_id, new_external_id, new_area):
+        with pytest.raises(AttributeError):
+            special_area.id = new_id
+        with pytest.raises(AttributeError):
+            special_area.external_id = new_external_id
+        with pytest.raises(AttributeError):
+            special_area.area = new_area

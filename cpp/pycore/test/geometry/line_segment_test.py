@@ -76,11 +76,13 @@ class TestLineSegment:
         ],
     )
     def test_rotate(self, line_segment):
-        line_segment_before = LineSegment(line_segment)
+        start_before = line_segment.start
+        end_before = line_segment.end
+
         line_segment.rotate()
 
-        assert line_segment.start == line_segment_before.end
-        assert line_segment.end == line_segment_before.start
+        assert line_segment.start == end_before
+        assert line_segment.end == start_before
 
     @pytest.mark.parametrize(
         "line_segment, other, result",
@@ -145,3 +147,30 @@ class TestLineSegment:
     def test_comparison_operators(self, line_segment, other, result):
         assert (line_segment == other) == result
         assert (line_segment != other) != result
+
+    @pytest.mark.parametrize(
+        "line_segment, new_start, new_end",
+        [
+            (
+                LineSegment(
+                    Coordinate(LengthUnit(-32.5), LengthUnit(0.11), Level(20)),
+                    Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
+                ),
+                Coordinate(LengthUnit(45.1), LengthUnit(1.1), Level(20)),
+                Coordinate(LengthUnit(-41.1), LengthUnit(45.1), Level(20)),
+            ),
+            (
+                LineSegment(
+                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
+                    Coordinate(LengthUnit(0.12), LengthUnit(61.1), Level(4)),
+                ),
+                Coordinate(LengthUnit(234.1), LengthUnit(0.11), Level(20)),
+                Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
+            ),
+        ],
+    )
+    def test_read_only(self, line_segment, new_start, new_end):
+        with pytest.raises(AttributeError):
+            line_segment.start = new_start
+        with pytest.raises(AttributeError):
+            line_segment.end = new_end
