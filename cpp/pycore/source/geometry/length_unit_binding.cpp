@@ -16,12 +16,10 @@ void bind_length_unit(pybind11::module_ & m)
 
     pybind11::class_<jps::LengthUnit>(m, "LengthUnit")
         .def(pybind11::init<>(&jps::makeLengthUnit<jps::Units::m>))
-        .def(
-            pybind11::detail::self ==
-            pybind11::detail::self) // NOLINTLINE(misc-redundant-expression)
-        .def(
-            pybind11::detail::self !=
-            pybind11::detail::self) // NOLINTLINE(misc-redundant-expression)
+        // NOLINTNEXTLINE(misc-redundant-expression)
+        .def(pybind11::detail::self == pybind11::detail::self)
+        // NOLINTNEXTLINE(misc-redundant-expression)
+        .def(pybind11::detail::self != pybind11::detail::self)
         .def(
             "__str__",
             [](const jps::LengthUnit & length_unit) {
