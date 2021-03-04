@@ -188,13 +188,19 @@ TEST(GeometryHelper, checkPolygonEquality) // NOLINTLINE
     // same values
     std::vector<Coordinate> equal{reference_coordinates}; // NOLINTLINE
     EXPECT_TRUE(checkPolygonEquality(equal, reference_coordinates));
+    std::vector<Coordinate> equal_reversed{std::rbegin(equal), std::rend(equal)};
+    EXPECT_TRUE(checkPolygonEquality(equal_reversed, reference_coordinates));
 
     // rotate vector
     std::rotate(std::begin(equal), std::begin(equal) + 5, std::end(equal));
     EXPECT_TRUE(checkPolygonEquality(equal, reference_coordinates));
+    std::reverse_copy(std::begin(equal), std::end(equal), std::begin(equal_reversed));
+    EXPECT_TRUE(checkPolygonEquality(equal_reversed, reference_coordinates));
 
     std::rotate(std::begin(equal), std::begin(equal) + 5, std::end(equal));
     EXPECT_TRUE(checkPolygonEquality(equal, reference_coordinates));
+    std::reverse_copy(std::begin(equal), std::end(equal), std::begin(equal_reversed));
+    EXPECT_TRUE(checkPolygonEquality(equal_reversed, reference_coordinates));
 
     std::vector<Coordinate> empty;
     EXPECT_FALSE(checkPolygonEquality(empty, reference_coordinates));
@@ -202,8 +208,13 @@ TEST(GeometryHelper, checkPolygonEquality) // NOLINTLINE
     std::vector<Coordinate> subset{reference_coordinates};
     subset.pop_back();
     EXPECT_FALSE(checkPolygonEquality(subset, reference_coordinates));
+    std::vector<Coordinate> subset_reversed{std::rbegin(subset), std::rend(subset)};
+    EXPECT_FALSE(checkPolygonEquality(subset_reversed, reference_coordinates));
 
     std::vector<Coordinate> switch_two_elements{reference_coordinates};
     std::iter_swap(std::begin(switch_two_elements), std::begin(switch_two_elements) + 3);
     EXPECT_FALSE(checkPolygonEquality(switch_two_elements, reference_coordinates));
+    std::vector<Coordinate> switch_two_reversed{
+        std::rbegin(switch_two_elements), std::rend(switch_two_elements)};
+    EXPECT_FALSE(checkPolygonEquality(switch_two_reversed, reference_coordinates));
 }
