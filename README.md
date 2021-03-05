@@ -67,7 +67,7 @@ To run all tests at once call `ctest -j$(nproc)` in the build folder.
 
 ### Running jps
 
-To run *jps* jpscore's location needs to be in the `PYTHONPATH`, e.g.:
+To run *jps* the location of the jpscore library (e.g., on Linux `jpscore.so`) needs to be in the `PYTHONPATH`, e.g.:
 
 ```bash
 PYTHONPATH=~/simulation-build/bin ./jps/jps --help
