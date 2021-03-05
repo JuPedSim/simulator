@@ -5,30 +5,6 @@ import pytest
 from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
 
 
-def is_cyclic(to_search: List, to_find: List) -> bool:
-    """
-    Checks if to_find can be found in to_search in the same order but with different starting point.
-
-    Parameters
-    ----------
-    to_search : List
-        List to search
-    to_find : List
-        List to find in to_search
-
-    Returns
-    -------
-    bool
-        to_find found in to_search
-    """
-    duplicated = to_search + to_search
-    n = len(to_find)
-    return any(
-        to_find == duplicated[i : i + n]
-        for i in range(len(duplicated) - n + 1)
-    )
-
-
 class TestArea:
     @pytest.mark.parametrize(
         "coordinates",
@@ -57,9 +33,9 @@ class TestArea:
 
         # if start != end compare whole list, else skip last element
         if coordinates[0] != coordinates[-1]:
-            assert is_cyclic(area.polygon, coordinates)
+            assert area.polygon == coordinates
         else:
-            assert is_cyclic(area.polygon, coordinates[:-1])
+            assert area.polygon == coordinates[:-1]
 
     @pytest.mark.parametrize(
         "coordinates",
@@ -151,10 +127,7 @@ class TestArea:
             if (index % 3) == 1:
                 line_segment.rotate()
 
-        shuffle(line_segments)
-
-        area = Area(line_segments)
-        assert is_cyclic(area.polygon, coordinates)
+        assert Area(line_segments) == Area(coordinates)
 
     @pytest.mark.parametrize(
         "line_segments",
