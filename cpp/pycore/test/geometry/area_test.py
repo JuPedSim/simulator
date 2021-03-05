@@ -1,6 +1,3 @@
-from random import shuffle
-from typing import List
-
 import pytest
 from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
 

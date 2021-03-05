@@ -1,5 +1,3 @@
-import copy
-
 import pytest
 from jpscore.geometry import Coordinate, LengthUnit, Level, LineSegment
 
