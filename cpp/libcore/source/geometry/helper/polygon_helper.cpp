@@ -101,10 +101,20 @@ auto jps::geometry::checkPolygonEquality(
     doubled_polygon.insert(std::end(doubled_polygon), std::begin(p_polygon), std::end(p_polygon));
 
     auto found = std::search(
-        std::begin(doubled_polygon),
-        std::end(doubled_polygon),
-        std::begin(p_other),
-        std::end(p_other));
+        std::cbegin(doubled_polygon),
+        std::cend(doubled_polygon),
+        std::cbegin(p_other),
+        std::cend(p_other));
 
-    return found != std::end(doubled_polygon);
+    if(found != std::end(doubled_polygon)) {
+        return true;
+    }
+
+    auto found_reverse = std::search(
+        std::cbegin(doubled_polygon),
+        std::cend(doubled_polygon),
+        std::crbegin(p_other),
+        std::crend(p_other));
+
+    return found_reverse != std::end(doubled_polygon);
 }

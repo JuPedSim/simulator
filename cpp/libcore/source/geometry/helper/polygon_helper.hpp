@@ -34,7 +34,16 @@ auto getPolygonCoordinates(std::vector<LineSegment> & p_line_segments) -> std::v
 ///
 /// It will be checked if \p p_polygon and \p p_other are a representation of the same polygon. Two
 /// polygons are considered equal if the lists contain the same points in the same order, cyclic
-/// permutations (as in std::rotate) are allowed.
+/// permutations (as in std::rotate) are allowed. They are also considered equal if one of them is
+/// reversed.
+///
+/// Examples:
+/// (A, B, C, D) == (B, C, D, A) -> true
+/// (A, B, C, D) == (D, C, B, A) -> true
+/// (A, B, C, D) == (B, A, D, C) -> true
+///
+/// (A, B, C, D) == (B, A, C, D) -> false
+/// (A, B, C, D) == (A, B, C, D, E) -> false
 ///
 /// \param p_polygon representation of one polygon
 /// \param p_other representation of the other polygon.
