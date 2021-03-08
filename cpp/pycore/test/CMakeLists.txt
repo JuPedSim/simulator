@@ -8,6 +8,7 @@ set(python_tests
     geometry/line_segment_test.py
     geometry/spatial_vector_test.py
     geometry/special_area_test.py
+    geometry/length_unit_test.py
 )
 
 foreach(test ${python_tests})

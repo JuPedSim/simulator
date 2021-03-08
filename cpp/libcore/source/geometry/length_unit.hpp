@@ -3,6 +3,7 @@
 #include "enum.hpp"
 #include "math/int_pow.hpp"
 
+#include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <type_traits>
 
@@ -250,7 +251,7 @@ struct formatter<jps::LengthUnit> {
     template <typename FormatContext>
     auto format(jps::LengthUnit const & p_lu, FormatContext & p_ctx)
     {
-        return format_to(p_ctx.out(), "{:.4} m", p_lu.get<jps::Units::m>());
+        return format_to(p_ctx.out(), FMT_STRING("{:.4f} m"), p_lu.get<jps::Units::m>());
     }
 };
 } // namespace fmt
