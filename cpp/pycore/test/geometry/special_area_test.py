@@ -71,7 +71,9 @@ class TestSpecialArea:
                             Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)
+                            LengthUnit(-6.1, Units.m),
+                            LengthUnit(-6.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
                             LengthUnit(-1.5, Units.m),

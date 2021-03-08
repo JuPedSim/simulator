@@ -23,7 +23,7 @@ class TestCoordinate:
                 LengthUnit(32432.11, Units.m),
                 Level(63),
             ),
-            (LengthUnit(-324), LengthUnit(-435.1), Level(0)),
+            (LengthUnit(-324, Units.m), LengthUnit(-435.1, Units.m), Level(0)),
         ],
     )
     def test_constructor(self, x, y, lvl):
@@ -41,7 +41,7 @@ class TestCoordinate:
                     LengthUnit(34.12, Units.m),
                     Level(5),
                 ),
-                LengthUnit(-12.45),
+                LengthUnit(-12.45, Units.m),
                 LengthUnit(657, Units.m),
                 Level(5),
             ),
@@ -71,7 +71,7 @@ class TestCoordinate:
                     LengthUnit(5, Units.m),
                     Level(-2),
                 ),
-                LengthUnit(-1.1234),
+                LengthUnit(-1.1234, Units.m),
                 LengthUnit(12, Units.m),
                 Level(12),
             ),
