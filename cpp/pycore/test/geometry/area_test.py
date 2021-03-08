@@ -1,5 +1,12 @@
 import pytest
-from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
+from jpscore.geometry import (
+    Area,
+    Coordinate,
+    LengthUnit,
+    Level,
+    LineSegment,
+    Units,
+)
 
 
 class TestArea:
@@ -7,21 +14,73 @@ class TestArea:
         "coordinates",
         [
             [
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
-                Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(3)),
-                Coordinate(LengthUnit(5.1), LengthUnit(-41.0), Level(3)),
-                Coordinate(LengthUnit(45.1), LengthUnit(-45.11), Level(3)),
-                Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(1.3, Units.m),
+                    LengthUnit(-12.1, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(5.1, Units.m),
+                    LengthUnit(-41.0, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(45.1, Units.m),
+                    LengthUnit(-45.11, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(7.11, Units.m),
+                    LengthUnit(45.1, Units.m),
+                    Level(3),
+                ),
             ],
             [
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
-                Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(3)),
-                Coordinate(LengthUnit(5.1), LengthUnit(-41.0), Level(3)),
-                Coordinate(LengthUnit(45.1), LengthUnit(-45.11), Level(3)),
-                Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(1.3, Units.m),
+                    LengthUnit(-12.1, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(5.1, Units.m),
+                    LengthUnit(-41.0, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(45.1, Units.m),
+                    LengthUnit(-45.11, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(7.11, Units.m),
+                    LengthUnit(45.1, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(3),
+                ),
             ],
         ],
     )
@@ -39,14 +98,38 @@ class TestArea:
         [
             [],
             [
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(4)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(4),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(4),
+                ),
             ],
             [
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(5)),
-                Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(3)),
-                Coordinate(LengthUnit(5.1), LengthUnit(-41.0), Level(3)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(5),
+                ),
+                Coordinate(
+                    LengthUnit(1.3, Units.m),
+                    LengthUnit(-12.1, Units.m),
+                    Level(3),
+                ),
+                Coordinate(
+                    LengthUnit(5.1, Units.m),
+                    LengthUnit(-41.0, Units.m),
+                    Level(3),
+                ),
             ],
         ],
     )
@@ -59,60 +142,156 @@ class TestArea:
         [
             [
                 LineSegment(
-                    Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
+                    Coordinate(
+                        LengthUnit(7.11, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
-                    Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(1.3, Units.m),
+                        LengthUnit(-12.1, Units.m),
+                        Level(3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(3)),
-                    Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(1.3, Units.m),
+                        LengthUnit(-12.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(7.11, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(3),
+                    ),
                 ),
             ],
             [
                 LineSegment(
-                    Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
+                    Coordinate(
+                        LengthUnit(7.11, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
-                    Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(7.11, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(3),
+                    ),
                 ),
             ],
             [
                 LineSegment(
-                    Coordinate(LengthUnit(45.54), LengthUnit(45.1), Level(-3)),
-                    Coordinate(LengthUnit(1.41), LengthUnit(34.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(45.54, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(-3),
+                    ),
+                    Coordinate(
+                        LengthUnit(1.41, Units.m),
+                        LengthUnit(34.1, Units.m),
+                        Level(-3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(1.41), LengthUnit(34.1), Level(-3)),
-                    Coordinate(LengthUnit(-1.6), LengthUnit(12.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(1.41, Units.m),
+                        LengthUnit(34.1, Units.m),
+                        Level(-3),
+                    ),
+                    Coordinate(
+                        LengthUnit(-1.6, Units.m),
+                        LengthUnit(12.1, Units.m),
+                        Level(-3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(-1.6), LengthUnit(12.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(-1.6, Units.m),
+                        LengthUnit(12.1, Units.m),
+                        Level(-3),
+                    ),
                     Coordinate(LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)),
                 ),
                 LineSegment(
                     Coordinate(LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)),
-                    Coordinate(LengthUnit(-1.5), LengthUnit(34.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(-1.5, Units.m),
+                        LengthUnit(34.1, Units.m),
+                        Level(-3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(-1.5), LengthUnit(34.1), Level(-3)),
-                    Coordinate(LengthUnit(30.11), LengthUnit(15.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(-1.5, Units.m),
+                        LengthUnit(34.1, Units.m),
+                        Level(-3),
+                    ),
+                    Coordinate(
+                        LengthUnit(30.11, Units.m),
+                        LengthUnit(15.1, Units.m),
+                        Level(-3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(30.11), LengthUnit(15.1), Level(-3)),
-                    Coordinate(LengthUnit(45.54), LengthUnit(45.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(30.11, Units.m),
+                        LengthUnit(15.1, Units.m),
+                        Level(-3),
+                    ),
+                    Coordinate(
+                        LengthUnit(45.54, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(-3),
+                    ),
                 ),
             ],
         ],
@@ -132,12 +311,28 @@ class TestArea:
             [],
             [
                 LineSegment(
-                    Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
+                    Coordinate(
+                        LengthUnit(7.11, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(3),
+                    ),
                 ),
             ],
         ],
@@ -153,50 +348,74 @@ class TestArea:
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(1.41), LengthUnit(34.1), Level(-3)
+                            LengthUnit(1.41, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(-1.6), LengthUnit(12.1), Level(-3)
+                            LengthUnit(-1.6, Units.m),
+                            LengthUnit(12.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
                             LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)
                         ),
                         Coordinate(
-                            LengthUnit(-1.5), LengthUnit(34.1), Level(-3)
+                            LengthUnit(-1.5, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(30.11), LengthUnit(15.1), Level(-3)
+                            LengthUnit(30.11, Units.m),
+                            LengthUnit(15.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                     ]
                 ),
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(1.41), LengthUnit(34.1), Level(-3)
+                            LengthUnit(1.41, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(-1.6), LengthUnit(12.1), Level(-3)
+                            LengthUnit(-1.6, Units.m),
+                            LengthUnit(12.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
                             LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)
                         ),
                         Coordinate(
-                            LengthUnit(-1.5), LengthUnit(34.1), Level(-3)
+                            LengthUnit(-1.5, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(30.11), LengthUnit(15.1), Level(-3)
+                            LengthUnit(30.11, Units.m),
+                            LengthUnit(15.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                     ]
                 ),
@@ -206,38 +425,58 @@ class TestArea:
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.1), LengthUnit(0.65), Level(3)
+                            LengthUnit(0.1, Units.m),
+                            LengthUnit(0.65, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.45), LengthUnit(61.1), Level(3)
+                            LengthUnit(0.45, Units.m),
+                            LengthUnit(61.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(1.3), LengthUnit(-12.1), Level(3)
+                            LengthUnit(1.3, Units.m),
+                            LengthUnit(-12.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                     ]
                 ),
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.1), LengthUnit(0.65), Level(3)
+                            LengthUnit(0.1, Units.m),
+                            LengthUnit(0.65, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.45), LengthUnit(61.1), Level(3)
+                            LengthUnit(0.45, Units.m),
+                            LengthUnit(61.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(1.3), LengthUnit(-12.1), Level(3)
+                            LengthUnit(1.3, Units.m),
+                            LengthUnit(-12.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                     ]
                 ),
@@ -247,44 +486,66 @@ class TestArea:
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.1), LengthUnit(0.65), Level(3)
+                            LengthUnit(0.1, Units.m),
+                            LengthUnit(0.65, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.45), LengthUnit(61.1), Level(3)
+                            LengthUnit(0.45, Units.m),
+                            LengthUnit(61.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(1.3), LengthUnit(-12.1), Level(3)
+                            LengthUnit(1.3, Units.m),
+                            LengthUnit(-12.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                     ]
                 ),
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(1.41), LengthUnit(34.1), Level(-3)
+                            LengthUnit(1.41, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(-1.6), LengthUnit(12.1), Level(-3)
+                            LengthUnit(-1.6, Units.m),
+                            LengthUnit(12.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
                             LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)
                         ),
                         Coordinate(
-                            LengthUnit(-1.5), LengthUnit(34.1), Level(-3)
+                            LengthUnit(-1.5, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(30.11), LengthUnit(15.1), Level(-3)
+                            LengthUnit(30.11, Units.m),
+                            LengthUnit(15.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                     ]
                 ),
@@ -303,29 +564,51 @@ class TestArea:
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(1.41), LengthUnit(34.1), Level(-3)
+                            LengthUnit(1.41, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
                             LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)
                         ),
                         Coordinate(
-                            LengthUnit(-1.5), LengthUnit(34.1), Level(-3)
+                            LengthUnit(-1.5, Units.m),
+                            LengthUnit(34.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(30.11), LengthUnit(15.1), Level(-3)
+                            LengthUnit(30.11, Units.m),
+                            LengthUnit(15.1, Units.m),
+                            Level(-3),
                         ),
                         Coordinate(
-                            LengthUnit(45.54), LengthUnit(45.1), Level(-3)
+                            LengthUnit(45.54, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(-3),
                         ),
                     ]
                 ),
                 [
-                    Coordinate(LengthUnit(45.54), LengthUnit(45.1), Level(-3)),
-                    Coordinate(LengthUnit(1.41), LengthUnit(34.1), Level(-3)),
-                    Coordinate(LengthUnit(-1.6), LengthUnit(12.1), Level(-3)),
+                    Coordinate(
+                        LengthUnit(45.54, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(-3),
+                    ),
+                    Coordinate(
+                        LengthUnit(1.41, Units.m),
+                        LengthUnit(34.1, Units.m),
+                        Level(-3),
+                    ),
+                    Coordinate(
+                        LengthUnit(-1.6, Units.m),
+                        LengthUnit(12.1, Units.m),
+                        Level(-3),
+                    ),
                     Coordinate(LengthUnit(-6.1), LengthUnit(-6.1), Level(-3)),
                 ],
             ),
@@ -333,24 +616,48 @@ class TestArea:
                 Area(
                     [
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(0.1), LengthUnit(0.65), Level(3)
+                            LengthUnit(0.1, Units.m),
+                            LengthUnit(0.65, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(1.3), LengthUnit(-12.1), Level(3)
+                            LengthUnit(1.3, Units.m),
+                            LengthUnit(-12.1, Units.m),
+                            Level(3),
                         ),
                         Coordinate(
-                            LengthUnit(7.11), LengthUnit(45.1), Level(3)
+                            LengthUnit(7.11, Units.m),
+                            LengthUnit(45.1, Units.m),
+                            Level(3),
                         ),
                     ]
                 ),
                 [
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(3)),
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(3)),
-                    Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(3)),
-                    Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(3)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(1.3, Units.m),
+                        LengthUnit(-12.1, Units.m),
+                        Level(3),
+                    ),
+                    Coordinate(
+                        LengthUnit(7.11, Units.m),
+                        LengthUnit(45.1, Units.m),
+                        Level(3),
+                    ),
                 ],
             ),
         ],

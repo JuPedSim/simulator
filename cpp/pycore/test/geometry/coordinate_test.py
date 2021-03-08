@@ -1,16 +1,28 @@
 import pytest
-from jpscore.geometry import Coordinate, LengthUnit, Level
+from jpscore.geometry import Coordinate, LengthUnit, Level, Units
 
 
 class TestCoordinate:
     @pytest.mark.parametrize(
         "x, y, lvl",
         [
-            (LengthUnit(-12.0), LengthUnit(435.1), Level(1)),
-            (LengthUnit(0.1), LengthUnit(0), Level(-12)),
-            (LengthUnit(95213), LengthUnit(-123.435), Level(435)),
-            (LengthUnit(94.45), LengthUnit(90941), Level(-912)),
-            (LengthUnit(-510.1), LengthUnit(32432.11), Level(63)),
+            (LengthUnit(-12.0, Units.m), LengthUnit(435.1, Units.m), Level(1)),
+            (LengthUnit(0.1, Units.m), LengthUnit(0, Units.m), Level(-12)),
+            (
+                LengthUnit(95213, Units.m),
+                LengthUnit(-123.435, Units.m),
+                Level(435),
+            ),
+            (
+                LengthUnit(94.45, Units.m),
+                LengthUnit(90941, Units.m),
+                Level(-912),
+            ),
+            (
+                LengthUnit(-510.1, Units.m),
+                LengthUnit(32432.11, Units.m),
+                Level(63),
+            ),
             (LengthUnit(-324), LengthUnit(-435.1), Level(0)),
         ],
     )
@@ -24,27 +36,43 @@ class TestCoordinate:
         "coordinate, new_x, new_y, new_lvl",
         [
             (
-                Coordinate(LengthUnit(-10.12), LengthUnit(34.12), Level(5)),
+                Coordinate(
+                    LengthUnit(-10.12, Units.m),
+                    LengthUnit(34.12, Units.m),
+                    Level(5),
+                ),
                 LengthUnit(-12.45),
-                LengthUnit(657),
+                LengthUnit(657, Units.m),
                 Level(5),
             ),
             (
-                Coordinate(LengthUnit(56.42), LengthUnit(-1.435), Level(14)),
-                LengthUnit(12.4),
-                LengthUnit(34.1),
+                Coordinate(
+                    LengthUnit(56.42, Units.m),
+                    LengthUnit(-1.435, Units.m),
+                    Level(14),
+                ),
+                LengthUnit(12.4, Units.m),
+                LengthUnit(34.1, Units.m),
                 Level(546),
             ),
             (
-                Coordinate(LengthUnit(0.11), LengthUnit(-1.11111), Level(-1)),
-                LengthUnit(0),
-                LengthUnit(0.00),
+                Coordinate(
+                    LengthUnit(0.11, Units.m),
+                    LengthUnit(-1.11111, Units.m),
+                    Level(-1),
+                ),
+                LengthUnit(0, Units.m),
+                LengthUnit(0.00, Units.m),
                 Level(56),
             ),
             (
-                Coordinate(LengthUnit(55.1), LengthUnit(5), Level(-2)),
+                Coordinate(
+                    LengthUnit(55.1, Units.m),
+                    LengthUnit(5, Units.m),
+                    Level(-2),
+                ),
                 LengthUnit(-1.1234),
-                LengthUnit(12),
+                LengthUnit(12, Units.m),
                 Level(12),
             ),
         ],
@@ -63,61 +91,133 @@ class TestCoordinate:
         "coordinate, other, result",
         [
             (
-                Coordinate(LengthUnit(-10.12), LengthUnit(34.12), Level(5)),
-                Coordinate(LengthUnit(-10.12), LengthUnit(34.12), Level(5)),
-                True,
-            ),
-            (
-                Coordinate(LengthUnit(-10.1254), LengthUnit(6.12), Level(-15)),
-                Coordinate(LengthUnit(-10.1254), LengthUnit(6.12), Level(-15)),
-                True,
-            ),
-            (
-                Coordinate(LengthUnit(3.56), LengthUnit(-12.67), Level(1)),
-                Coordinate(LengthUnit(3.56), LengthUnit(-12.67), Level(1)),
-                True,
-            ),
-            (
-                Coordinate(LengthUnit(-78.34), LengthUnit(65.712), Level(-27)),
-                Coordinate(LengthUnit(-78.34), LengthUnit(65.712), Level(-27)),
-                True,
-            ),
-            (
                 Coordinate(
-                    LengthUnit(0.0000001), LengthUnit(851.1), Level(912)
+                    LengthUnit(-10.12, Units.m),
+                    LengthUnit(34.12, Units.m),
+                    Level(5),
                 ),
                 Coordinate(
-                    LengthUnit(0.0000001), LengthUnit(851.1), Level(912)
+                    LengthUnit(-10.12, Units.m),
+                    LengthUnit(34.12, Units.m),
+                    Level(5),
                 ),
                 True,
             ),
             (
-                Coordinate(LengthUnit(3.56), LengthUnit(-12.67), Level(1)),
                 Coordinate(
-                    LengthUnit(0.0000001), LengthUnit(851.1), Level(912)
+                    LengthUnit(-10.1254, Units.m),
+                    LengthUnit(6.12, Units.m),
+                    Level(-15),
+                ),
+                Coordinate(
+                    LengthUnit(-10.1254, Units.m),
+                    LengthUnit(6.12, Units.m),
+                    Level(-15),
+                ),
+                True,
+            ),
+            (
+                Coordinate(
+                    LengthUnit(3.56, Units.m),
+                    LengthUnit(-12.67, Units.m),
+                    Level(1),
+                ),
+                Coordinate(
+                    LengthUnit(3.56, Units.m),
+                    LengthUnit(-12.67, Units.m),
+                    Level(1),
+                ),
+                True,
+            ),
+            (
+                Coordinate(
+                    LengthUnit(-78.34, Units.m),
+                    LengthUnit(65.712, Units.m),
+                    Level(-27),
+                ),
+                Coordinate(
+                    LengthUnit(-78.34, Units.m),
+                    LengthUnit(65.712, Units.m),
+                    Level(-27),
+                ),
+                True,
+            ),
+            (
+                Coordinate(
+                    LengthUnit(0.0000001, Units.m),
+                    LengthUnit(851.1, Units.m),
+                    Level(912),
+                ),
+                Coordinate(
+                    LengthUnit(0.0000001, Units.m),
+                    LengthUnit(851.1, Units.m),
+                    Level(912),
+                ),
+                True,
+            ),
+            (
+                Coordinate(
+                    LengthUnit(3.56, Units.m),
+                    LengthUnit(-12.67, Units.m),
+                    Level(1),
+                ),
+                Coordinate(
+                    LengthUnit(0.0000001, Units.m),
+                    LengthUnit(851.1, Units.m),
+                    Level(912),
                 ),
                 False,
             ),
             (
-                Coordinate(LengthUnit(3.56), LengthUnit(-12.67), Level(1)),
-                Coordinate(LengthUnit(-78.34), LengthUnit(65.712), Level(-27)),
-                False,
-            ),
-            (
-                Coordinate(LengthUnit(-78.34), LengthUnit(65.712), Level(-27)),
-                Coordinate(LengthUnit(-10.12), LengthUnit(34.12), Level(5)),
+                Coordinate(
+                    LengthUnit(3.56, Units.m),
+                    LengthUnit(-12.67, Units.m),
+                    Level(1),
+                ),
+                Coordinate(
+                    LengthUnit(-78.34, Units.m),
+                    LengthUnit(65.712, Units.m),
+                    Level(-27),
+                ),
                 False,
             ),
             (
                 Coordinate(
-                    LengthUnit(0.0000001), LengthUnit(851.1), Level(912)
+                    LengthUnit(-78.34, Units.m),
+                    LengthUnit(65.712, Units.m),
+                    Level(-27),
                 ),
-                Coordinate(LengthUnit(-10.1254), LengthUnit(6.12), Level(-15)),
+                Coordinate(
+                    LengthUnit(-10.12, Units.m),
+                    LengthUnit(34.12, Units.m),
+                    Level(5),
+                ),
                 False,
             ),
             (
-                Coordinate(LengthUnit(-10.1254), LengthUnit(6.12), Level(-15)),
-                Coordinate(LengthUnit(3.56), LengthUnit(-12.67), Level(1)),
+                Coordinate(
+                    LengthUnit(0.0000001, Units.m),
+                    LengthUnit(851.1, Units.m),
+                    Level(912),
+                ),
+                Coordinate(
+                    LengthUnit(-10.1254, Units.m),
+                    LengthUnit(6.12, Units.m),
+                    Level(-15),
+                ),
+                False,
+            ),
+            (
+                Coordinate(
+                    LengthUnit(-10.1254, Units.m),
+                    LengthUnit(6.12, Units.m),
+                    Level(-15),
+                ),
+                Coordinate(
+                    LengthUnit(3.56, Units.m),
+                    LengthUnit(-12.67, Units.m),
+                    Level(1),
+                ),
                 False,
             ),
         ],
