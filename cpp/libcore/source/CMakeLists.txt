@@ -3,14 +3,17 @@ add_library(core
     log.hpp
     simulation.cpp
     simulation.hpp
+    simulation_data.hpp
 
-    util/identifiable.hpp
-    util/jpsexception.hpp
+    agent/agent.hpp
+    agent/pedestrian.hpp
 
     geometry/area.cpp
     geometry/area.hpp
     geometry/coordinate.cpp
     geometry/coordinate.hpp
+    geometry/helper/polygon_helper.cpp
+    geometry/helper/polygon_helper.hpp
     geometry/length_unit.hpp
     geometry/level.cpp
     geometry/level.hpp
@@ -20,12 +23,13 @@ add_library(core
     geometry/spatial_vector.hpp
     geometry/special_area.cpp
     geometry/special_area.hpp
-    geometry/helper/polygon_helper.hpp
-    geometry/helper/polygon_helper.cpp
     geometry/world_builder.cpp
     geometry/world_builder.hpp
 
     math/int_pow.hpp
+
+    util/identifiable.hpp
+    util/jpsexception.hpp
 )
 
 target_include_directories(core

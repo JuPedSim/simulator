@@ -1,5 +1,7 @@
 #pragma once
 
+#include "simulation_data.hpp"
+
 namespace jps
 {
 class Simulation
@@ -21,6 +23,9 @@ public:
     auto operator=(Simulation &&) -> Simulation & = delete;
     // NOLINTNEXTLINE
     int getValue() { return 1; }
+
+private:
+    SimulationData m_simulation_data;
 };
 
 } // namespace jps
