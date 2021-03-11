@@ -1,6 +1,7 @@
 #include "area.hpp"
 
 #include "geometry/helper/polygon_helper.hpp"
+#include "util/jpsexception.hpp"
 
 #include <algorithm>
 #include <fmt/format.h>
@@ -11,7 +12,7 @@ jps::Area::Area(std::vector<Coordinate> p_area_polygon) : m_area_polygon(p_area_
 
     // Need at least 3 elements to create polygon
     if(p_area_polygon.size() < 3) {
-        throw std::runtime_error(fmt::format(
+        throw JPSGeometryException(fmt::format(
             FMT_STRING("Could not create Area. At least 3 points expected to create polygon, but "
                        "only {} have been passed."),
             p_area_polygon.size()));
@@ -23,7 +24,7 @@ jps::Area::Area(std::vector<Coordinate> p_area_polygon) : m_area_polygon(p_area_
            std::begin(p_area_polygon),
            std::end(p_area_polygon),
            [level](const Coordinate & p_coordinate) { return p_coordinate.lvl == level; })) {
-        throw std::runtime_error(fmt::format(
+        throw JPSGeometryException(fmt::format(
             FMT_STRING("Could not create Area. Not all coordinates are on the same level.")));
     }
 

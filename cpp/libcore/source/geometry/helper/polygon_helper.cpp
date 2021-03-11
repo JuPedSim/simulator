@@ -1,8 +1,9 @@
 #include "polygon_helper.hpp"
 
+#include "util/jpsexception.hpp"
+
 #include <algorithm>
 #include <fmt/format.h>
-#include <string>
 
 auto jps::geometry::sortLineSegments(std::vector<LineSegment> & p_line_segments) -> void
 {
@@ -28,7 +29,7 @@ auto jps::geometry::sortLineSegments(std::vector<LineSegment> & p_line_segments)
             std::iter_swap(next_itr, std::next(compare));
         } else {
             // if no succeeding element found, there is an issue
-            throw std::runtime_error(fmt::format(
+            throw JPSGeometryException(fmt::format(
                 FMT_STRING("Line segments could not be sorted. Could not find a wall succeeding "
                            "{}. Please check your geometry."),
                 *compare));
@@ -41,7 +42,7 @@ auto jps::geometry::getPolygonCoordinates(std::vector<LineSegment> & p_line_segm
 {
     // Need at least 3 elements to create polygon
     if(p_line_segments.size() < 3) {
-        throw std::runtime_error(fmt::format(
+        throw JPSGeometryException(fmt::format(
             FMT_STRING("Could not create Polygon. At least 3 line segments expected to create "
                        "polygon, but "
                        "only {} have been passed."),
@@ -56,7 +57,7 @@ auto jps::geometry::getPolygonCoordinates(std::vector<LineSegment> & p_line_segm
            [level](const LineSegment & p_coordinate) {
                return p_coordinate.getStart().lvl == level;
            })) {
-        throw std::runtime_error(fmt::format(
+        throw JPSGeometryException(fmt::format(
             FMT_STRING("Could not create Polygon. Not all line segments are on the same level.")));
     }
 
@@ -64,13 +65,13 @@ auto jps::geometry::getPolygonCoordinates(std::vector<LineSegment> & p_line_segm
     try {
         geometry::sortLineSegments(p_line_segments);
     } catch(const std::runtime_error & e) {
-        throw std::runtime_error(
+        throw JPSGeometryException(
             fmt::format(FMT_STRING("Could not create Polygon. See: {}"), e.what()));
     }
 
     // check if line segments form a closed polygon
     if(std::begin(p_line_segments)->getStart() != p_line_segments.back().getEnd()) {
-        throw std::runtime_error(fmt::format(
+        throw JPSGeometryException(fmt::format(
             FMT_STRING("Could not create Polygon. Needs to be a closed polygon, but endpoints "
                        "seems not to be "
                        "connected. Endpoints are {} and {}."),
