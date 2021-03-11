@@ -23,6 +23,9 @@ pybind11_add_module(jpscore
     geometry/special_area_binding.cpp
     geometry/world_builder_binding.hpp
     geometry/world_builder_binding.cpp
+
+    util/jpsexception_binding.hpp
+    util/jpsexception_binding.cpp
 )
 
 target_link_libraries(jpscore

@@ -1,5 +1,6 @@
 import pytest
 from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
+from jpscore.util import JPSGeometryException
 
 
 class TestArea:
@@ -51,7 +52,7 @@ class TestArea:
         ],
     )
     def test_constructor_from_coordinates_failing(self, coordinates):
-        with pytest.raises(RuntimeError):
+        with pytest.raises(JPSGeometryException):
             Area(coordinates)
 
     @pytest.mark.parametrize(
@@ -143,7 +144,7 @@ class TestArea:
         ],
     )
     def test_constructor_from_line_segments_failing(self, line_segments):
-        with pytest.raises(RuntimeError):
+        with pytest.raises(JPSGeometryException):
             Area(line_segments)
 
     @pytest.mark.parametrize(

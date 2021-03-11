@@ -8,6 +8,7 @@
 #include "geometry/world_builder_binding.hpp"
 #include "logging_binding.hpp"
 #include "simulation_binding.hpp"
+#include "util/jpsexception_binding.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -31,4 +32,7 @@ PYBIND11_MODULE(jpscore, m)
     bind_spatial_vector(m_geometry);
     bind_special_area(m_geometry);
     bind_world_builder(m_geometry);
+
+    auto m_util = m.def_submodule("util");
+    bind_jpsexception(m_util);
 }
