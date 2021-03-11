@@ -1,4 +1,5 @@
 #include "geometry/line_segment.hpp"
+#include "util/jpsexception.hpp"
 
 #include <cmath>
 #include <gtest/gtest.h>
@@ -49,24 +50,23 @@ TEST(LineSegment, Constructor)
     // Start and end not on same level
     EXPECT_THROW(
         (LineSegment{{-12.1_m, 93_m, Level{21}}, {91_m, 0.12_km, Level{23}}}),
-        std::invalid_argument);
+        JPSGeometryException);
     EXPECT_THROW(
-        (LineSegment{{990_mm, 0.1_dm, Level{0}}, {6_mm, 58.1_um, Level{1}}}),
-        std::invalid_argument);
+        (LineSegment{{990_mm, 0.1_dm, Level{0}}, {6_mm, 58.1_um, Level{1}}}), JPSGeometryException);
     EXPECT_THROW(
         (LineSegment{{-51.5_cm, -1.68_cm, Level{-10}}, {83_mm, 1.2_mm, Level{-20}}}),
-        std::invalid_argument);
+        JPSGeometryException);
 
     // Start and end point not different
     EXPECT_THROW(
         (LineSegment{{-12.1_m, 93_m, Level{21}}, {-12.1_m, 93_m, Level{21}}}),
-        std::invalid_argument);
+        JPSGeometryException);
     EXPECT_THROW(
         (LineSegment{{990_mm, 0.1_dm, Level{0}}, {990_mm, 0.1_dm, Level{0}}}),
-        std::invalid_argument);
+        JPSGeometryException);
     EXPECT_THROW(
         (LineSegment{{-51.5_cm, -1.68_cm, Level{-10}}, {-51.5_cm, -1.68_cm, Level{-10}}}),
-        std::invalid_argument);
+        JPSGeometryException);
 }
 
 TEST(LineSegment, comparisonOperators)

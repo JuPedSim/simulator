@@ -1,4 +1,5 @@
 #include "geometry/area.hpp"
+#include "util/jpsexception.hpp"
 
 #include <gmock/gmock-matchers.h>
 #include <gtest/gtest.h>
@@ -28,13 +29,13 @@ TEST(Area, ConstructorFromCoordinate)
 
     // Failing
     std::vector<Coordinate> empty;
-    EXPECT_THROW(Area{empty}, std::runtime_error);
+    EXPECT_THROW(Area{empty}, JPSGeometryException);
 
     std::vector<Coordinate> two_elements{
         {10_m, 10_m, Level{1}},
         {10_m, 5_m, Level{1}},
     };
-    EXPECT_THROW(Area{two_elements}, std::runtime_error);
+    EXPECT_THROW(Area{two_elements}, JPSGeometryException);
 
     std::vector<Coordinate> different_lvl{
         {10_m, 10_m, Level{1}},
@@ -42,7 +43,7 @@ TEST(Area, ConstructorFromCoordinate)
         {5_m, 1_m, Level{3}},
         {5_m, 10_m, Level{1}},
     };
-    EXPECT_THROW(Area{different_lvl}, std::runtime_error);
+    EXPECT_THROW(Area{different_lvl}, JPSGeometryException);
 }
 
 TEST(Area, ConstructorFromLineSegments)
@@ -80,20 +81,20 @@ TEST(Area, ConstructorFromLineSegments)
 
     // Failing
     std::vector<LineSegment> empty;
-    EXPECT_THROW(Area{empty}, std::runtime_error);
+    EXPECT_THROW(Area{empty}, JPSGeometryException);
 
     std::vector<LineSegment> two_elements{
         {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
         {{15_m, 10_m, Level{1}}, {10_m, 10_m, Level{1}}},
     };
-    EXPECT_THROW(Area{two_elements}, std::runtime_error);
+    EXPECT_THROW(Area{two_elements}, JPSGeometryException);
 
     std::vector<LineSegment> different_lvl{
         {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
         {{15_m, 10_m, Level{1}}, {20_m, 10_m, Level{1}}},
         {{20_m, 10_m, Level{2}}, {10_m, 10_m, Level{2}}},
     };
-    EXPECT_THROW(Area{different_lvl}, std::runtime_error);
+    EXPECT_THROW(Area{different_lvl}, JPSGeometryException);
 
     std::vector<LineSegment> not_sortable_lines_not_connected{
         {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
@@ -101,14 +102,14 @@ TEST(Area, ConstructorFromLineSegments)
         {{20_m, 10_m, Level{1}}, {30_m, 10_m, Level{1}}},
         {{40_m, 10_m, Level{1}}, {10_m, 10_m, Level{1}}},
     };
-    EXPECT_THROW(Area{not_sortable_lines_not_connected}, std::runtime_error);
+    EXPECT_THROW(Area{not_sortable_lines_not_connected}, JPSGeometryException);
 
     std::vector<LineSegment> not_closed{
         {{-1_m, 1_m, Level{-1}}, {1_m, 1_m, Level{-1}}},
         {{1_m, 1_m, Level{-1}}, {1_m, -1_m, Level{-1}}},
         {{1_m, -1_m, Level{-1}}, {-1_m, -1_m, Level{-1}}},
     };
-    EXPECT_THROW(Area{not_closed}, std::runtime_error);
+    EXPECT_THROW(Area{not_closed}, JPSGeometryException);
 }
 
 TEST(Area, comparisonOperators)
