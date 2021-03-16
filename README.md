@@ -74,9 +74,9 @@ PYTHONPATH=~/simulator-build/bin ./jps/jps --help
 ```
 ### Repository Layout
 
-The repository layout follows the high level architecture of the *jps* tool. At
-the core is a C++ library for pedestrian simulation. This core is wrapped
-with `pybind11` to allow use of the simulation library from python. Lastly there
+The repository layout follows the high level architecture of the *jps* tool. The
+core is a C++ library for pedestrian simulation. It is wrapped
+with `pybind11` to allow the use of the simulation library with python. Lastly, there
 is the actual *jps* application written in python. The python layer is used to
 handle all the non-resource / compute intensive parts of the application, i.e.
 initial setup, file handling etc.
@@ -105,7 +105,7 @@ The above separation can be seen in the folder structure as well:
 │   ├── pycore    <= python binding
 │   │   ├── source
 │   │   └── test
-│   └── scripts   <= support scripts, e.g. dependency download, compilie & isntall
+│   └── scripts   <= support scripts, e.g. dependency download, compile & install
 ├── jps
 │   ├── jps       <= *jps* entry point
 │   └── jupedsim  <= remaining python code
