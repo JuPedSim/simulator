@@ -22,6 +22,8 @@ add_library(core
     geometry/special_area.hpp
     geometry/helper/polygon_helper.hpp
     geometry/helper/polygon_helper.cpp
+    geometry/world_builder.cpp
+    geometry/world_builder.hpp
 
     math/int_pow.hpp
 )

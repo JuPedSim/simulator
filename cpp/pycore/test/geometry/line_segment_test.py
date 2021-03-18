@@ -1,6 +1,6 @@
 import pytest
 from jpscore import JPSGeometryException
-from jpscore.geometry import Coordinate, LengthUnit, Level, LineSegment
+from jpscore.geometry import Coordinate, LengthUnit, Level, LineSegment, Units
 
 
 class TestLineSegment:
@@ -8,26 +8,64 @@ class TestLineSegment:
         "start, end",
         [
             (
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(4)),
-            ),
-            (
-                Coordinate(LengthUnit(1.3), LengthUnit(-12.1), Level(54)),
-                Coordinate(LengthUnit(5.1), LengthUnit(-41.0), Level(54)),
-            ),
-            (
-                Coordinate(LengthUnit(45.1), LengthUnit(-45.11), Level(-1)),
-                Coordinate(LengthUnit(7.11), LengthUnit(45.1), Level(-1)),
-            ),
-            (
-                Coordinate(LengthUnit(-56.61), LengthUnit(1.34), Level(0)),
-                Coordinate(LengthUnit(-4.11), LengthUnit(7.0001), Level(0)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(4),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(4),
+                ),
             ),
             (
                 Coordinate(
-                    LengthUnit(-41.1111), LengthUnit(-324.11), Level(-4)
+                    LengthUnit(1.3, Units.m),
+                    LengthUnit(-12.1, Units.m),
+                    Level(54),
                 ),
-                Coordinate(LengthUnit(-41.0), LengthUnit(-320.11), Level(-4)),
+                Coordinate(
+                    LengthUnit(5.1, Units.m),
+                    LengthUnit(-41.0, Units.m),
+                    Level(54),
+                ),
+            ),
+            (
+                Coordinate(
+                    LengthUnit(45.1, Units.m),
+                    LengthUnit(-45.11, Units.m),
+                    Level(-1),
+                ),
+                Coordinate(
+                    LengthUnit(7.11, Units.m),
+                    LengthUnit(45.1, Units.m),
+                    Level(-1),
+                ),
+            ),
+            (
+                Coordinate(
+                    LengthUnit(-56.61, Units.m),
+                    LengthUnit(1.34, Units.m),
+                    Level(0),
+                ),
+                Coordinate(
+                    LengthUnit(-4.11, Units.m),
+                    LengthUnit(7.0001, Units.m),
+                    Level(0),
+                ),
+            ),
+            (
+                Coordinate(
+                    LengthUnit(-41.1111, Units.m),
+                    LengthUnit(-324.11, Units.m),
+                    Level(-4),
+                ),
+                Coordinate(
+                    LengthUnit(-41.0, Units.m),
+                    LengthUnit(-320.11, Units.m),
+                    Level(-4),
+                ),
             ),
         ],
     )
@@ -40,12 +78,28 @@ class TestLineSegment:
         "start, end",
         [
             (
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(1)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(4),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(1),
+                ),
             ),
             (
-                Coordinate(LengthUnit(1.1), LengthUnit(-0.1), Level(0)),
-                Coordinate(LengthUnit(1.1), LengthUnit(-0.1), Level(0)),
+                Coordinate(
+                    LengthUnit(1.1, Units.m),
+                    LengthUnit(-0.1, Units.m),
+                    Level(0),
+                ),
+                Coordinate(
+                    LengthUnit(1.1, Units.m),
+                    LengthUnit(-0.1, Units.m),
+                    Level(0),
+                ),
             ),
         ],
     )
@@ -57,20 +111,52 @@ class TestLineSegment:
         "line_segment",
         [
             LineSegment(
-                Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(4)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(0.65, Units.m),
+                    Level(4),
+                ),
+                Coordinate(
+                    LengthUnit(0.45, Units.m),
+                    LengthUnit(61.1, Units.m),
+                    Level(4),
+                ),
             ),
             LineSegment(
-                Coordinate(LengthUnit(36.1), LengthUnit(45.1), Level(1)),
-                Coordinate(LengthUnit(67.1), LengthUnit(56.1), Level(1)),
+                Coordinate(
+                    LengthUnit(36.1, Units.m),
+                    LengthUnit(45.1, Units.m),
+                    Level(1),
+                ),
+                Coordinate(
+                    LengthUnit(67.1, Units.m),
+                    LengthUnit(56.1, Units.m),
+                    Level(1),
+                ),
             ),
             LineSegment(
-                Coordinate(LengthUnit(-32.54), LengthUnit(-61.11), Level(-4)),
-                Coordinate(LengthUnit(-12.6), LengthUnit(-718.3), Level(-4)),
+                Coordinate(
+                    LengthUnit(-32.54, Units.m),
+                    LengthUnit(-61.11, Units.m),
+                    Level(-4),
+                ),
+                Coordinate(
+                    LengthUnit(-12.6, Units.m),
+                    LengthUnit(-718.3, Units.m),
+                    Level(-4),
+                ),
             ),
             LineSegment(
-                Coordinate(LengthUnit(0.1), LengthUnit(-56.1), Level(0)),
-                Coordinate(LengthUnit(-56.1), LengthUnit(0.1), Level(0)),
+                Coordinate(
+                    LengthUnit(0.1, Units.m),
+                    LengthUnit(-56.1, Units.m),
+                    Level(0),
+                ),
+                Coordinate(
+                    LengthUnit(-56.1, Units.m),
+                    LengthUnit(0.1, Units.m),
+                    Level(0),
+                ),
             ),
         ],
     )
@@ -88,56 +174,136 @@ class TestLineSegment:
         [
             (
                 LineSegment(
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(4)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(4),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(4),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                    Coordinate(LengthUnit(0.45), LengthUnit(61.1), Level(4)),
-                ),
-                True,
-            ),
-            (
-                LineSegment(
-                    Coordinate(LengthUnit(4.145), LengthUnit(-3.1), Level(-2)),
-                    Coordinate(LengthUnit(90.1), LengthUnit(0.11), Level(-2)),
-                ),
-                LineSegment(
-                    Coordinate(LengthUnit(90.1), LengthUnit(0.11), Level(-2)),
-                    Coordinate(LengthUnit(4.145), LengthUnit(-3.1), Level(-2)),
-                ),
-                True,
-            ),
-            (
-                LineSegment(
-                    Coordinate(LengthUnit(-32.5), LengthUnit(0.11), Level(20)),
-                    Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
-                ),
-                LineSegment(
-                    Coordinate(LengthUnit(-32.5), LengthUnit(0.11), Level(20)),
-                    Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(4),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.45, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(4),
+                    ),
                 ),
                 True,
             ),
             (
                 LineSegment(
-                    Coordinate(LengthUnit(34.5), LengthUnit(56.81), Level(1)),
-                    Coordinate(LengthUnit(0.41), LengthUnit(90.1), Level(1)),
+                    Coordinate(
+                        LengthUnit(4.145, Units.m),
+                        LengthUnit(-3.1, Units.m),
+                        Level(-2),
+                    ),
+                    Coordinate(
+                        LengthUnit(90.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(-2),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(0.001), LengthUnit(3.1), Level(1)),
-                    Coordinate(LengthUnit(-41.1), LengthUnit(8.11), Level(1)),
+                    Coordinate(
+                        LengthUnit(90.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(-2),
+                    ),
+                    Coordinate(
+                        LengthUnit(4.145, Units.m),
+                        LengthUnit(-3.1, Units.m),
+                        Level(-2),
+                    ),
+                ),
+                True,
+            ),
+            (
+                LineSegment(
+                    Coordinate(
+                        LengthUnit(-32.5, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
+                    Coordinate(
+                        LengthUnit(-41.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
+                ),
+                LineSegment(
+                    Coordinate(
+                        LengthUnit(-32.5, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
+                    Coordinate(
+                        LengthUnit(-41.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
+                ),
+                True,
+            ),
+            (
+                LineSegment(
+                    Coordinate(
+                        LengthUnit(34.5, Units.m),
+                        LengthUnit(56.81, Units.m),
+                        Level(1),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.41, Units.m),
+                        LengthUnit(90.1, Units.m),
+                        Level(1),
+                    ),
+                ),
+                LineSegment(
+                    Coordinate(
+                        LengthUnit(0.001, Units.m),
+                        LengthUnit(3.1, Units.m),
+                        Level(1),
+                    ),
+                    Coordinate(
+                        LengthUnit(-41.1, Units.m),
+                        LengthUnit(8.11, Units.m),
+                        Level(1),
+                    ),
                 ),
                 False,
             ),
             (
                 LineSegment(
-                    Coordinate(LengthUnit(-32.5), LengthUnit(0.11), Level(20)),
-                    Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
+                    Coordinate(
+                        LengthUnit(-32.5, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
+                    Coordinate(
+                        LengthUnit(-41.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
                 ),
                 LineSegment(
-                    Coordinate(LengthUnit(-32.5), LengthUnit(0.11), Level(1)),
-                    Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(1)),
+                    Coordinate(
+                        LengthUnit(-32.5, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(1),
+                    ),
+                    Coordinate(
+                        LengthUnit(-41.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(1),
+                    ),
                 ),
                 False,
             ),
@@ -152,19 +318,51 @@ class TestLineSegment:
         [
             (
                 LineSegment(
-                    Coordinate(LengthUnit(-32.5), LengthUnit(0.11), Level(20)),
-                    Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
+                    Coordinate(
+                        LengthUnit(-32.5, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
+                    Coordinate(
+                        LengthUnit(-41.1, Units.m),
+                        LengthUnit(0.11, Units.m),
+                        Level(20),
+                    ),
                 ),
-                Coordinate(LengthUnit(45.1), LengthUnit(1.1), Level(20)),
-                Coordinate(LengthUnit(-41.1), LengthUnit(45.1), Level(20)),
+                Coordinate(
+                    LengthUnit(45.1, Units.m),
+                    LengthUnit(1.1, Units.m),
+                    Level(20),
+                ),
+                Coordinate(
+                    LengthUnit(-41.1, Units.m),
+                    LengthUnit(45.1, Units.m),
+                    Level(20),
+                ),
             ),
             (
                 LineSegment(
-                    Coordinate(LengthUnit(0.1), LengthUnit(0.65), Level(4)),
-                    Coordinate(LengthUnit(0.12), LengthUnit(61.1), Level(4)),
+                    Coordinate(
+                        LengthUnit(0.1, Units.m),
+                        LengthUnit(0.65, Units.m),
+                        Level(4),
+                    ),
+                    Coordinate(
+                        LengthUnit(0.12, Units.m),
+                        LengthUnit(61.1, Units.m),
+                        Level(4),
+                    ),
                 ),
-                Coordinate(LengthUnit(234.1), LengthUnit(0.11), Level(20)),
-                Coordinate(LengthUnit(-41.1), LengthUnit(0.11), Level(20)),
+                Coordinate(
+                    LengthUnit(234.1, Units.m),
+                    LengthUnit(0.11, Units.m),
+                    Level(20),
+                ),
+                Coordinate(
+                    LengthUnit(-41.1, Units.m),
+                    LengthUnit(0.11, Units.m),
+                    Level(20),
+                ),
             ),
         ],
     )
