@@ -18,6 +18,32 @@ enforce_build_type_is_set()
 add_clang_tidy_support_option()
 
 ################################################################################
+# Compilation flags
+################################################################################
+# Note: Setting global compile flags via CMAKE_CXX_FLAGS has the drawback that
+#       generator expressions cannot be used. This leads to all kind of
+#       conditional adding of flags. It is generally preferable to use generator
+#       expresssions.
+#
+# WARNING: Do not break the lines, each option has to be on its own line or
+#          CMake will enclose multiple flags in '' which the compiler then
+#          treats as a single flag and does not understand.
+list(APPEND COMMON_COMPILE_OPTIONS
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wall>
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wextra>
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wpedantic>
+#        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Werror>
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wconversion>
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wimplicit-fallthrough>
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wsign-conversion>
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-fdiagnostics-color=always>
+        $<$<CXX_COMPILER_ID:MSVC>:/W4>
+#        $<$<CXX_COMPILER_ID:MSVC>:/WX>
+        $<$<CXX_COMPILER_ID:MSVC>:/EHsc>
+        -fPIC
+)
+
+################################################################################
 # Dependencies
 ################################################################################
 find_package(GTest 1.10 CONFIG REQUIRED)

@@ -29,5 +29,5 @@ gtest_discover_tests(test-core)
 
 
 target_compile_options(test-core PRIVATE
-    -fPIC
+    ${COMMON_COMPILE_OPTIONS}
 )
