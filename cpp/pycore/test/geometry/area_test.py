@@ -1,6 +1,6 @@
 import pytest
+from jpscore import JPSGeometryException
 from jpscore.geometry import Area, Coordinate, LengthUnit, Level, LineSegment
-from jpscore.util import JPSGeometryException
 
 
 class TestArea:

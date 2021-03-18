@@ -64,7 +64,7 @@ auto jps::geometry::getPolygonCoordinates(std::vector<LineSegment> & p_line_segm
     // sort walls
     try {
         geometry::sortLineSegments(p_line_segments);
-    } catch(const std::runtime_error & e) {
+    } catch(const JPSGeometryException & e) {
         throw JPSGeometryException(
             fmt::format(FMT_STRING("Could not create Polygon. See: {}"), e.what()));
     }
