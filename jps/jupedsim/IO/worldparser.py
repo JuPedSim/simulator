@@ -33,27 +33,54 @@ class WorldParser:
         # create modelspace
         self.m_msp = doc.modelspace()
 
-        # read in meta data
-        self.m_unit = doc.header["$INSUNITS"]
-        # allow only 6 for meters, TODO: check diff to LUNITS
-        if self.m_unit != 6:
-            # TODO accept other units as well (but not all)
-            # TODO throw exception
-            log_error("Length unit is not meter. Not yet implemented")
-
-        # TODO check $MEASUREMENT = 0 English not metric
-        # NOTE: these headers are not available in qcad file
-        # upper_right_corner = doc.header['$EXTMAX']
-        # lower_left_corner = doc.header['$EXTMIN']
+        # parse header variables
+        self.__parseHeader()
 
         # build World
         log_info("Building world ...")
         self.m_jps_world_builder = geometry.WorldBuilder()
         self.__parseLevels()
 
-    @staticmethod
-    def parseCoordinates(
-        line: str, p_level: geometry.Level
+    def __parseHeader(self) -> None:
+        """
+        Reads in meta data defined in header of the dxf file.
+        Header variables can be found on [autodesk header variables](http://help.autodesk.com/view/OARX/2018/ENU/?guid=GUID-A85E8E67-27CD-4C59-BE61-4DC9FADBE74A)
+        NOTE: these headers are not available in qcad file:
+        upper_right_corner = doc.header['$EXTMAX']
+        lower_left_corner = doc.header['$EXTMIN']
+        """
+
+        # check if drawing unit is metric
+        if doc.header["$MEASUREMENT"] != 1:
+            # TODO throw exception
+            log_error("Only metric units are supported.")
+
+        dxf_unit = doc.header["$INSUNITS"]
+        # parsing units according to [INSUNITS documentation](https://knowledge.autodesk.com/de/support/autocad/learn-explore/caas/CloudHelp/cloudhelp/2018/DEU/AutoCAD-Core/files/GUID-A58A87BB-482B-4042-A00A-EEF55A2B4FD8-htm.html)
+        if dxf_unit == 4:
+            self.m_unit = geometry.Units.mm
+        elif dxf_unit == 5:
+            self.m_unit = geometry.Units.cm
+        elif dxf_unit == 6:
+            self.m_unit = geometry.Units.m
+        elif dxf_unit == 7:
+            self.m_unit = geometry.Units.km
+        elif dxf_unit == 13:
+            self.m_unit = geometry.Units.um
+        elif dxf_unit == 14:
+            self.m_unit = geometry.Units.dm
+        else:
+            # TODO throw exception
+            log_error("Length unit is not supported.")
+
+        # check format of linear dimensions
+        # for metric system decimal (14.4), fractional (14 2/5) and scientific format (1.4E+01) can be chosen, only decimal is supported
+        if doc.header["$DIMLUNIT"] != 2:
+            # TODO throw exception
+            log_error("Only decimal unit format is supported.")
+
+    def __parseCoordinates(
+        self, line: str, p_level: geometry.Level
     ) -> List[geometry.Coordinate]:
         """
         Method parses a dxf line with coordinates to a list
@@ -62,14 +89,14 @@ class WorldParser:
         """
         start_coord_tmp = re.split(",", str(line.dxf.start))
         start_coord = geometry.Coordinate(
-            geometry.LengthUnit(float(start_coord_tmp[0][1:])),
-            geometry.LengthUnit(float(start_coord_tmp[1])),
+            geometry.LengthUnit(float(start_coord_tmp[0][1:]), self.m_unit),
+            geometry.LengthUnit(float(start_coord_tmp[1]), self.m_unit),
             p_level,
         )
         end_coord_tmp = re.split(",", str(line.dxf.end))
         end_coord = geometry.Coordinate(
-            geometry.LengthUnit(float(end_coord_tmp[0][1:])),
-            geometry.LengthUnit(float(end_coord_tmp[1])),
+            geometry.LengthUnit(float(end_coord_tmp[0][1:]), self.m_unit),
+            geometry.LengthUnit(float(end_coord_tmp[1]), self.m_unit),
             p_level,
         )
 
