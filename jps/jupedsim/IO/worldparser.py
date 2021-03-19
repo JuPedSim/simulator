@@ -34,14 +34,60 @@ class WorldParser:
         self.m_msp = doc.modelspace()
 
         # parse header variables
-        self.__parseHeader()
+        self.__parseHeader(doc)
 
         # build World
         log_info("Building world ...")
         self.m_jps_world_builder = geometry.WorldBuilder()
         self.__parseLevels()
 
-    def __parseHeader(self) -> None:
+    @staticmethod
+    def checkMetricUnit(doc: ezdxf.document.Drawing) -> bool:
+        """
+        Check if drawing unit is metric
+        :param doc: document drawing of dxf file
+        :return: True if metric is chosen, false otherwise
+        """
+
+        return doc.header["$MEASUREMENT"] == 1
+
+    @staticmethod
+    def checkDecimalUnit(doc: ezdxf.document.Drawing) -> bool:
+        """
+        Checks if format of linear dimensions is decimal
+        For metric system decimal (14.4), fractional (14 2/5) and scientific format (1.4E+01) can be chosen, only decimal is supported
+        :param doc: document drawing of dxf file
+        :return: True if linear dimension format is decimal
+        """
+
+        return doc.header["$DIMLUNIT"] == 2
+
+    @staticmethod
+    def readLengthUnitType(doc: ezdxf.document.Drawing) -> geometry.Units:
+        """
+        Parsing units according to [INSUNITS documentation](https://knowledge.autodesk.com/de/support/autocad/learn-explore/caas/CloudHelp/cloudhelp/2018/DEU/AutoCAD-Core/files/GUID-A58A87BB-482B-4042-A00A-EEF55A2B4FD8-htm.html)
+        :param doc: document drawing of dxf file
+        :return: corresponding geometry.Units object
+        """
+
+        dxf_unit = doc.header["$INSUNITS"]
+        if dxf_unit == 4:
+            return geometry.Units.mm
+        elif dxf_unit == 5:
+            return geometry.Units.cm
+        elif dxf_unit == 6:
+            return geometry.Units.m
+        elif dxf_unit == 7:
+            return geometry.Units.km
+        elif dxf_unit == 13:
+            return geometry.Units.um
+        elif dxf_unit == 14:
+            return geometry.Units.dm
+
+        # TODO throw exception
+        log_error("Length unit is not supported.")
+
+    def __parseHeader(self, doc: ezdxf.document.Drawing) -> None:
         """
         Reads in meta data defined in header of the dxf file.
         Header variables can be found on [autodesk header variables](http://help.autodesk.com/view/OARX/2018/ENU/?guid=GUID-A85E8E67-27CD-4C59-BE61-4DC9FADBE74A)
@@ -50,34 +96,13 @@ class WorldParser:
         lower_left_corner = doc.header['$EXTMIN']
         """
 
-        # check if drawing unit is metric
-        if doc.header["$MEASUREMENT"] != 1:
+        if WorldParser.checkMetricUnit(doc) or WorldParser.checkDecimalUnit(doc):
             # TODO throw exception
-            log_error("Only metric units are supported.")
+            log_error("Only metric units in decimal format are supported.")
 
-        dxf_unit = doc.header["$INSUNITS"]
-        # parsing units according to [INSUNITS documentation](https://knowledge.autodesk.com/de/support/autocad/learn-explore/caas/CloudHelp/cloudhelp/2018/DEU/AutoCAD-Core/files/GUID-A58A87BB-482B-4042-A00A-EEF55A2B4FD8-htm.html)
-        if dxf_unit == 4:
-            self.m_unit = geometry.Units.mm
-        elif dxf_unit == 5:
-            self.m_unit = geometry.Units.cm
-        elif dxf_unit == 6:
-            self.m_unit = geometry.Units.m
-        elif dxf_unit == 7:
-            self.m_unit = geometry.Units.km
-        elif dxf_unit == 13:
-            self.m_unit = geometry.Units.um
-        elif dxf_unit == 14:
-            self.m_unit = geometry.Units.dm
-        else:
-            # TODO throw exception
-            log_error("Length unit is not supported.")
+        # TODO catch exception
+        self.m_unit = WorldParser.readLengthUnitType(doc)
 
-        # check format of linear dimensions
-        # for metric system decimal (14.4), fractional (14 2/5) and scientific format (1.4E+01) can be chosen, only decimal is supported
-        if doc.header["$DIMLUNIT"] != 2:
-            # TODO throw exception
-            log_error("Only decimal unit format is supported.")
 
     def __parseCoordinates(
         self, line: str, p_level: geometry.Level
