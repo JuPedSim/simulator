@@ -1,4 +1,5 @@
 import pytest
+from jpscore import JPSGeometryException
 from jpscore.geometry import Coordinate, LengthUnit, Level, LineSegment, Units
 
 
@@ -103,7 +104,7 @@ class TestLineSegment:
         ],
     )
     def test_constructor_failing(self, start, end):
-        with pytest.raises(ValueError):
+        with pytest.raises(JPSGeometryException):
             LineSegment(start, end)
 
     @pytest.mark.parametrize(

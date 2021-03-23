@@ -1,5 +1,6 @@
 #include "geometry/helper/polygon_helper.hpp"
 #include "geometry/line_segment.hpp"
+#include "util/jpsexception.hpp"
 
 #include <gtest/gtest.h>
 
@@ -68,7 +69,7 @@ TEST(GeometryHelper, sortLineSegments)
             {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
             {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
         };
-        EXPECT_THROW(sortLineSegments(no_connection), std::runtime_error);
+        EXPECT_THROW(sortLineSegments(no_connection), JPSGeometryException);
 
         std::vector<LineSegment> duplicate_line_segment{
             {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
@@ -78,7 +79,7 @@ TEST(GeometryHelper, sortLineSegments)
             {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
             {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
         };
-        EXPECT_THROW(sortLineSegments(duplicate_line_segment), std::runtime_error);
+        EXPECT_THROW(sortLineSegments(duplicate_line_segment), JPSGeometryException);
 
         std::vector<LineSegment> different_levels{
             {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
@@ -87,7 +88,7 @@ TEST(GeometryHelper, sortLineSegments)
             {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
             {{0.1_m, 0.5_m, Level{2}}, {-5.1_m, -2.4_m, Level{2}}},
         };
-        EXPECT_THROW(sortLineSegments(different_levels), std::runtime_error); // NOLINTLINE
+        EXPECT_THROW(sortLineSegments(different_levels), JPSGeometryException); // NOLINTLINE
     }
 }
 
@@ -133,14 +134,14 @@ TEST(GeometryHelper, getPolygonCoordinates) // NOLINTLINE
     // Not successful
     {
         std::vector<LineSegment> empty;
-        EXPECT_THROW(getPolygonCoordinates(empty), std::runtime_error); // NOLINTLINE
+        EXPECT_THROW(getPolygonCoordinates(empty), JPSGeometryException); // NOLINTLINE
 
         std::vector<LineSegment> less_than_three_elements{
             {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
             {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
         };
         // NOLINTNEXTLINE
-        EXPECT_THROW(getPolygonCoordinates(less_than_three_elements), std::runtime_error);
+        EXPECT_THROW(getPolygonCoordinates(less_than_three_elements), JPSGeometryException);
 
         std::vector<LineSegment> different_levels{
             {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
@@ -148,7 +149,7 @@ TEST(GeometryHelper, getPolygonCoordinates) // NOLINTLINE
             {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
             {{0.1_m, 0.5_m, Level{2}}, {-5.1_m, -2.4_m, Level{2}}},
         };
-        EXPECT_THROW(getPolygonCoordinates(different_levels), std::runtime_error); // NOLINTLINE
+        EXPECT_THROW(getPolygonCoordinates(different_levels), JPSGeometryException); // NOLINTLINE
 
         std::vector<LineSegment> not_sortable{
             {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
@@ -156,7 +157,7 @@ TEST(GeometryHelper, getPolygonCoordinates) // NOLINTLINE
             {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
             {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
         };
-        EXPECT_THROW(getPolygonCoordinates(not_sortable), std::runtime_error); // NOLINTLINE
+        EXPECT_THROW(getPolygonCoordinates(not_sortable), JPSGeometryException); // NOLINTLINE
 
         std::vector<LineSegment> not_closed{
             {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
@@ -164,7 +165,7 @@ TEST(GeometryHelper, getPolygonCoordinates) // NOLINTLINE
             {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
             {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
         };
-        EXPECT_THROW(getPolygonCoordinates(not_closed), std::runtime_error); // NOLINTLINE
+        EXPECT_THROW(getPolygonCoordinates(not_closed), JPSGeometryException); // NOLINTLINE
     }
 }
 

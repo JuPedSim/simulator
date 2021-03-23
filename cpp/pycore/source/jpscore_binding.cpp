@@ -8,6 +8,7 @@
 #include "geometry/world_builder_binding.hpp"
 #include "logging_binding.hpp"
 #include "simulation_binding.hpp"
+#include "util/jpsexception_binding.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -16,6 +17,7 @@ PYBIND11_MODULE(jpscore, m)
 {
     /// MODULE jpscore
     bind_simulation(m);
+    bind_jpsexception(m);
 
     /// SUB MODULE logging
     auto m_logging = m.def_submodule("logging");

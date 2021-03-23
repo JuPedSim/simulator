@@ -15,7 +15,7 @@ namespace geometry
 /// The line segment in \p p_other will be sorted in a way that all line segments will be
 /// connected in a way that line_segment.end == next_segment.start.
 ///
-/// @throw std::runtime_error If no continuous line chain can be created from the given \p
+/// @throw JPSGeometryException If no continuous line chain can be created from the given \p
 /// p_line_segments
 ///
 /// @param p_line_segments in: unsorted line segments, out: sorted line segments

@@ -5,6 +5,7 @@ add_library(core
     simulation.hpp
 
     util/identifiable.hpp
+    util/jpsexception.hpp
 
     geometry/area.cpp
     geometry/area.hpp
