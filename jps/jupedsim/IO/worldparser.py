@@ -3,6 +3,7 @@ from typing import List
 
 import ezdxf
 from jpscore import geometry
+from jpscore import JPSGeometryException
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
@@ -68,6 +69,7 @@ class WorldParser:
         Parsing units according to [INSUNITS documentation](https://knowledge.autodesk.com/de/support/autocad/learn-explore/caas/CloudHelp/cloudhelp/2018/DEU/AutoCAD-Core/files/GUID-A58A87BB-482B-4042-A00A-EEF55A2B4FD8-htm.html)
         :param doc: document drawing of dxf file
         :return: corresponding geometry.Units object
+        :raises JPSGeometryException: if length unit set in dxf file is not um, mm, cm, dm, m or km
         """
 
         dxf_unit = doc.header["$INSUNITS"]
@@ -84,8 +86,7 @@ class WorldParser:
         elif dxf_unit == 14:
             return geometry.Units.dm
 
-        # TODO throw exception
-        log_error("Length unit is not supported.")
+        raise JPSGeometryException("Defined length unit is not supported. Supported length units: um, mm, cm, dm, m, km")
 
     def __parseHeader(self, doc: ezdxf.document.Drawing) -> None:
         """
@@ -94,15 +95,16 @@ class WorldParser:
         NOTE: these headers are not available in qcad file:
         upper_right_corner = doc.header['$EXTMAX']
         lower_left_corner = doc.header['$EXTMIN']
+
+        :param doc: document drawing of dxf file
+        :raises JPSGeometryException: if chosen header variables are not supported
         """
 
         if not WorldParser.checkMetricUnit(
             doc
         ) or not WorldParser.checkDecimalUnit(doc):
-            # TODO throw exception
-            log_error("Only metric units in decimal format are supported.")
+            raise JPSGeometryException("Only metric units in decimal format are supported.")
 
-        # TODO catch exception
         self.m_unit = WorldParser.readLengthUnitType(doc)
 
     def __parseCoordinates(
