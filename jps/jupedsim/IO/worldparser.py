@@ -2,8 +2,7 @@ import re
 from typing import List
 
 import ezdxf
-from jpscore import geometry
-from jpscore import JPSGeometryException
+from jpscore import JPSGeometryException, geometry
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
@@ -86,7 +85,9 @@ class WorldParser:
         elif dxf_unit == 14:
             return geometry.Units.dm
 
-        raise JPSGeometryException("Defined length unit is not supported. Supported length units: um, mm, cm, dm, m, km")
+        raise JPSGeometryException(
+            "Defined length unit is not supported. Supported length units: um, mm, cm, dm, m, km"
+        )
 
     def __parseHeader(self, doc: ezdxf.document.Drawing) -> None:
         """
@@ -103,7 +104,9 @@ class WorldParser:
         if not WorldParser.checkMetricUnit(
             doc
         ) or not WorldParser.checkDecimalUnit(doc):
-            raise JPSGeometryException("Only metric units in decimal format are supported.")
+            raise JPSGeometryException(
+                "Only metric units in decimal format are supported."
+            )
 
         self.m_unit = WorldParser.readLengthUnitType(doc)
 
