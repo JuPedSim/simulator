@@ -96,13 +96,14 @@ class WorldParser:
         lower_left_corner = doc.header['$EXTMIN']
         """
 
-        if WorldParser.checkMetricUnit(doc) or WorldParser.checkDecimalUnit(doc):
+        if not WorldParser.checkMetricUnit(
+            doc
+        ) or not WorldParser.checkDecimalUnit(doc):
             # TODO throw exception
             log_error("Only metric units in decimal format are supported.")
 
         # TODO catch exception
         self.m_unit = WorldParser.readLengthUnitType(doc)
-
 
     def __parseCoordinates(
         self, line: str, p_level: geometry.Level
