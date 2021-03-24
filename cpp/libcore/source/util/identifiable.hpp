@@ -12,6 +12,8 @@ template <typename IdentifiedType>
 class Identifiable
 {
     /// Static count for the next available unique identifier.
+    // As there is a bug in clang-tidy (https://bugs.llvm.org/show_bug.cgi?id=48040) the nolint is
+    // needed for now NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
     inline static std::atomic<unsigned int> uid_counter{0};
     /// The actual unique identifier of the object
     unsigned int m_id{uid_counter++};
