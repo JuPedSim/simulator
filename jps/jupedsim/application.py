@@ -3,9 +3,9 @@ import logging
 import sys
 
 import jpscore
+from jupedsim.simulation import simulation_command
 from jupedsim.util.generator import generate_spawn_events
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
-from jupedsim.simulation import simulation_command
 
 
 class Application:
