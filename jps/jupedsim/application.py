@@ -1,6 +1,7 @@
 import argparse
 import logging
 import sys
+from pathlib import Path
 
 import jpscore
 from jupedsim.simulation import simulation_command
@@ -127,6 +128,13 @@ class Application:
             type=int,
             metavar="count",
             help="How many iterations to simulate",
+        )
+        parser.add_argument(
+            "--path",
+            type=Path,
+            default=Path.cwd(),
+            metavar="Path",
+            help="Path to the simulation configuration directory",
         )
 
         self.commands[command] = simulation_command
