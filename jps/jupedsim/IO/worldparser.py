@@ -48,7 +48,7 @@ class WorldParser:
         log_info("Building world ...")
         self.m_jps_world_builder = geometry.WorldBuilder()
 
-        #TODO check if the other parsing functions can be static
+        # TODO check if the other parsing functions can be static
         self.__parseLevels()
 
         return self.m_jps_world_builder
