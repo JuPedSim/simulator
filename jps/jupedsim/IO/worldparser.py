@@ -13,10 +13,17 @@ class WorldParser:
 
     def __init__(self, p_input_file: str):
         """
-        Initialization with a dxf file. In case of valid file format Lines and SpecialAreas are parsed.
+        Initialization with a dxf file name.
         :param p_input_file: name of the dxf file
         """
         self.m_input_file = p_input_file
+
+    def parse(self) -> geometry.WorldBuilder:
+        """
+        Parsing header information and entities on different levels. In case of valid file format Lines and SpecialAreas are parsed.
+        :return: geometry.WorldBuilder object
+        :raises IOError, ezdxf.DXFStructureError: if file not found or if invalid dxf format
+        """
 
         # try to open file
         try:
@@ -39,7 +46,10 @@ class WorldParser:
         # build World
         log_info("Building world ...")
         self.m_jps_world_builder = geometry.WorldBuilder()
+
         self.__parseLevels()
+
+        return self.m_jps_world_builder
 
     @staticmethod
     def checkMetricUnit(doc: ezdxf.document.Drawing) -> bool:
