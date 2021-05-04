@@ -41,12 +41,14 @@ class WorldParser:
         self.m_msp = doc.modelspace()
 
         # parse header variables
-        self.__parseHeader(doc)
+        WorldParser.checkHeader(doc)
+        self.m_unit = WorldParser.readLengthUnitType(doc)
 
         # build World
         log_info("Building world ...")
         self.m_jps_world_builder = geometry.WorldBuilder()
 
+        #TODO check if the other parsing functions can be static
         self.__parseLevels()
 
         return self.m_jps_world_builder
@@ -99,7 +101,8 @@ class WorldParser:
             "Defined length unit is not supported. Supported length units: um, mm, cm, dm, m, km"
         )
 
-    def __parseHeader(self, doc: ezdxf.document.Drawing) -> None:
+    @staticmethod
+    def checkHeader(doc: ezdxf.document.Drawing) -> None:
         """
         Reads in meta data defined in header of the dxf file.
         Header variables can be found on [autodesk header variables](http://help.autodesk.com/view/OARX/2018/ENU/?guid=GUID-A85E8E67-27CD-4C59-BE61-4DC9FADBE74A)
@@ -117,8 +120,6 @@ class WorldParser:
             raise JPSGeometryException(
                 "Only metric units in decimal format are supported."
             )
-
-        self.m_unit = WorldParser.readLengthUnitType(doc)
 
     def __parseCoordinates(
         self, line: str, p_level: geometry.Level
