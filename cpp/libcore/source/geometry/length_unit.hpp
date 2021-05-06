@@ -186,56 +186,71 @@ inline auto operator*(double p_scalar, jps::LengthUnit p_lu) -> jps::LengthUnit
 {
     return p_lu * p_scalar;
 }
+
 /// User defined literals for all units
+/// Note that the cast is needed to silence compiler warning about narrowing down precision
 inline auto operator"" _um(long double p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::um>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::um>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _mm(long double p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::mm>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::mm>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _cm(long double p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::cm>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::cm>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _dm(long double p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::dm>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::dm>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _m(long double p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::m>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::m>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _km(long double p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::km>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::km>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 
 /// User defined literals for integrals
+/// Note that the cast is needed to silence compiler warning about narrowing down precision
 inline auto operator"" _um(unsigned long long p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::um>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::um>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _mm(unsigned long long p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::mm>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::mm>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _cm(unsigned long long p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::cm>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::cm>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _dm(unsigned long long p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::dm>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::dm>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _m(unsigned long long p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::m>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::m>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 inline auto operator"" _km(unsigned long long p_quantity) -> jps::LengthUnit
 {
-    return jps::makeLengthUnit<jps::Units::km>(static_cast<double>(p_quantity));
+    return jps::makeLengthUnit<jps::Units::km>(
+        static_cast<jps::LengthUnit::QuantityType>(p_quantity));
 }
 
 namespace fmt
