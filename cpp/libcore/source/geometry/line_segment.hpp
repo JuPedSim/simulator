@@ -53,6 +53,6 @@ struct formatter<jps::LineSegment> {
             "LINE_SEGMENT: ({}) -- ({})",
             p_line_segment.getStart(),
             p_line_segment.getEnd());
-    };
+    }
 };
 } // namespace fmt

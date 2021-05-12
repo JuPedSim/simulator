@@ -25,13 +25,13 @@ public:
     void setCallback(Logging::Level p_level, Logging::LogCallback p_callback)
     {
         // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-constant-array-index)
-        m_callbacks[toUnderlying(p_level)] = std::move(p_callback);
+        m_callbacks[static_cast<size_t>(toUnderlying(p_level))] = std::move(p_callback);
     }
 
     void msg(Logging::Level p_level, std::string_view p_msg)
     {
         // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-constant-array-index)
-        if(auto & cb = m_callbacks[toUnderlying(p_level)]; cb) {
+        if(auto & cb = m_callbacks[static_cast<size_t>(toUnderlying(p_level))]; cb) {
             cb(p_msg);
         }
     }

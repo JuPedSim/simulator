@@ -52,5 +52,5 @@ auto getPolygonCoordinates(std::vector<LineSegment> & p_line_segments) -> std::v
 auto checkPolygonEquality(
     std::vector<Coordinate> const & p_polygon,
     std::vector<Coordinate> const & p_other) -> bool;
-}; // namespace geometry
+} // namespace geometry
 } // namespace jps
