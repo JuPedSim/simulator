@@ -1,4 +1,5 @@
 from jupedsim.util.simulation_files import SimulationFiles
+from jpscore import Simulation
 
 
 def simulation_command(args):
@@ -14,12 +15,13 @@ def simulation_command(args):
     #  Build World
     # world = world_builder.build()
     # Create Simulation Object
-    # simulation = jpscire.Simulation(world)
-
+    simulation = Simulation(
+        # world
+    )
     # Simulation Loop
     # Loop over Timesteps
-    # for cur_step in simulation.steps:
-    # loop
-    #   jpscore.computeNextStep(simulation)
+    # for cur_step in simulation.steps():
+    # # loop
+    # # jpscore.computeNextStep(simulation)
 
     # Finalization

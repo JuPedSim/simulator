@@ -30,6 +30,7 @@ add_library(core
 
     util/identifiable.hpp
     util/jpsexception.hpp
+    util/simulation_clock.hpp
 )
 
 target_include_directories(core
