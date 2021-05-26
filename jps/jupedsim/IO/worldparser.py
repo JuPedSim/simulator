@@ -114,12 +114,12 @@ class WorldParser:
         :raises JPSGeometryException: if chosen header variables are not supported
         """
 
-        if not WorldParser.checkMetricUnit(
-            doc
-        ) or not WorldParser.checkDecimalUnit(doc):
-            raise JPSGeometryException(
-                "Only metric units in decimal format are supported."
-            )
+        if not WorldParser.checkMetricUnit(doc):
+            raise JPSGeometryException("Only metric units are supported.")
+
+        # Note: changing the decimal unit did not have any effect on the units when working wih QCAD or LibreCAD. This might be only important for labels or the representation in the editor.
+        if not WorldParser.checkDecimalUnit(doc):
+            raise JPSGeometryException("Only decimal format is supported.")
 
     def __parseCoordinates(
         self, line: str, p_level: geometry.Level
