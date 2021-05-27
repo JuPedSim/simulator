@@ -58,3 +58,31 @@ class TestWorldParser:
         doc = ezdxf.new()
         doc.header["$DIMLUNIT"] = dimlunit
         assert WorldParser.checkDecimalUnit(doc) == result
+
+    @pytest.mark.parametrize(
+        "measurement, dimlunit",
+        [
+            (0, 0),
+            (0, 2),
+            (1, 0),
+        ],
+    )
+    def test_check_header_exception(self, measurement, dimlunit):
+        doc = ezdxf.new()
+        doc.header["$MEASUREMENT"] = measurement
+        doc.header["$DIMLUNIT"] = dimlunit
+
+        with pytest.raises(JPSGeometryException):
+            WorldParser.checkHeader(doc)
+
+    def test_check_header_no_exception(self):
+        doc = ezdxf.new()
+        doc.header["$MEASUREMENT"] = 1
+        doc.header["$DIMLUNIT"] = 2
+
+        try:
+            WorldParser.checkHeader(doc)
+        except JPSGeometryException:
+            pytest.fail(
+                "Unexpected JPSGeometryException when checking header parameters."
+            )
