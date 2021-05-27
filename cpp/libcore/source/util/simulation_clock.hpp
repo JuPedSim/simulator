@@ -16,12 +16,4 @@
 /// and https://github.com/pybind/pybind11/blob/master/tests/test_sequences_and_iterators.cpp
 class SimulationClock
 {
-    const std::uint64_t m_max_steps;
-    const double m_delta_t;
-
-    std::uint64_t m_current_step{0};
-
-public:
-    SimulationClock(std::uint64_t p_max_steps, double p_delta_t) :
-        m_max_steps(p_max_steps), m_delta_t(p_delta_t){};
 };
