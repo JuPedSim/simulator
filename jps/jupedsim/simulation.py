@@ -1,9 +1,10 @@
-from jupedsim.util.simulation_files import SimulationFiles
 from jpscore import Simulation
+from jupedsim.util.loghelper import log_debug
+from jupedsim.util.simulation_files import SimulationFiles
 
 
 class SimulationWrapper:
-    """SimulationWrapper contains the jpscore simulation and all required python objects for simulations"""
+    """Contains the required jpscore and python objects for the simulation"""
 
     def __init__(
         self, simulation_files: SimulationFiles, simulation: Simulation
@@ -13,12 +14,10 @@ class SimulationWrapper:
 
 
 def simulation_command(args):
-    print("Not yet implemented")
-
     def initialize() -> SimulationWrapper:
         """Initializes the simulation and returns the simulation manager."""
         simulation_files = SimulationFiles(args.path)
-        print("World: " + str(simulation_files.world_dxf))
+        log_debug("World: " + str(simulation_files.world_dxf))
         # Parse Geometry
         # world_parser = WorldParser(simulation_files.world_dxf)
         # world_builder = world_parser.parse()
@@ -33,17 +32,17 @@ def simulation_command(args):
     def simulation_loop(sim: SimulationWrapper):
         # Inner simulation loop
         # Loop over Timesteps
-        # Start by step 1 (simulation clock should return total number of steps)
+        # Start by step 1 (sim clock should return total number of steps)
         # simulation time before step should be (cur_step - 1) * step_length
         # for cur_step in range(1, simulation.clock.steps()):
         # # loop
         # # jpscore.computeNextStep(simulation)
         # # trajectory writer
-        test = "asd"
+        pass
 
     def finalize(sim: SimulationWrapper):
         # Clean up simulation
-        print("test")
+        pass
 
     sim = initialize()
     simulation_loop(sim)
