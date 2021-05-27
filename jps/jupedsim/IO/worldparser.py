@@ -2,7 +2,7 @@ import re
 from typing import List
 
 import ezdxf
-from jpscore import geometry
+from jpscore import JPSGeometryException, geometry
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
 
@@ -13,10 +13,17 @@ class WorldParser:
 
     def __init__(self, p_input_file: str):
         """
-        Initialization with a dxf file. In case of valid file format Lines and SpecialAreas are parsed.
+        Initialization with a dxf file name.
         :param p_input_file: name of the dxf file
         """
         self.m_input_file = p_input_file
+
+    def parse(self) -> geometry.WorldBuilder:
+        """
+        Parsing header information and entities on different levels. In case of valid file format Lines and SpecialAreas are parsed.
+        :return: geometry.WorldBuilder object
+        :raises IOError, ezdxf.DXFStructureError: if file not found or if invalid dxf format
+        """
 
         # try to open file
         try:
@@ -33,27 +40,89 @@ class WorldParser:
         # create modelspace
         self.m_msp = doc.modelspace()
 
-        # read in meta data
-        self.m_unit = doc.header["$INSUNITS"]
-        # allow only 6 for meters, TODO: check diff to LUNITS
-        if self.m_unit != 6:
-            # TODO accept other units as well (but not all)
-            # TODO throw exception
-            log_error("Length unit is not meter. Not yet implemented")
-
-        # TODO check $MEASUREMENT = 0 English not metric
-        # NOTE: these headers are not available in qcad file
-        # upper_right_corner = doc.header['$EXTMAX']
-        # lower_left_corner = doc.header['$EXTMIN']
+        # parse header variables
+        WorldParser.checkHeader(doc)
+        self.m_unit = WorldParser.readLengthUnitType(doc)
 
         # build World
         log_info("Building world ...")
         self.m_jps_world_builder = geometry.WorldBuilder()
+
+        # TODO check if the other parsing functions can be static
         self.__parseLevels()
 
+        return self.m_jps_world_builder
+
     @staticmethod
-    def parseCoordinates(
-        line: str, p_level: geometry.Level
+    def checkMetricUnit(doc: ezdxf.document.Drawing) -> bool:
+        """
+        Check if drawing unit is metric
+        :param doc: document drawing of dxf file
+        :return: True if metric is chosen, false otherwise
+        """
+
+        return doc.header["$MEASUREMENT"] == 1
+
+    @staticmethod
+    def checkDecimalUnit(doc: ezdxf.document.Drawing) -> bool:
+        """
+        Checks if format of linear dimensions is decimal
+        For metric system decimal (14.4), fractional (14 2/5) and scientific format (1.4E+01) can be chosen, only decimal is supported
+        :param doc: document drawing of dxf file
+        :return: True if linear dimension format is decimal
+        """
+
+        return doc.header["$DIMLUNIT"] == 2
+
+    @staticmethod
+    def readLengthUnitType(doc: ezdxf.document.Drawing) -> geometry.Units:
+        """
+        Parsing units according to [INSUNITS documentation](https://knowledge.autodesk.com/de/support/autocad/learn-explore/caas/CloudHelp/cloudhelp/2018/DEU/AutoCAD-Core/files/GUID-A58A87BB-482B-4042-A00A-EEF55A2B4FD8-htm.html)
+        :param doc: document drawing of dxf file
+        :return: corresponding geometry.Units object
+        :raises JPSGeometryException: if length unit set in dxf file is not um, mm, cm, dm, m or km
+        """
+
+        dxf_unit = doc.header["$INSUNITS"]
+        if dxf_unit == 4:
+            return geometry.Units.mm
+        elif dxf_unit == 5:
+            return geometry.Units.cm
+        elif dxf_unit == 6:
+            return geometry.Units.m
+        elif dxf_unit == 7:
+            return geometry.Units.km
+        elif dxf_unit == 13:
+            return geometry.Units.um
+        elif dxf_unit == 14:
+            return geometry.Units.dm
+
+        raise JPSGeometryException(
+            "Defined length unit is not supported. Supported length units: um, mm, cm, dm, m, km"
+        )
+
+    @staticmethod
+    def checkHeader(doc: ezdxf.document.Drawing) -> None:
+        """
+        Reads in meta data defined in header of the dxf file.
+        Header variables can be found on [autodesk header variables](http://help.autodesk.com/view/OARX/2018/ENU/?guid=GUID-A85E8E67-27CD-4C59-BE61-4DC9FADBE74A)
+        NOTE: these headers are not available in qcad file:
+        upper_right_corner = doc.header['$EXTMAX']
+        lower_left_corner = doc.header['$EXTMIN']
+
+        :param doc: document drawing of dxf file
+        :raises JPSGeometryException: if chosen header variables are not supported
+        """
+
+        if not WorldParser.checkMetricUnit(doc):
+            raise JPSGeometryException("Only metric units are supported.")
+
+        # Note: changing the decimal unit did not have any effect on the units when working wih QCAD or LibreCAD. This might be only important for labels or the representation in the editor.
+        if not WorldParser.checkDecimalUnit(doc):
+            raise JPSGeometryException("Only decimal format is supported.")
+
+    def __parseCoordinates(
+        self, line: str, p_level: geometry.Level
     ) -> List[geometry.Coordinate]:
         """
         Method parses a dxf line with coordinates to a list
@@ -62,14 +131,14 @@ class WorldParser:
         """
         start_coord_tmp = re.split(",", str(line.dxf.start))
         start_coord = geometry.Coordinate(
-            geometry.LengthUnit(float(start_coord_tmp[0][1:])),
-            geometry.LengthUnit(float(start_coord_tmp[1])),
+            geometry.LengthUnit(float(start_coord_tmp[0][1:]), self.m_unit),
+            geometry.LengthUnit(float(start_coord_tmp[1]), self.m_unit),
             p_level,
         )
         end_coord_tmp = re.split(",", str(line.dxf.end))
         end_coord = geometry.Coordinate(
-            geometry.LengthUnit(float(end_coord_tmp[0][1:])),
-            geometry.LengthUnit(float(end_coord_tmp[1])),
+            geometry.LengthUnit(float(end_coord_tmp[0][1:]), self.m_unit),
+            geometry.LengthUnit(float(end_coord_tmp[1]), self.m_unit),
             p_level,
         )
 
