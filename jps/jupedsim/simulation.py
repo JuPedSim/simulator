@@ -15,7 +15,7 @@ class SimulationWrapper:
 
 def simulation_command(args):
     def initialize() -> SimulationWrapper:
-        """Initializes the simulation and returns the simulation manager."""
+        """Initializes the simulation and returns the simulation wrapper."""
         simulation_files = SimulationFiles(args.path)
         log_debug("World: " + str(simulation_files.world_dxf))
         # Parse Geometry
@@ -32,8 +32,6 @@ def simulation_command(args):
     def simulation_loop(sim: SimulationWrapper):
         # Inner simulation loop
         # Loop over Timesteps
-        # Start by step 1 (sim clock should return total number of steps)
-        # simulation time before step should be (cur_step - 1) * step_length
         # for cur_step in range(1, simulation.clock.steps()):
         # # loop
         # # jpscore.computeNextStep(simulation)

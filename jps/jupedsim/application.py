@@ -145,13 +145,4 @@ class Application:
     def run(self):
         self.parse_arguments()
         self.upgrade_logging()
-
-        # Example log messages
-        log_info("hi")
-        log_debug("hi")
-        log_warning("hi")
-        log_error("hi")
-        # Example of a "3rd-party" log messages, i.e. a log message not
-        # send to the 'JuPedSim' logger
-        logging.debug("hi")
         return self.commands[self.args.cmd](self.args)
