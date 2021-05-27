@@ -26,7 +26,7 @@ class Application:
 
     def upgrade_logging(self):
         logger_name = "JuPedSim"
-        if self.args.v == 1:
+        if self.args.v >= 1:
             logging.getLogger(logger_name).setLevel(logging.INFO)
             # Only register the callback from C++ back to python
             # if the messages are actually consumed. Otherwise
@@ -35,7 +35,7 @@ class Application:
             jpscore.logging.set_callback(
                 level=jpscore.logging.Level.Info, func=log_info
             )
-        elif self.args.v == 2:
+        if self.args.v >= 2:
             logging.getLogger(logger_name).setLevel(logging.DEBUG)
             # Only register the callback from C++ back to python
             # if the messages are actually consumed. Otherwise
@@ -44,7 +44,7 @@ class Application:
             jpscore.logging.set_callback(
                 level=jpscore.logging.Level.Debug, func=log_debug
             )
-        elif self.args.v >= 3:
+        if self.args.v >= 3:
             # Enables all log messages from 3rd party libraries
             logging.getLogger().setLevel(logging.DEBUG)
 
