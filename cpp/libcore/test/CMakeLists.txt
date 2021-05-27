@@ -3,6 +3,7 @@ add_executable(test-core
     test_dependency_availability.cpp
 
     util/test_identifiable.cpp
+    util/test_simulation_clock.cpp
 
     geometry/test_area.cpp
     geometry/test_coordinate.cpp

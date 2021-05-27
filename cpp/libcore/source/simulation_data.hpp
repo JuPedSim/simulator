@@ -11,7 +11,7 @@ namespace jps
 struct SimulationData {
     std::vector<Agent> agents;
     // NOLINTNEXTLINE
-    SimulationClock simulation_clock{};
+    SimulationClock simulation_clock{10, 0.1};
 };
 
 } // namespace jps
