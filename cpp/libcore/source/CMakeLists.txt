@@ -37,5 +37,5 @@ target_link_libraries(core
 )
 
 target_compile_options(core PRIVATE
-    -fPIC
+    ${COMMON_COMPILE_OPTIONS}
 )

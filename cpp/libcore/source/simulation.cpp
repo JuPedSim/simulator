@@ -6,5 +6,5 @@ namespace jps
 Simulation::Simulation()
 {
     LOG_DEBUG("Simulator ctor");
-};
-}; // namespace jps
+}
+} // namespace jps

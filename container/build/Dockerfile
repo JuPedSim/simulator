@@ -5,8 +5,8 @@ RUN apt-get update && apt-get install -y wget \
                        git \
                        g++ \
                        clang \
-                       clang-format-10 \
-                       clang-tidy-10 \
+                       clang-format-11 \
+                       clang-tidy-11 \
                        parallel \
                        make \
                        python3 \

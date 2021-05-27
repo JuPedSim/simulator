@@ -32,3 +32,8 @@ target_link_libraries(jpscore
     PRIVATE
         core
 )
+
+target_compile_options(jpscore PRIVATE
+    ${COMMON_COMPILE_OPTIONS}
+)
+
