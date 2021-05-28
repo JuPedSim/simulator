@@ -3,4 +3,4 @@ import pytest
 
 
 def test_example():
-    assert jpscore.Simulation().get() == 1
+    jpscore.Simulation().compute_next_step()

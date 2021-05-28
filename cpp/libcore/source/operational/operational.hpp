@@ -1,6 +1,9 @@
 #pragma once
 
 #include "operational/result.hpp"
+
+namespace jps
+{
 /// @brief Interface for operational models
 ///
 /// An operational model is responsible for computing the movement of the agents within the
@@ -37,3 +40,5 @@ struct DummyOperationalModel : OperationalModelInterface {
         return OperationalModelResult{};
     }
 };
+
+} // namespace jps
