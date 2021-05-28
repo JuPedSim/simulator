@@ -1,6 +1,8 @@
 #pragma once
 
+#include "operational/operational.hpp"
 #include "simulation_data.hpp"
+#include "util/simulation_clock.hpp"
 
 namespace jps
 {
@@ -21,14 +23,14 @@ public:
     Simulation(Simulation &&) = delete;
     /// Non-movable
     auto operator=(Simulation &&) -> Simulation & = delete;
-    // NOLINTNEXTLINE
-    int getValue() { return 1; }
 
-    void computeNextStep();
+    auto computeNextStep() -> void;
 
 private:
-    SimulationData m_simulation_data;
+    std::vector<Agent> m_agents;
+    std::vector<OperationalModelResult> m_operational_results;
+    // NOLINTNEXTLINE
+    SimulationClock m_simulation_clock{};
 };
-
 
 } // namespace jps

@@ -110,7 +110,7 @@ TEST(Coordinate, comparisonOperators)
 TEST(CoordinateDisplace, DsiplacementWithZeroDoesNotChangeCoordinate)
 {
     const auto expected          = jps::Coordinate(0_m, 0_m, jps::Level{0});
-    const auto zero_displacement = jps::SpatialVector(0_m, 0_m);
+    const auto zero_displacement = jps::SpatialVector{0_m, 0_m};
     ASSERT_EQ(expected, expected + zero_displacement);
     ASSERT_EQ(expected, expected - zero_displacement);
 
@@ -126,7 +126,7 @@ TEST(CoordinateDisplace, PositiveDisplacementWorksWithSpatialVectorWithPositiveC
 {
     const auto base         = jps::Coordinate(6_m, 9_m, jps::Level{0});
     const auto expected     = jps::Coordinate(631_cm, 924_cm, jps::Level{0});
-    const auto displacement = jps::SpatialVector(31_cm, 24_cm);
+    const auto displacement = jps::SpatialVector{31_cm, 24_cm};
     ASSERT_EQ(expected, base + displacement);
 
     auto test_val = base;
@@ -138,7 +138,7 @@ TEST(CoordinateDisplace, NegativeDisplacementWorksWithSpatialVectorWithPositiveC
 {
     const auto base         = jps::Coordinate(6_m, 9_m, jps::Level{0});
     const auto expected     = jps::Coordinate(569_cm, 876_cm, jps::Level{0});
-    const auto displacement = jps::SpatialVector(31_cm, 24_cm);
+    const auto displacement = jps::SpatialVector{31_cm, 24_cm};
     ASSERT_EQ(expected, base - displacement);
 
     auto test_val = base;
@@ -150,7 +150,7 @@ TEST(CoordinateDisplace, PositiveDisplacementWorksWithSpatialVectorWithNegativeC
 {
     const auto base         = jps::Coordinate(6_m, 9_m, jps::Level{0});
     const auto expected     = jps::Coordinate(569_cm, 876_cm, jps::Level{0});
-    const auto displacement = jps::SpatialVector(-31_cm, -24_cm);
+    const auto displacement = jps::SpatialVector{-31_cm, -24_cm};
     ASSERT_EQ(expected, base + displacement);
 
     auto test_val = base;
@@ -162,7 +162,7 @@ TEST(CoordinateDisplace, NegativeDisplacementWorksWithSpatialVectorWithNegativeC
 {
     const auto base         = jps::Coordinate(6_m, 9_m, jps::Level{0});
     const auto expected     = jps::Coordinate(631_cm, 924_cm, jps::Level{0});
-    const auto displacement = jps::SpatialVector(-31_cm, -24_cm);
+    const auto displacement = jps::SpatialVector{-31_cm, -24_cm};
     ASSERT_EQ(expected, base - displacement);
 
     auto test_val = base;

@@ -6,5 +6,5 @@
 
 namespace jps
 {
-using Agent = std::variant<Pedestrian>;
+using Agent = Pedestrian;
 }
