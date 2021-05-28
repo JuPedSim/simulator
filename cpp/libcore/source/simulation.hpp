@@ -24,10 +24,11 @@ public:
     // NOLINTNEXTLINE
     int getValue() { return 1; }
 
+    void computeNextStep();
+
 private:
     SimulationData m_simulation_data;
 };
 
-void computeNextStep(Simulation & simulation);
 
 } // namespace jps

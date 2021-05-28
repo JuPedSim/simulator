@@ -31,7 +31,7 @@ add_library(core
     util/identifiable.hpp
     util/jpsexception.hpp
     util/simulation_clock.hpp
-)
+
     operational/operational.hpp
     operational/result.hpp
 
