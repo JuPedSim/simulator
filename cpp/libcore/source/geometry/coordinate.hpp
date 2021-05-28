@@ -2,6 +2,7 @@
 
 #include "geometry/length_unit.hpp"
 #include "geometry/level.hpp"
+#include "geometry/spatial_vector.hpp"
 
 #include <fmt/ostream.h>
 
@@ -17,6 +18,10 @@ struct Coordinate {
 
     auto operator==(Coordinate const & p_other) const noexcept -> bool;
     auto operator!=(Coordinate const & p_other) const noexcept -> bool;
+    auto operator+(SpatialVector const & p_displacement) const noexcept -> Coordinate;
+    auto operator-(SpatialVector const & p_displacement) const noexcept -> Coordinate;
+    auto operator+=(SpatialVector const & p_displacement) noexcept -> Coordinate &;
+    auto operator-=(SpatialVector const & p_displacement) noexcept -> Coordinate &;
 };
 } // namespace jps
 
