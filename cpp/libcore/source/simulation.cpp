@@ -1,6 +1,10 @@
 #include "simulation.hpp"
 
 #include "log.hpp"
+#include "operational/operational.hpp"
+#include "operational/result.hpp"
+#include "strategic/strategic.hpp"
+#include "tactical/tactical.hpp"
 
 #include <functional>
 #include <utility>
@@ -13,23 +17,21 @@ Simulation::Simulation()
 };
 
 
-void computeNextStep(Simulation & simulation)
+void Simulation::computeNextStep()
 {
-    auto model_manager = simulation.model_manager;
+    static const DummyOperationalModel operational_model{};
+    static const DummyTacticalModel tactical_model{};
+    static const DummyStrategicModel strategic_model{};
 
-    std::vector<std::pair<std::reference_wrapper<Agent>, OperationalModelResult>> >
+    std::vector<std::pair<std::reference_wrapper<Agent>, OperationalModelResult>>
         operational_results;
+    // Maybe as transform in an lambda?
+    for(auto & agent : m_simulation_data.agents) {
+        auto strategic_result = strategic_model.computeStep();
 
-    for(auto & agent : simulation.getAgents()) {
-        const auto & strategic_model = model_manager.getStrategicModel(agent);
-        auto strategic_result        = strategic_model.computeNextStep(simulation, agent);
+        auto tactical_result = tactical_model.computeStep();
 
-        auto tactical_result =
-            strategic_result.tactical_model.computeNextStep(simulation, strategic_result, agent);
-
-        const auto & operational_model = model_manager.getOperationalModel(agent);
-        operational_results.emplace_back(
-            agent, operational_model.computeNextStep(simulation, tactical_result, agent));
+        operational_results.emplace_back(agent, operational_model.computeStep());
     }
 }
 
