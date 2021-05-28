@@ -1,6 +1,7 @@
+import pathlib
+
 import pytest
 from jupedsim.util.simulation_files import SimulationFiles
-import pathlib
 
 
 def test_all_required_simulation_files_found(tmp_path: pathlib.Path):
