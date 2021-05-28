@@ -1,8 +1,10 @@
 import argparse
 import logging
 import sys
+from pathlib import Path
 
 import jpscore
+from jupedsim.simulation import simulation_command
 from jupedsim.util.generator import generate_spawn_events
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 
@@ -127,10 +129,13 @@ class Application:
             metavar="count",
             help="How many iterations to simulate",
         )
-
-        def simulation_command(args):
-            sim = jpscore.Simulation()
-            print("Not yet implemented")
+        parser.add_argument(
+            "--path",
+            type=Path,
+            default=Path.cwd(),
+            metavar="Path",
+            help="Path to the simulation configuration directory",
+        )
 
         self.commands[command] = simulation_command
 
@@ -140,13 +145,4 @@ class Application:
     def run(self):
         self.parse_arguments()
         self.upgrade_logging()
-
-        # Example log messages
-        log_info("hi")
-        log_debug("hi")
-        log_warning("hi")
-        log_error("hi")
-        # Example of a "3rd-party" log messages, i.e. a log message not
-        # send to the 'JuPedSim' logger
-        logging.debug("hi")
         return self.commands[self.args.cmd](self.args)
