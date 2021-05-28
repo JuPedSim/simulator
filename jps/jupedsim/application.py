@@ -1,12 +1,20 @@
 import argparse
 import logging
-import sys
 from pathlib import Path
 
 import jpscore
 from jupedsim.simulation import simulation_command
 from jupedsim.util.generator import generate_spawn_events
-from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
+from jupedsim.util.loghelper import (
+    log_debug,
+    log_error,
+    log_info,
+    log_native_debug,
+    log_native_error,
+    log_native_info,
+    log_native_warning,
+    log_warning,
+)
 
 
 class Application:
@@ -20,10 +28,10 @@ class Application:
     def setup_logging(self):
         logging.basicConfig(format=logging.BASIC_FORMAT)
         jpscore.logging.set_callback(
-            level=jpscore.logging.Level.Error, func=log_error
+            level=jpscore.logging.Level.Error, func=log_native_error
         )
         jpscore.logging.set_callback(
-            level=jpscore.logging.Level.Warning, func=log_warning
+            level=jpscore.logging.Level.Warning, func=log_native_warning
         )
 
     def upgrade_logging(self):
@@ -35,7 +43,7 @@ class Application:
             # we pay the overhead of calling into python and then
             # discarding the log message.
             jpscore.logging.set_callback(
-                level=jpscore.logging.Level.Info, func=log_info
+                level=jpscore.logging.Level.Info, func=log_native_info
             )
         if self.args.v >= 2:
             logging.getLogger(logger_name).setLevel(logging.DEBUG)
@@ -44,7 +52,7 @@ class Application:
             # we pay the overhead of calling into python and then
             # discarding the log message.
             jpscore.logging.set_callback(
-                level=jpscore.logging.Level.Debug, func=log_debug
+                level=jpscore.logging.Level.Debug, func=log_native_debug
             )
         if self.args.v >= 3:
             # Enables all log messages from 3rd party libraries
