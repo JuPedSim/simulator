@@ -37,7 +37,7 @@ struct OperationalModelInterface {
 struct DummyOperationalModel : OperationalModelInterface {
     auto computeStep(/** const Simulation & p_simulation, const TacticalModelResult & p_tactical_results, const Agent & p_agent **/) const -> OperationalModelResult override
     {
-        return OperationalModelResult{};
+        return {};
     }
 };
 

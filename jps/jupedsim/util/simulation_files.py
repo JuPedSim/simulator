@@ -11,7 +11,9 @@ def require_file_exists(f: pathlib.Path) -> None:
     Use this for required files only.
     """
     if not f.exists():
-        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), f)
+        raise FileNotFoundError(
+            errno.ENOENT, os.strerror(errno.ENOENT), str(f)
+        )
 
 
 class SimulationFiles:

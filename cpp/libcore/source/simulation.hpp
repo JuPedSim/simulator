@@ -30,7 +30,7 @@ private:
     std::vector<Agent> m_agents;
     std::vector<OperationalModelResult> m_operational_results;
     // NOLINTNEXTLINE
-    SimulationClock m_simulation_clock{};
+    // SimulationClock m_simulation_clock{};
 };
 
 } // namespace jps

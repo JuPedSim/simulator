@@ -1,19 +1,14 @@
 import argparse
 import logging
-from pathlib import Path
 
 import jpscore
-from jupedsim.simulation import simulation_command
-from jupedsim.util.generator import generate_spawn_events
+from jupedsim.commands.generate_pedestrians import GeneratePedestriansCommand
+from jupedsim.commands.run_simulation import RunSimulationCommand
 from jupedsim.util.loghelper import (
-    log_debug,
-    log_error,
-    log_info,
     log_native_debug,
     log_native_error,
     log_native_info,
     log_native_warning,
-    log_warning,
 )
 
 
@@ -72,80 +67,12 @@ class Application:
         )
 
     def setup_generate_pedestrians_command(self):
-        command = "generate-pedestrians"
-        parser = self.subparsers.add_parser(
-            command,
-            help="Places an agent at a given position.",
-        )
-        parser.add_argument(
-            "-time",
-            required=False,
-            type=float,
-            metavar="time",
-            default=0,
-            help="Time the pedestrian should be generated [s]",
-        )
-        parser.add_argument(
-            "-x",
-            required=True,
-            type=float,
-            metavar="x-pos",
-            help="x-coordinate the pedestrian should be generated [m]",
-        )
-        parser.add_argument(
-            "-y",
-            required=True,
-            type=float,
-            metavar="y-pos",
-            help="y-coordinate the pedestrian should be generated [m]",
-        )
-        parser.add_argument(
-            "-level",
-            required=False,
-            type=int,
-            metavar="level ID",
-            default=0,
-            help="ID of the level the pedestrian is generated according to the defined geometry",
-        )
-        parser.add_argument(
-            "-overwrite",
-            required=False,
-            type=bool,
-            metavar="overwrite",
-            help="Overwriting all existing spawn_pedestrian events in events file",
-            default=False,
-        )
-        parser.add_argument(
-            "-o",
-            required=True,
-            type=str,
-            metavar="output file",
-            help="Output file",
-        )
-
-        self.commands[command] = generate_spawn_events
+        command = GeneratePedestriansCommand(self.subparsers)
+        self.commands[command.name] = command
 
     def setup_simulate_command(self):
-        command = "simulate"
-        parser = self.subparsers.add_parser(
-            command, help="Will run a simulation"
-        )
-        parser.add_argument(
-            "--iterations",
-            required=True,
-            type=int,
-            metavar="count",
-            help="How many iterations to simulate",
-        )
-        parser.add_argument(
-            "--path",
-            type=Path,
-            default=Path.cwd(),
-            metavar="Path",
-            help="Path to the simulation configuration directory",
-        )
-
-        self.commands[command] = simulation_command
+        command = RunSimulationCommand(self.subparsers)
+        self.commands[command.name] = command
 
     def parse_arguments(self):
         self.args = self.parser.parse_args()
@@ -153,4 +80,4 @@ class Application:
     def run(self):
         self.parse_arguments()
         self.upgrade_logging()
-        return self.commands[self.args.cmd](self.args)
+        self.commands[self.args.cmd].execute(self.args)
