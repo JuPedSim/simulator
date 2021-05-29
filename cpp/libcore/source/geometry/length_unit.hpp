@@ -131,28 +131,16 @@ public:
         return m_quantity != p_other.m_quantity;
     }
 
+    // friend functions
+    friend auto operator-(jps::LengthUnit p_lu) -> jps::LengthUnit;
+
+    friend auto operator*(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit;
+
+    friend auto operator/(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit;
+
 private:
     /// Stores the length unit quantity stored in RESOLUTION
     QuantityType m_quantity{};
-
-    // friend functions
-    friend auto operator-(jps::LengthUnit p_lu) -> jps::LengthUnit
-    {
-        p_lu.m_quantity = -p_lu.m_quantity;
-        return p_lu;
-    }
-
-    friend auto operator*(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit
-    {
-        p_lu.m_quantity *= p_scalar;
-        return p_lu;
-    }
-
-    friend auto operator/(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit
-    {
-        p_lu.m_quantity /= p_scalar;
-        return p_lu;
-    }
 };
 
 /// Helper for creating LengthUnit
@@ -166,8 +154,6 @@ auto makeLengthUnit(LengthUnit::QuantityType p_quantity) -> LengthUnit
     return LengthUnit{details::LengthUnitParams<LengthUnit::QuantityType, Unit>{p_quantity}};
 }
 
-} // namespace jps
-
 
 /// arithmetic operations
 inline auto operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs) -> jps::LengthUnit
@@ -176,10 +162,12 @@ inline auto operator+(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs) -> j
     return p_lhs;
 }
 
-inline auto operator-(jps::LengthUnit p_lhs, jps::LengthUnit const & p_rhs) -> jps::LengthUnit
+inline auto operator-(jps::LengthUnit const & p_lhs, jps::LengthUnit const & p_rhs)
+    -> jps::LengthUnit
 {
-    p_lhs -= p_rhs;
-    return p_lhs;
+    auto res{p_lhs};
+    res -= p_rhs;
+    return res;
 }
 
 inline auto operator*(double p_scalar, jps::LengthUnit p_lu) -> jps::LengthUnit
@@ -187,6 +175,24 @@ inline auto operator*(double p_scalar, jps::LengthUnit p_lu) -> jps::LengthUnit
     return p_lu * p_scalar;
 }
 
+inline auto operator-(jps::LengthUnit p_lu) -> jps::LengthUnit
+{
+    p_lu.m_quantity = -p_lu.m_quantity;
+    return p_lu;
+}
+
+inline auto operator*(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit
+{
+    p_lu.m_quantity *= p_scalar;
+    return p_lu;
+}
+
+inline auto operator/(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit
+{
+    p_lu.m_quantity /= p_scalar;
+    return p_lu;
+}
+} // namespace jps
 /// User defined literals for all units
 /// Note that the cast is needed to silence compiler warning about narrowing down precision
 inline auto operator"" _um(long double p_quantity) -> jps::LengthUnit
