@@ -39,5 +39,13 @@ auto Simulation::computeNextStep() -> void
     }
 }
 
+auto Simulation::addAgent(const Coordinate & p_coordinate) -> void
+{
+    // TODO (kkz) This can be changed to
+    // m_agents.emplace_back(p_coordinate);
+    // but requires C++20 to fix the missing aggregate initializaition from paretheses
+    // otherwise we have to provide a CTOR to the struct
+    m_agents.push_back({p_coordinate});
+}
 
 }; // namespace jps

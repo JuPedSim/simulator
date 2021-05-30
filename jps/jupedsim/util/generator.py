@@ -27,7 +27,8 @@ def generate_spawn_events(args) -> None:
 
 def read_events(file) -> List[Event]:
     """
-    Reads from a file and creates a list of Events
+    Reads from a file and creates a list of Events,
+    the events are returned sorted in order of increasing timestamp.
     :param file: path to a json file containing events
     :return: List of Events from json file
     """
@@ -37,6 +38,7 @@ def read_events(file) -> List[Event]:
         for obj in objs:
             test = Event.from_json(json.dumps(obj))
             events.append(test)
+    events.sort(key=lambda x: x.time)
     return events
 
 
@@ -94,7 +96,7 @@ def write_to_event_file(
     :param overwrite: Existing SpawnPedestrianEvents will be overwritten
     :return: success
     """
-    existing_events = read_events(file) if overwrite else []
+    existing_events = read_events(file) if not overwrite else []
     events = merge_spawn_pedestrian_events(events, existing_events, overwrite)
 
     with open(file, "w+") as json_file:

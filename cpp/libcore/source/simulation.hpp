@@ -1,5 +1,7 @@
 #pragma once
 
+#include "agent/pedestrian.hpp"
+#include "geometry/coordinate.hpp"
 #include "operational/operational.hpp"
 #include "simulation_data.hpp"
 #include "util/simulation_clock.hpp"
@@ -25,6 +27,8 @@ public:
     auto operator=(Simulation &&) -> Simulation & = delete;
 
     auto computeNextStep() -> void;
+
+    auto addAgent(const Coordinate & p_coordinate) -> void;
 
 private:
     std::vector<Agent> m_agents;

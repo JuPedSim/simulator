@@ -38,6 +38,8 @@ void bind_length_unit(pybind11::module_ & m)
                 return jps::makeLengthUnit<jps::Units::km>(quantity);
                 break;
             default:
+                // TODO (kkz) remove the default and instead enable compiler warning that all cases
+                // are handled.
                 throw std::runtime_error(fmt::format(
                     FMT_STRING("Unit ({}) not yet implemented in python bindings."), unit));
         }

@@ -82,6 +82,7 @@ class Event:
     Class for storing the information which EventType is triggered at a given time.
     """
 
+    # TODO (kkz) Is this elaped time in minutes or seconds or is this the iteration count?
     time: float
     event: EventType
 

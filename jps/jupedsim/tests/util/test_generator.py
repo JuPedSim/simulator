@@ -1,5 +1,4 @@
 import json
-from collections import Counter, Hashable
 from typing import List
 
 import pytest
@@ -67,6 +66,7 @@ class TestGenerator:
         file = tmp_path / "read_events_correct.json"
         file.write_text(json.dumps(events, indent=4, cls=DataclassJSONEncoder))
         result = read_events(file)
+        events.sort(key=lambda x: x.time)
         assert events == result
 
     @pytest.mark.parametrize(
