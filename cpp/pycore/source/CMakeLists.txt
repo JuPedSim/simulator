@@ -26,6 +26,9 @@ pybind11_add_module(jpscore
 
     util/jpsexception_binding.hpp
     util/jpsexception_binding.cpp
+    util/simulation_clock_binding.hpp
+    util/simulation_clock_binding.cpp
+
 )
 
 target_link_libraries(jpscore
