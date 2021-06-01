@@ -1,5 +1,7 @@
 #include "length_unit_binding.hpp"
 
+#include "util/unreachable.hpp"
+
 #include <geometry/length_unit.hpp>
 #include <pybind11/operators.h>
 #include <stdexcept>
@@ -21,28 +23,18 @@ void bind_length_unit(pybind11::module_ & m)
         switch(unit) {
             case jps::Units::um:
                 return jps::makeLengthUnit<jps::Units::um>(quantity);
-                break;
             case jps::Units::mm:
                 return jps::makeLengthUnit<jps::Units::mm>(quantity);
-                break;
             case jps::Units::cm:
                 return jps::makeLengthUnit<jps::Units::cm>(quantity);
-                break;
             case jps::Units::dm:
                 return jps::makeLengthUnit<jps::Units::dm>(quantity);
-                break;
             case jps::Units::m:
                 return jps::makeLengthUnit<jps::Units::m>(quantity);
-                break;
             case jps::Units::km:
                 return jps::makeLengthUnit<jps::Units::km>(quantity);
-                break;
-            default:
-                // TODO (kkz) remove the default and instead enable compiler warning that all cases
-                // are handled.
-                throw std::runtime_error(fmt::format(
-                    FMT_STRING("Unit ({}) not yet implemented in python bindings."), unit));
         }
+        unreachable();
     }));
     // Read only parameters for getting the length unit quantity in desired unit
     lu_binding.def_property_readonly(
