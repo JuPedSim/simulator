@@ -23,7 +23,7 @@ public:
         m_max_steps(p_max_steps), m_delta_t(p_delta_t)
     {
         if(m_delta_t <= 0) {
-            throw JPSException("SimulationClock time step needs to be larger than 0");
+            throw JPSException("SimulationClock time step needs to be larger than 0.");
         }
     }
 

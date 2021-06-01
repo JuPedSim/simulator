@@ -7,7 +7,7 @@ void bind_simulation_clock(pybind11::module_ & m)
         .def(pybind11::init<uint64_t, double>())
         .def_property_readonly("deltaT", &SimulationClock::getDeltaT)
         .def_property_readonly("steps", &SimulationClock::getMaxSteps)
-        .def_property_readonly("currentStep", &SimulationClock::getCurrentStep)
-        .def_property_readonly("currentTime", &SimulationClock::getCurrentTime)
+        .def_property_readonly("current_step", &SimulationClock::getCurrentStep)
+        .def_property_readonly("current_time", &SimulationClock::getCurrentTime)
         .def("advance", &SimulationClock::advance);
 }
