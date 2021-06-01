@@ -45,7 +45,7 @@ void setCallback(Level p_level, LogCallback p_callback);
 #ifdef _MSC_VER
 // NOLINTNEXTLINE
 #define __LOG(Level, FormatString, ...)                                                            \
-    Logging::Level(fmt::format(FMT_STRING(FormatString), __VA_ARGS__))
+    ::jps::Logging::Level(fmt::format(FMT_STRING(FormatString), __VA_ARGS__))
 // NOLINTNEXTLINE
 #define LOG_DEBUG(FormatString, ...) __LOG(debug, FormatString, __VA_ARGS__)
 // NOLINTNEXTLINE
@@ -57,7 +57,7 @@ void setCallback(Level p_level, LogCallback p_callback);
 #else
 // NOLINTNEXTLINE
 #define __LOG(Level, FormatString, ...)                                                            \
-    Logging::Level(fmt::format(FMT_STRING(FormatString), ##__VA_ARGS__))
+    ::jps::Logging::Level(fmt::format(FMT_STRING(FormatString), ##__VA_ARGS__))
 // NOLINTNEXTLINE
 #define LOG_DEBUG(FormatString, ...) __LOG(debug, FormatString, ##__VA_ARGS__)
 // NOLINTNEXTLINE
