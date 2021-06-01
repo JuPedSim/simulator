@@ -2,9 +2,12 @@
 
 #include "agent/pedestrian.hpp"
 #include "geometry/coordinate.hpp"
+#include "geometry/world_builder.hpp"
 #include "operational/operational.hpp"
 #include "simulation_data.hpp"
 #include "util/simulation_clock.hpp"
+
+#include <memory>
 
 namespace jps
 {
@@ -12,9 +15,10 @@ class Simulation
 {
 public:
     /// Constructor
+    /// @param p_world unique_ptr to the geometry storage to be used.
     /// Note: Currently will emit a debug log message to ensure log callbacks can be set and the
     /// emited log message is received in the python wrapper.
-    Simulation();
+    explicit Simulation(std::unique_ptr<WorldBuilder> p_world);
     /// Default destructor
     ~Simulation() = default;
     /// Non-copyable
@@ -30,9 +34,12 @@ public:
 
     auto addAgent(const Coordinate & p_coordinate) -> void;
 
+    auto getWorldBuilder() -> WorldBuilder &;
+
 private:
-    std::vector<Agent> m_agents;
-    std::vector<OperationalModelResult> m_operational_results;
+    std::unique_ptr<WorldBuilder> m_world;
+    std::vector<Agent> m_agents{};
+    std::vector<OperationalModelResult> m_operational_results{};
     // NOLINTNEXTLINE
     // SimulationClock m_simulation_clock{};
 };

@@ -3,6 +3,7 @@ from pathlib import Path
 
 from jpscore import Simulation
 from jpscore.geometry import Coordinate, LengthUnit, Level, Units
+from jupedsim.IO.worldparser import WorldParser
 from jupedsim.util.event import SpawnPedestrianEvent
 from jupedsim.util.generator import read_events
 from jupedsim.util.loghelper import log_debug, log_error, log_info
@@ -37,6 +38,8 @@ class RunSimulationCommand:
             return 0
         self.simulation = Simulation()
         self.events = deque(read_events(self.simulation_files.events_json))
+        dxf_parser = WorldParser(self.simulation_files.world_dxf)
+        dxf_parser.parse(self.simulation.get_world_builder())
 
         for iteration in range(args.iterations):
             log_info(f"Simulating iteration {iteration}")
