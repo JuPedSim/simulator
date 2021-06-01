@@ -1,19 +1,6 @@
-import errno
-import os
 import pathlib
 
-
-def require_file_exists(f: pathlib.Path) -> None:
-    """
-    Checks the specified paths exists.
-
-    Will throw if the file does not exist.
-    Use this for required files only.
-    """
-    if not f.exists():
-        raise FileNotFoundError(
-            errno.ENOENT, os.strerror(errno.ENOENT), str(f)
-        )
+from jupedsim.util.file_operations import require_file_exists
 
 
 class SimulationFiles:
