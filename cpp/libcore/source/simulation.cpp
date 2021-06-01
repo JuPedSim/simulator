@@ -1,6 +1,7 @@
 #include "simulation.hpp"
 
 #include "agent/agent.hpp"
+#include "geometry/world_builder.hpp"
 #include "log.hpp"
 #include "operational/result.hpp"
 #include "strategic/strategic.hpp"
@@ -11,7 +12,7 @@
 #include <vector>
 namespace jps
 {
-Simulation::Simulation()
+Simulation::Simulation(std::unique_ptr<WorldBuilder> p_world) : m_world(std::move(p_world))
 {
     LOG_DEBUG("Simulator ctor");
 };
@@ -45,6 +46,11 @@ auto Simulation::addAgent(const Coordinate & p_coordinate) -> void
     // but requires C++20 to fix the missing aggregate initializaition from paretheses
     // otherwise we have to provide a CTOR to the struct
     m_agents.push_back({p_coordinate});
+}
+
+auto Simulation::getWorldBuilder() -> WorldBuilder &
+{
+    return *m_world;
 }
 
 }; // namespace jps

@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 from typing import List
 
 import ezdxf
@@ -11,14 +12,14 @@ class WorldParser:
     Class for parsing dxf files of the world and creating corresponding geometry objects.
     """
 
-    def __init__(self, p_input_file: str):
+    def __init__(self, p_input_file: Path):
         """
         Initialization with a dxf file name.
         :param p_input_file: name of the dxf file
         """
         self.m_input_file = p_input_file
 
-    def parse(self) -> geometry.WorldBuilder:
+    def parse(self, world: geometry.WorldBuilder):
         """
         Parsing header information and entities on different levels. In case of valid file format Lines and SpecialAreas are parsed.
         :return: geometry.WorldBuilder object
@@ -27,10 +28,9 @@ class WorldParser:
 
         # try to open file
         try:
-            doc = ezdxf.readfile(self.m_input_file)
+            doc = ezdxf.readfile(str(self.m_input_file))
         except IOError:
-            # TODO throw exception. file not found
-            log_error("File not found")
+            log_error(f"{str(self.m_input_file)} not found")
             return
         except ezdxf.DXFStructureError:
             # TODO throw exception. invalid dxf file.
@@ -46,7 +46,7 @@ class WorldParser:
 
         # build World
         log_info("Building world ...")
-        self.m_jps_world_builder = geometry.WorldBuilder()
+        self.m_jps_world_builder = world
 
         # TODO check if the other parsing functions can be static
         self.__parseLevels()
