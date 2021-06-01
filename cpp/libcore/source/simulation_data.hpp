@@ -3,6 +3,7 @@
 #include "agent/agent.hpp"
 #include "util/simulation_clock.hpp"
 
+#include <chrono>
 #include <vector>
 
 namespace jps
@@ -11,7 +12,7 @@ namespace jps
 struct SimulationData {
     std::vector<Agent> agents;
     // NOLINTNEXTLINE
-    SimulationClock simulation_clock{10, 0.1};
+    SimulationClock simulation_clock{10, std::chrono::milliseconds{10}};
 };
 
 } // namespace jps

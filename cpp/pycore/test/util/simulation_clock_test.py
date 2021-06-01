@@ -1,33 +1,30 @@
+from datetime import timedelta
+
 import pytest
-from jpscore import JPSException, SimulationClock
 
 
-@pytest.mark.parametrize(
-    "max_steps, delta_t",
-    [(10, 0.1), (20, 0.001), (60, 0.1), (12446, 12)],
-)
-def test_simulation_clock_valid(max_steps, delta_t):
-    s = SimulationClock(max_steps, delta_t)
-    assert s.steps == max_steps
-    assert s.deltaT == delta_t
+def test_simulationclock_interface_has_bindings():
+    """
+    Make sure that all methods that we want to expose are actually callable.
+    """
+    import jpscore
 
-    for step in range(s.steps):
-        time = step * delta_t
-        assert s.current_step == step
-        assert s.current_time == time
-        s.advance()
-
-    with pytest.raises(JPSException):
-        s.advance()
+    clock = jpscore.SimulationClock(500, timedelta(milliseconds=10))
+    assert callable(getattr(clock, "advance"))
+    assert hasattr(clock, "deltaT")
+    assert hasattr(clock, "steps")
+    assert hasattr(clock, "current_step")
+    assert hasattr(clock, "current_time")
 
 
 @pytest.mark.parametrize(
     "max_steps, delta_t",
     [
-        (10, -0.1),
-        (500, 0),
+        (500, timedelta(milliseconds=0)),
     ],
 )
 def test_simulation_clock_invalid(max_steps, delta_t):
+    from jpscore import JPSException, SimulationClock
+
     with pytest.raises(JPSException):
         s = SimulationClock(max_steps, delta_t)
