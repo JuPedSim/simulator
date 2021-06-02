@@ -26,11 +26,10 @@ auto Simulation::computeNextStep() -> void
     m_operational_results.clear();
     for(const auto & agent : m_agents) {
         (void) agent;
-        auto strategic_result = strategic_model.computeStep();
-        (void) strategic_result;
-        auto tactical_result = tactical_model.computeStep();
-        (void) tactical_result;
-        m_operational_results.emplace_back(operational_model.computeStep());
+        auto strategic_result = strategic_model.computeStep(*this, agent);
+        auto tactical_result  = tactical_model.computeStep(*this, strategic_result, agent);
+        m_operational_results.emplace_back(
+            operational_model.computeStep(*this, tactical_result, agent));
     }
 
     auto res_iter = m_operational_results.begin();

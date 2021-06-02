@@ -1,6 +1,14 @@
 #pragma once
 
+#include "agent/agent.hpp"
+#include "strategic/result.hpp"
 #include "tactical/result.hpp"
+#include "util/unused.hpp"
+
+namespace jps
+{
+class Simulation;
+
 /// @brief Interface for tactical models
 ///
 /// A tactical model is responsible for determining the desired direction an agent would move to
@@ -18,7 +26,10 @@ struct TacticalModelInterface {
     /// @param p_agent agent for whom the next direction is computed
     ///
     /// @return
-    virtual auto computeStep(/** const Simulation &, const StrategicModelResult & p_strategic_result, const Agent & p_agent **/) const -> TacticalModelResult = 0;
+    virtual auto computeStep(
+        Simulation const & p_simulation,
+        StrategicModelResult const & p_strategic_result,
+        Agent const & p_agent) const -> TacticalModelResult = 0;
 
     /// Update the global state of the tactical model, e.g., when the geometry is changed or
     /// similar
@@ -29,8 +40,13 @@ struct TacticalModelInterface {
 };
 
 struct DummyTacticalModel : TacticalModelInterface {
-    auto computeStep(/** const Simulation &, const StrategicModelResult & p_strategic_result, const Agent & p_agent **/) const  -> TacticalModelResult override
+    auto computeStep(
+        Simulation const & p_simulation,
+        StrategicModelResult const & p_strategic_result,
+        Agent const & p_agent) const -> TacticalModelResult override
     {
+        unused(p_simulation, p_strategic_result, p_agent);
         return {};
     };
 };
+} // namespace jps
