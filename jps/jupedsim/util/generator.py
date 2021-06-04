@@ -1,4 +1,5 @@
 import json
+import pathlib
 from typing import List
 
 from jupedsim.util.event import (
@@ -19,13 +20,11 @@ def generate_spawn_events(args) -> None:
     events = generate_pedestrian_on_position(
         args.time, [args.x, args.y], args.level
     )
-    write_to_event_file(args.o, events, args.overwrite)
-    log_info(
-        "Generate pedestrian events have been written to: {}".format(args.o)
-    )
+    write_to_event_file(args.output, events, args.overwrite)
+    log_info(f"Generate pedestrian events have been written to: {args.output}")
 
 
-def read_events(file) -> List[Event]:
+def read_events(file: pathlib.Path) -> List[Event]:
     """
     Reads from a file and creates a list of Events,
     the events are returned sorted in order of increasing timestamp.
@@ -86,7 +85,7 @@ def merge_spawn_pedestrian_events(
 
 
 def write_to_event_file(
-    file: str, events: List[Event], overwrite: bool
+    file: pathlib.Path, events: List[Event], overwrite: bool
 ) -> bool:
     """
     Writes the list of events to the given file. If overwrite is set, all events which
