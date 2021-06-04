@@ -1,6 +1,7 @@
 import pathlib
-from jupedsim.util.generator import generate_spawn_events
 from argparse import ArgumentDefaultsHelpFormatter
+
+from jupedsim.util.generator import generate_spawn_events
 
 
 class GeneratePedestriansCommand:
