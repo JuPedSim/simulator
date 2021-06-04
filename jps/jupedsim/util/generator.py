@@ -95,7 +95,7 @@ def write_to_event_file(
     :param overwrite: Existing SpawnPedestrianEvents will be overwritten
     :return: success
     """
-    existing_events = read_events(file) if not overwrite else []
+    existing_events = read_events(file) if file.is_file() else []
     events = merge_spawn_pedestrian_events(events, existing_events, overwrite)
 
     with open(file, "w+") as json_file:
