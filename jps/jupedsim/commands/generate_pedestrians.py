@@ -1,4 +1,6 @@
+import pathlib
 from jupedsim.util.generator import generate_spawn_events
+from argparse import ArgumentDefaultsHelpFormatter
 
 
 class GeneratePedestriansCommand:
@@ -7,9 +9,11 @@ class GeneratePedestriansCommand:
         parser = subparsers.add_parser(
             self.name,
             help="Places an agent at a given position.",
+            formatter_class=ArgumentDefaultsHelpFormatter,
         )
         parser.add_argument(
-            "-time",
+            "-t",
+            "--time",
             required=False,
             type=float,
             metavar="time",
@@ -41,15 +45,15 @@ class GeneratePedestriansCommand:
         parser.add_argument(
             "-overwrite",
             required=False,
-            type=bool,
-            metavar="overwrite",
             help="Overwriting all existing spawn_pedestrian events in events file",
-            default=False,
+            action="store_true",
         )
         parser.add_argument(
             "-o",
-            required=True,
-            type=str,
+            "--output",
+            required=False,
+            type=pathlib.Path,
+            default=pathlib.Path.cwd() / "events.json",
             metavar="output file",
             help="Output file",
         )
