@@ -3,7 +3,6 @@
 #include "agent/agent.hpp"
 #include "strategic/result.hpp"
 #include "tactical/result.hpp"
-#include "util/unused.hpp"
 
 namespace jps
 {
@@ -41,11 +40,10 @@ struct TacticalModelInterface {
 
 struct DummyTacticalModel : TacticalModelInterface {
     auto computeStep(
-        Simulation const & p_simulation,
-        StrategicModelResult const & p_strategic_result,
-        Agent const & p_agent) const -> TacticalModelResult override
+        [[maybe_unused]] Simulation const & p_simulation,
+        [[maybe_unused]] StrategicModelResult const & p_strategic_result,
+        [[maybe_unused]] Agent const & p_agent) const -> TacticalModelResult override
     {
-        unused(p_simulation, p_strategic_result, p_agent);
         return {};
     };
 };

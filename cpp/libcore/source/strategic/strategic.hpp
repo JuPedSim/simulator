@@ -2,7 +2,6 @@
 
 #include "agent/agent.hpp"
 #include "strategic/result.hpp"
-#include "util/unused.hpp"
 
 namespace jps
 {
@@ -34,10 +33,10 @@ struct StrategicModelInterface {
     virtual auto tearDown(/** const Simulation & p_simulation **/) -> void{};
 };
 struct DummyStrategicModel : public StrategicModelInterface {
-    auto computeStep(Simulation const & p_simulation, Agent const & p_agent) const
-        -> StrategicModelResult override
+    auto computeStep(
+        [[maybe_unused]] Simulation const & p_simulation,
+        [[maybe_unused]] Agent const & p_agent) const -> StrategicModelResult override
     {
-        unused(p_simulation, p_agent);
         return {};
     };
 };
