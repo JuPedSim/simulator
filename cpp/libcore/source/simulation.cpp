@@ -1,7 +1,7 @@
 #include "simulation.hpp"
 
 #include "agent/agent.hpp"
-#include "geometry/world_builder.hpp"
+#include "geometry/world.hpp"
 #include "log.hpp"
 #include "operational/result.hpp"
 #include "strategic/strategic.hpp"
@@ -12,7 +12,7 @@
 #include <vector>
 namespace jps
 {
-Simulation::Simulation(std::unique_ptr<WorldBuilder> p_world) : m_world(std::move(p_world))
+Simulation::Simulation(std::unique_ptr<World> p_world) : m_world(std::move(p_world))
 {
     LOG_DEBUG("Simulator ctor");
 };
@@ -48,7 +48,7 @@ auto Simulation::addAgent(const Coordinate & p_coordinate) -> void
     m_agents.push_back({p_coordinate});
 }
 
-auto Simulation::getWorldBuilder() -> WorldBuilder &
+auto Simulation::getWorld() -> World &
 {
     return *m_world;
 }

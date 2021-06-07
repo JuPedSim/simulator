@@ -19,10 +19,10 @@ class WorldParser:
         """
         self.m_input_file = p_input_file
 
-    def parse(self, world: geometry.WorldBuilder):
+    def parse(self, world: geometry.World):
         """
         Parsing header information and entities on different levels. In case of valid file format Lines and SpecialAreas are parsed.
-        :return: geometry.WorldBuilder object
+        :return: geometry.World object
         :raises IOError, ezdxf.DXFStructureError: if file not found or if invalid dxf format
         """
 
@@ -46,12 +46,12 @@ class WorldParser:
 
         # build World
         log_info("Building world ...")
-        self.m_jps_world_builder = world
+        self.m_jps_world = world
 
         # TODO check if the other parsing functions can be static
         self.__parseLevels()
 
-        return self.m_jps_world_builder
+        return self.m_jps_world
 
     @staticmethod
     def checkMetricUnit(doc: ezdxf.document.Drawing) -> bool:
@@ -168,7 +168,7 @@ class WorldParser:
         """
         for line in self.m_msp.query('LINE[layer=="' + p_layer_name + '"]'):
             coords = WorldParser.parseCoordinates(line, p_level)
-            self.m_jps_world_builder.addLineSegment(
+            self.m_jps_world.addLineSegment(
                 p_level,
                 geometry.LineSegment(
                     coords[0],
@@ -205,4 +205,4 @@ class WorldParser:
         for color in color_to_segments:
             log_warning("not yet implemented")
             # TODO pybind for area-constructor with LineSegments
-            # self._jps_world_builder.addSpecialArea(p_level, geometry.SpecialArea(geometry.Area(color_to_segments[color]),int(color)))
+            # self._jps_world.addSpecialArea(p_level, geometry.SpecialArea(geometry.Area(color_to_segments[color]),int(color)))

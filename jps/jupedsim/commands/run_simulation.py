@@ -39,7 +39,7 @@ class RunSimulationCommand:
         self.simulation = Simulation()
         self.events = deque(read_events(self.simulation_files.events_json))
         dxf_parser = WorldParser(self.simulation_files.world_dxf)
-        dxf_parser.parse(self.simulation.get_world_builder())
+        dxf_parser.parse(self.simulation.get_world())
 
         for iteration in range(args.iterations):
             log_info(f"Simulating iteration {iteration}")

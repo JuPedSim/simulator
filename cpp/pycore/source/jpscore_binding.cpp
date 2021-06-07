@@ -5,7 +5,7 @@
 #include "geometry/line_segment_binding.hpp"
 #include "geometry/spatial_vector_binding.hpp"
 #include "geometry/special_area_binding.hpp"
-#include "geometry/world_builder_binding.hpp"
+#include "geometry/world_binding.hpp"
 #include "logging_binding.hpp"
 #include "simulation_binding.hpp"
 #include "util/jpsexception_binding.hpp"
@@ -34,5 +34,5 @@ PYBIND11_MODULE(jpscore, m)
     bind_line_segment(m_geometry);
     bind_spatial_vector(m_geometry);
     bind_special_area(m_geometry);
-    bind_world_builder(m_geometry);
+    bind_world(m_geometry);
 }

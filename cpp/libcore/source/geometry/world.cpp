@@ -1,6 +1,6 @@
-#include "world_builder.hpp"
+#include "world.hpp"
 
-auto jps::WorldBuilder::addLineSegment(
+auto jps::World::addLineSegment(
     const jps::Level & /*p_level*/,
     const jps::LineSegment &
     /*p_segment*/) -> void
@@ -8,7 +8,7 @@ auto jps::WorldBuilder::addLineSegment(
     // TODO: ensure that level of coordinates of the segment and p-level are the same, add to map
 }
 
-auto jps::WorldBuilder::addSpecialArea(
+auto jps::World::addSpecialArea(
     const jps::Level & /*p_level*/,
     const jps::SpecialArea &
     /*p_area*/) -> void
