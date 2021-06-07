@@ -23,8 +23,8 @@ add_library(core
     geometry/spatial_vector.hpp
     geometry/special_area.cpp
     geometry/special_area.hpp
-    geometry/world_builder.cpp
-    geometry/world_builder.hpp
+    geometry/world.cpp
+    geometry/world.hpp
 
     math/int_pow.hpp
 
