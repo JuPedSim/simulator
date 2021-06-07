@@ -1,6 +1,12 @@
 #pragma once
 
+#include "agent/agent.hpp"
 #include "strategic/result.hpp"
+
+namespace jps
+{
+class Simulation;
+
 /// @brief Interface for strategic models
 ///
 /// A strategic model is responsible for deciding what the agent wants to do, e.g., go to an exit,
@@ -16,7 +22,7 @@ struct StrategicModelInterface {
     /// @param p_agent agent for whom the goal is computed
     ///
     /// @return
-    virtual auto computeStep(/** const Simulation & p_simulation, const Agent & p_agent **/) const
+    virtual auto computeStep(Simulation const & p_simulation, Agent const & p_agent) const
         -> StrategicModelResult = 0;
 
     /// Update the global state of the strategic model, e.g., when the geometry is changed or
@@ -28,9 +34,10 @@ struct StrategicModelInterface {
 };
 struct DummyStrategicModel : public StrategicModelInterface {
     auto computeStep(
-        /** const Simulation & p_simulation, const Agent & p_agent **/) const
-        -> StrategicModelResult override
+        [[maybe_unused]] Simulation const & p_simulation,
+        [[maybe_unused]] Agent const & p_agent) const -> StrategicModelResult override
     {
         return {};
     };
 };
+} // namespace jps

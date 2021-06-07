@@ -1,9 +1,12 @@
 #pragma once
 
+#include "agent/agent.hpp"
 #include "operational/result.hpp"
-
+#include "tactical/result.hpp"
 namespace jps
 {
+class Simulation;
+
 /// @brief Interface for operational models
 ///
 /// An operational model is responsible for computing the movement of the agents within the
@@ -22,7 +25,10 @@ struct OperationalModelInterface {
     /// @param p_agent agent for whom the next position is computed
     ///
     /// @return
-    virtual auto computeStep(/** const Simulation & p_simulation, const TacticalModelResult & p_tactical_results, const Agent & p_agent **/) const -> OperationalModelResult = 0;
+    virtual auto computeStep(
+        Simulation const & p_simulation,
+        TacticalModelResult const & p_tactical_results,
+        Agent const & p_agent) const -> OperationalModelResult = 0;
 
     /// Update the global state of the operational model, e.g., when geometry is changed due
     /// to events or similar
@@ -35,7 +41,10 @@ struct OperationalModelInterface {
 };
 
 struct DummyOperationalModel : OperationalModelInterface {
-    auto computeStep(/** const Simulation & p_simulation, const TacticalModelResult & p_tactical_results, const Agent & p_agent **/) const -> OperationalModelResult override
+    auto computeStep(
+        [[maybe_unused]] Simulation const & p_simulation,
+        [[maybe_unused]] TacticalModelResult const & p_tactical_results,
+        [[maybe_unused]] Agent const & p_agent) const -> OperationalModelResult override
     {
         return {};
     }
