@@ -1,9 +1,11 @@
 #pragma once
 
+#include "geometry/level.hpp"
+#include "geometry/level_storage.hpp"
 #include "line_segment.hpp"
 #include "special_area.hpp"
 
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 namespace jps
@@ -11,8 +13,7 @@ namespace jps
 class World
 {
 private:
-    std::map<jps::Level, std::vector<jps::LineSegment>> m_level_to_line_segments;
-    std::map<jps::Level, std::vector<jps::SpecialArea>> m_level_to_special_areas;
+    std::unordered_map<Level, LevelStorage> m_level_to_level_storage;
 
 public:
     World()  = default;
@@ -24,7 +25,10 @@ public:
     World(World &&) = default;
     auto operator=(World &&) -> World & = default;
 
-    auto addLineSegment(const jps::Level & p_level, const jps::LineSegment & p_segment) -> void;
-    auto addSpecialArea(const jps::Level & p_level, const jps::SpecialArea & p_area) -> void;
+    auto addLineSegment(Level const & p_level, LineSegment const & p_segment) -> void;
+    auto addSpecialArea(Level const & p_level, SpecialArea const & p_area) -> void;
+    auto addLevel(Level const & p_level) -> LevelStorage &;
+    auto getLevel(Level const & p_level) -> LevelStorage &;
+    auto getLevel(Level const & p_level) const -> LevelStorage const &;
 };
 } // namespace jps

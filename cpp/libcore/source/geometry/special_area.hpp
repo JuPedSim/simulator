@@ -23,10 +23,10 @@ public:
     explicit SpecialArea(Area p_area) : m_area(std::move(p_area)){};
 
     /// SpecialArea is not copyable
-    SpecialArea(const SpecialArea & p_other) = delete;
+    SpecialArea(const SpecialArea & p_other) = default;
 
     /// SpecialArea is not copyable
-    auto operator=(const SpecialArea & p_other) -> SpecialArea & = delete;
+    auto operator=(const SpecialArea & p_other) -> SpecialArea & = default;
 
     /// SpecialArea is movable
     SpecialArea(SpecialArea && p_other) = default;
