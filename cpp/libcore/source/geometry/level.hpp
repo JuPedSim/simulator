@@ -1,7 +1,9 @@
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 #include <fmt/ostream.h>
+#include <functional>
 #include <utility>
 
 namespace jps
@@ -38,3 +40,16 @@ struct formatter<jps::Level> {
     }
 };
 } // namespace fmt
+
+namespace std
+{
+/// Hash required for unordered containers like unordered_map
+template <>
+struct hash<::jps::Level> {
+    auto operator()(::jps::Level const & p_lvl) const noexcept -> size_t
+    {
+        std::hash<decltype(p_lvl.id())> hash;
+        return hash(p_lvl.id());
+    }
+};
+} // namespace std

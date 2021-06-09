@@ -17,6 +17,8 @@ add_library(core
     geometry/length_unit.hpp
     geometry/level.cpp
     geometry/level.hpp
+    geometry/level_storage.cpp
+    geometry/level_storage.hpp
     geometry/line_segment.cpp
     geometry/line_segment.hpp
     geometry/spatial_vector.cpp
