@@ -3,6 +3,7 @@ from pathlib import Path
 
 from jpscore import Simulation
 from jpscore.geometry import Coordinate, LengthUnit, Level, Units
+from jupedsim.IO.trajectorywriter import SimpleTrajectoryWriter
 from jupedsim.IO.worldparser import WorldParser
 from jupedsim.util.event import SpawnPedestrianEvent
 from jupedsim.util.generator import read_events
@@ -40,12 +41,23 @@ class RunSimulationCommand:
         self.events = deque(read_events(self.simulation_files.events_json))
         dxf_parser = WorldParser(self.simulation_files.world_dxf)
         dxf_parser.parse(self.simulation.get_world())
+        self.trajectory_writer = SimpleTrajectoryWriter
+
+        self.trajectory_writer.write_header(
+            self.simulation_files.trajctory_out
+        )
 
         for iteration in range(args.iterations):
             log_info(f"Simulating iteration {iteration}")
             self._process_events(iteration)
             log_debug("Updating agents")
             self.simulation.compute_next_step()
+
+            self.trajectory_writer.write_trajectory(
+                self.simulation_files.trajctory_out,
+                iteration,
+                self.simulation.agents,
+            )
         return 0
 
     def _process_events(self, current_iteration: int) -> None:
