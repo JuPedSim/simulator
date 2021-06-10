@@ -9,36 +9,32 @@ TEST(SpecialArea, Constructor)
     using namespace jps;
     std::vector<Area> areas{
         Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}},
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {9.2_cm, -3.1_cm},
+            {4.1_cm, -5.9_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}},
         Area{std::vector<Coordinate>{
-            {-10_cm, 0_cm, Level{1}},
-            {-20_m, 1_m, Level{1}},
-            {-20_m, 4_m, Level{1}},
-            {-15_m, 1_m, Level{1}},
-            {-10_cm, 0_cm, Level{1}}}},
+            {-10_cm, 0_cm}, {-20_m, 1_m}, {-20_m, 4_m}, {-15_m, 1_m}, {-10_cm, 0_cm}}},
         Area{std::vector<LineSegment>{
-            LineSegment{{-4.1_cm, 3.7_cm, Level{1}}, {3.1_cm, 4.9_cm, Level{1}}},
-            LineSegment{{3.1_cm, 4.9_cm, Level{1}}, {7.5_cm, 2.3_cm, Level{1}}},
-            LineSegment{{7.5_cm, 2.3_cm, Level{1}}, {9.2_cm, -3.1_cm, Level{1}}},
-            LineSegment{{9.2_cm, -3.1_cm, Level{1}}, {4.1_cm, -5.9_cm, Level{1}}},
-            LineSegment{{4.1_cm, -5.9_cm, Level{1}}, {1_cm, -1.5_cm, Level{1}}},
-            LineSegment{{1_cm, -1.5_cm, Level{1}}, {-2_cm, -4.7_cm, Level{1}}},
-            LineSegment{{-2_cm, -4.7_cm, Level{1}}, {-6.3_cm, -2.1_cm, Level{1}}},
-            LineSegment{{-6.3_cm, -2.1_cm, Level{1}}, {-4.1_cm, 3.7_cm, Level{1}}}}},
+            LineSegment{{-4.1_cm, 3.7_cm}, {3.1_cm, 4.9_cm}},
+            LineSegment{{3.1_cm, 4.9_cm}, {7.5_cm, 2.3_cm}},
+            LineSegment{{7.5_cm, 2.3_cm}, {9.2_cm, -3.1_cm}},
+            LineSegment{{9.2_cm, -3.1_cm}, {4.1_cm, -5.9_cm}},
+            LineSegment{{4.1_cm, -5.9_cm}, {1_cm, -1.5_cm}},
+            LineSegment{{1_cm, -1.5_cm}, {-2_cm, -4.7_cm}},
+            LineSegment{{-2_cm, -4.7_cm}, {-6.3_cm, -2.1_cm}},
+            LineSegment{{-6.3_cm, -2.1_cm}, {-4.1_cm, 3.7_cm}}}},
         Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}};
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {9.2_cm, -3.1_cm},
+            {4.1_cm, -5.9_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}};
 
     // Simple constructor
     std::vector<SpecialArea> reference_values;

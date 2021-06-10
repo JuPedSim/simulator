@@ -12,11 +12,11 @@ TEST(Area, ConstructorFromCoordinate)
 
     // Successful
     std::vector<Coordinate> start_end_equal{
-        {-10_cm, 0_cm, Level{1}},
-        {-20_m, 1_m, Level{1}},
-        {-20_m, 4_m, Level{1}},
-        {-15_m, 1_m, Level{1}},
-        {-10_cm, 0_cm, Level{1}},
+        {-10_cm, 0_cm},
+        {-20_m, 1_m},
+        {-20_m, 4_m},
+        {-15_m, 1_m},
+        {-10_cm, 0_cm},
     };
     std::vector<Coordinate> start_end_not_equal{start_end_equal};
     start_end_not_equal.pop_back();
@@ -32,18 +32,10 @@ TEST(Area, ConstructorFromCoordinate)
     EXPECT_THROW(Area{empty}, JPSGeometryException);
 
     std::vector<Coordinate> two_elements{
-        {10_m, 10_m, Level{1}},
-        {10_m, 5_m, Level{1}},
+        {10_m, 10_m},
+        {10_m, 5_m},
     };
     EXPECT_THROW(Area{two_elements}, JPSGeometryException);
-
-    std::vector<Coordinate> different_lvl{
-        {10_m, 10_m, Level{1}},
-        {10_m, 5_m, Level{1}},
-        {5_m, 1_m, Level{3}},
-        {5_m, 10_m, Level{1}},
-    };
-    EXPECT_THROW(Area{different_lvl}, JPSGeometryException);
 }
 
 TEST(Area, ConstructorFromLineSegments)
@@ -53,14 +45,14 @@ TEST(Area, ConstructorFromLineSegments)
 
     // Successful
     std::vector<Coordinate> coordinates{
-        {-4.1_cm, 3.7_cm, Level{1}},
-        {3.1_cm, 4.9_cm, Level{1}},
-        {7.5_cm, 2.3_cm, Level{1}},
-        {9.2_cm, -3.1_cm, Level{1}},
-        {4.1_cm, -5.9_cm, Level{1}},
-        {1_cm, -1.5_cm, Level{1}},
-        {-2_cm, -4.7_cm, Level{1}},
-        {-6.3_cm, -2.1_cm, Level{1}}};
+        {-4.1_cm, 3.7_cm},
+        {3.1_cm, 4.9_cm},
+        {7.5_cm, 2.3_cm},
+        {9.2_cm, -3.1_cm},
+        {4.1_cm, -5.9_cm},
+        {1_cm, -1.5_cm},
+        {-2_cm, -4.7_cm},
+        {-6.3_cm, -2.1_cm}};
 
     std::vector<LineSegment> sorted;
     for(auto coordinate_itr = std::begin(coordinates); coordinate_itr < std::end(coordinates) - 1;
@@ -84,30 +76,23 @@ TEST(Area, ConstructorFromLineSegments)
     EXPECT_THROW(Area{empty}, JPSGeometryException);
 
     std::vector<LineSegment> two_elements{
-        {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
-        {{15_m, 10_m, Level{1}}, {10_m, 10_m, Level{1}}},
+        {{10_m, 10_m}, {15_m, 10_m}},
+        {{15_m, 10_m}, {10_m, 10_m}},
     };
     EXPECT_THROW(Area{two_elements}, JPSGeometryException);
 
-    std::vector<LineSegment> different_lvl{
-        {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
-        {{15_m, 10_m, Level{1}}, {20_m, 10_m, Level{1}}},
-        {{20_m, 10_m, Level{2}}, {10_m, 10_m, Level{2}}},
-    };
-    EXPECT_THROW(Area{different_lvl}, JPSGeometryException);
-
     std::vector<LineSegment> not_sortable_lines_not_connected{
-        {{10_m, 10_m, Level{1}}, {15_m, 10_m, Level{1}}},
-        {{15_m, 10_m, Level{1}}, {20_m, 10_m, Level{1}}},
-        {{20_m, 10_m, Level{1}}, {30_m, 10_m, Level{1}}},
-        {{40_m, 10_m, Level{1}}, {10_m, 10_m, Level{1}}},
+        {{10_m, 10_m}, {15_m, 10_m}},
+        {{15_m, 10_m}, {20_m, 10_m}},
+        {{20_m, 10_m}, {30_m, 10_m}},
+        {{40_m, 10_m}, {10_m, 10_m}},
     };
     EXPECT_THROW(Area{not_sortable_lines_not_connected}, JPSGeometryException);
 
     std::vector<LineSegment> not_closed{
-        {{-1_m, 1_m, Level{-1}}, {1_m, 1_m, Level{-1}}},
-        {{1_m, 1_m, Level{-1}}, {1_m, -1_m, Level{-1}}},
-        {{1_m, -1_m, Level{-1}}, {-1_m, -1_m, Level{-1}}},
+        {{-1_m, 1_m}, {1_m, 1_m}},
+        {{1_m, 1_m}, {1_m, -1_m}},
+        {{1_m, -1_m}, {-1_m, -1_m}},
     };
     EXPECT_THROW(Area{not_closed}, JPSGeometryException);
 }
@@ -120,170 +105,166 @@ TEST(Area, comparisonOperators)
     // ==
     EXPECT_TRUE(
         (Area{std::vector<LineSegment>{
-            LineSegment{{-4.1_cm, 3.7_cm, Level{1}}, {3.1_cm, 4.9_cm, Level{1}}},
-            LineSegment{{3.1_cm, 4.9_cm, Level{1}}, {7.5_cm, 2.3_cm, Level{1}}},
-            LineSegment{{7.5_cm, 2.3_cm, Level{1}}, {9.2_cm, -3.1_cm, Level{1}}},
-            LineSegment{{9.2_cm, -3.1_cm, Level{1}}, {4.1_cm, -5.9_cm, Level{1}}},
-            LineSegment{{4.1_cm, -5.9_cm, Level{1}}, {1_cm, -1.5_cm, Level{1}}},
-            LineSegment{{1_cm, -1.5_cm, Level{1}}, {-2_cm, -4.7_cm, Level{1}}},
-            LineSegment{{-2_cm, -4.7_cm, Level{1}}, {-6.3_cm, -2.1_cm, Level{1}}},
-            LineSegment{{-6.3_cm, -2.1_cm, Level{1}}, {-4.1_cm, 3.7_cm, Level{1}}}}}) ==
-        (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}));
+            LineSegment{{-4.1_cm, 3.7_cm}, {3.1_cm, 4.9_cm}},
+            LineSegment{{3.1_cm, 4.9_cm}, {7.5_cm, 2.3_cm}},
+            LineSegment{{7.5_cm, 2.3_cm}, {9.2_cm, -3.1_cm}},
+            LineSegment{{9.2_cm, -3.1_cm}, {4.1_cm, -5.9_cm}},
+            LineSegment{{4.1_cm, -5.9_cm}, {1_cm, -1.5_cm}},
+            LineSegment{{1_cm, -1.5_cm}, {-2_cm, -4.7_cm}},
+            LineSegment{{-2_cm, -4.7_cm}, {-6.3_cm, -2.1_cm}},
+            LineSegment{{-6.3_cm, -2.1_cm}, {-4.1_cm, 3.7_cm}}}}) == (Area{std::vector<Coordinate>{
+                                                                         {-4.1_cm, 3.7_cm},
+                                                                         {3.1_cm, 4.9_cm},
+                                                                         {7.5_cm, 2.3_cm},
+                                                                         {9.2_cm, -3.1_cm},
+                                                                         {4.1_cm, -5.9_cm},
+                                                                         {1_cm, -1.5_cm},
+                                                                         {-2_cm, -4.7_cm},
+                                                                         {-6.3_cm, -2.1_cm}}}));
     EXPECT_TRUE(
         (Area{std::vector<LineSegment>{
-            LineSegment{{4.1_cm, -5.9_cm, Level{1}}, {1_cm, -1.5_cm, Level{1}}},
-            LineSegment{{-4.1_cm, 3.7_cm, Level{1}}, {3.1_cm, 4.9_cm, Level{1}}},
-            LineSegment{{3.1_cm, 4.9_cm, Level{1}}, {7.5_cm, 2.3_cm, Level{1}}},
-            LineSegment{{1_cm, -1.5_cm, Level{1}}, {-2_cm, -4.7_cm, Level{1}}},
-            LineSegment{{7.5_cm, 2.3_cm, Level{1}}, {9.2_cm, -3.1_cm, Level{1}}},
-            LineSegment{{-2_cm, -4.7_cm, Level{1}}, {-6.3_cm, -2.1_cm, Level{1}}},
-            LineSegment{{9.2_cm, -3.1_cm, Level{1}}, {4.1_cm, -5.9_cm, Level{1}}},
-            LineSegment{{-6.3_cm, -2.1_cm, Level{1}}, {-4.1_cm, 3.7_cm, Level{1}}}}}) ==
-        (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}));
+            LineSegment{{4.1_cm, -5.9_cm}, {1_cm, -1.5_cm}},
+            LineSegment{{-4.1_cm, 3.7_cm}, {3.1_cm, 4.9_cm}},
+            LineSegment{{3.1_cm, 4.9_cm}, {7.5_cm, 2.3_cm}},
+            LineSegment{{1_cm, -1.5_cm}, {-2_cm, -4.7_cm}},
+            LineSegment{{7.5_cm, 2.3_cm}, {9.2_cm, -3.1_cm}},
+            LineSegment{{-2_cm, -4.7_cm}, {-6.3_cm, -2.1_cm}},
+            LineSegment{{9.2_cm, -3.1_cm}, {4.1_cm, -5.9_cm}},
+            LineSegment{{-6.3_cm, -2.1_cm}, {-4.1_cm, 3.7_cm}}}}) == (Area{std::vector<Coordinate>{
+                                                                         {-4.1_cm, 3.7_cm},
+                                                                         {3.1_cm, 4.9_cm},
+                                                                         {7.5_cm, 2.3_cm},
+                                                                         {9.2_cm, -3.1_cm},
+                                                                         {4.1_cm, -5.9_cm},
+                                                                         {1_cm, -1.5_cm},
+                                                                         {-2_cm, -4.7_cm},
+                                                                         {-6.3_cm, -2.1_cm}}}));
     EXPECT_FALSE(
         (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}) == (Area{std::vector<Coordinate>{
-                                                   {-4.1_cm, 3.7_cm, Level{1}},
-                                                   {3.1_cm, 4.9_cm, Level{1}},
-                                                   {9.2_cm, -3.1_cm, Level{1}},
-                                                   {4.1_cm, -5.9_cm, Level{1}},
-                                                   {-2_cm, -4.7_cm, Level{1}},
-                                                   {-6.3_cm, -2.1_cm, Level{1}}}}));
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {9.2_cm, -3.1_cm},
+            {4.1_cm, -5.9_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}) == (Area{std::vector<Coordinate>{
+                                         {-4.1_cm, 3.7_cm},
+                                         {3.1_cm, 4.9_cm},
+                                         {9.2_cm, -3.1_cm},
+                                         {4.1_cm, -5.9_cm},
+                                         {-2_cm, -4.7_cm},
+                                         {-6.3_cm, -2.1_cm}}}));
     EXPECT_FALSE(
         (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}) == (Area{std::vector<Coordinate>{
-                                                   {-4.1_cm, 3.7_cm, Level{1}},
-                                                   {3.1_cm, 4.9_cm, Level{1}},
-                                                   {9.2_cm, -3.1_cm, Level{1}},
-                                                   {-2_cm, -4.7_cm, Level{1}},
-                                                   {-6.3_cm, -2.1_cm, Level{1}}}}));
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}) == (Area{std::vector<Coordinate>{
+                                         {-4.1_cm, 3.7_cm},
+                                         {3.1_cm, 4.9_cm},
+                                         {9.2_cm, -3.1_cm},
+                                         {-2_cm, -4.7_cm},
+                                         {-6.3_cm, -2.1_cm}}}));
 
 
     // !=
     EXPECT_TRUE(
         (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}) != (Area{std::vector<Coordinate>{
-                                                   {-4.1_cm, 3.7_cm, Level{1}},
-                                                   {3.1_cm, 4.9_cm, Level{1}},
-                                                   {9.2_cm, -3.1_cm, Level{1}},
-                                                   {4.1_cm, -5.9_cm, Level{1}},
-                                                   {-2_cm, -4.7_cm, Level{1}},
-                                                   {-6.3_cm, -2.1_cm, Level{1}}}}));
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {9.2_cm, -3.1_cm},
+            {4.1_cm, -5.9_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}) != (Area{std::vector<Coordinate>{
+                                         {-4.1_cm, 3.7_cm},
+                                         {3.1_cm, 4.9_cm},
+                                         {9.2_cm, -3.1_cm},
+                                         {4.1_cm, -5.9_cm},
+                                         {-2_cm, -4.7_cm},
+                                         {-6.3_cm, -2.1_cm}}}));
     EXPECT_TRUE(
         (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}) != (Area{std::vector<Coordinate>{
-                                                   {-4.1_cm, 3.7_cm, Level{1}},
-                                                   {3.1_cm, 4.9_cm, Level{1}},
-                                                   {9.2_cm, -3.1_cm, Level{1}},
-                                                   {-2_cm, -4.7_cm, Level{1}},
-                                                   {-6.3_cm, -2.1_cm, Level{1}}}}));
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}) != (Area{std::vector<Coordinate>{
+                                         {-4.1_cm, 3.7_cm},
+                                         {3.1_cm, 4.9_cm},
+                                         {9.2_cm, -3.1_cm},
+                                         {-2_cm, -4.7_cm},
+                                         {-6.3_cm, -2.1_cm}}}));
     EXPECT_FALSE(
         (Area{std::vector<LineSegment>{
-            LineSegment{{-4.1_cm, 3.7_cm, Level{1}}, {3.1_cm, 4.9_cm, Level{1}}},
-            LineSegment{{3.1_cm, 4.9_cm, Level{1}}, {7.5_cm, 2.3_cm, Level{1}}},
-            LineSegment{{7.5_cm, 2.3_cm, Level{1}}, {9.2_cm, -3.1_cm, Level{1}}},
-            LineSegment{{9.2_cm, -3.1_cm, Level{1}}, {4.1_cm, -5.9_cm, Level{1}}},
-            LineSegment{{4.1_cm, -5.9_cm, Level{1}}, {1_cm, -1.5_cm, Level{1}}},
-            LineSegment{{1_cm, -1.5_cm, Level{1}}, {-2_cm, -4.7_cm, Level{1}}},
-            LineSegment{{-2_cm, -4.7_cm, Level{1}}, {-6.3_cm, -2.1_cm, Level{1}}},
-            LineSegment{{-6.3_cm, -2.1_cm, Level{1}}, {-4.1_cm, 3.7_cm, Level{1}}}}}) !=
-        (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}));
+            LineSegment{{-4.1_cm, 3.7_cm}, {3.1_cm, 4.9_cm}},
+            LineSegment{{3.1_cm, 4.9_cm}, {7.5_cm, 2.3_cm}},
+            LineSegment{{7.5_cm, 2.3_cm}, {9.2_cm, -3.1_cm}},
+            LineSegment{{9.2_cm, -3.1_cm}, {4.1_cm, -5.9_cm}},
+            LineSegment{{4.1_cm, -5.9_cm}, {1_cm, -1.5_cm}},
+            LineSegment{{1_cm, -1.5_cm}, {-2_cm, -4.7_cm}},
+            LineSegment{{-2_cm, -4.7_cm}, {-6.3_cm, -2.1_cm}},
+            LineSegment{{-6.3_cm, -2.1_cm}, {-4.1_cm, 3.7_cm}}}}) != (Area{std::vector<Coordinate>{
+                                                                         {-4.1_cm, 3.7_cm},
+                                                                         {3.1_cm, 4.9_cm},
+                                                                         {7.5_cm, 2.3_cm},
+                                                                         {9.2_cm, -3.1_cm},
+                                                                         {4.1_cm, -5.9_cm},
+                                                                         {1_cm, -1.5_cm},
+                                                                         {-2_cm, -4.7_cm},
+                                                                         {-6.3_cm, -2.1_cm}}}));
     EXPECT_FALSE(
         (Area{std::vector<LineSegment>{
-            LineSegment{{4.1_cm, -5.9_cm, Level{1}}, {1_cm, -1.5_cm, Level{1}}},
-            LineSegment{{-4.1_cm, 3.7_cm, Level{1}}, {3.1_cm, 4.9_cm, Level{1}}},
-            LineSegment{{3.1_cm, 4.9_cm, Level{1}}, {7.5_cm, 2.3_cm, Level{1}}},
-            LineSegment{{1_cm, -1.5_cm, Level{1}}, {-2_cm, -4.7_cm, Level{1}}},
-            LineSegment{{7.5_cm, 2.3_cm, Level{1}}, {9.2_cm, -3.1_cm, Level{1}}},
-            LineSegment{{-2_cm, -4.7_cm, Level{1}}, {-6.3_cm, -2.1_cm, Level{1}}},
-            LineSegment{{9.2_cm, -3.1_cm, Level{1}}, {4.1_cm, -5.9_cm, Level{1}}},
-            LineSegment{{-6.3_cm, -2.1_cm, Level{1}}, {-4.1_cm, 3.7_cm, Level{1}}}}}) !=
-        (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {9.2_cm, -3.1_cm, Level{1}},
-            {4.1_cm, -5.9_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}));
+            LineSegment{{4.1_cm, -5.9_cm}, {1_cm, -1.5_cm}},
+            LineSegment{{-4.1_cm, 3.7_cm}, {3.1_cm, 4.9_cm}},
+            LineSegment{{3.1_cm, 4.9_cm}, {7.5_cm, 2.3_cm}},
+            LineSegment{{1_cm, -1.5_cm}, {-2_cm, -4.7_cm}},
+            LineSegment{{7.5_cm, 2.3_cm}, {9.2_cm, -3.1_cm}},
+            LineSegment{{-2_cm, -4.7_cm}, {-6.3_cm, -2.1_cm}},
+            LineSegment{{9.2_cm, -3.1_cm}, {4.1_cm, -5.9_cm}},
+            LineSegment{{-6.3_cm, -2.1_cm}, {-4.1_cm, 3.7_cm}}}}) != (Area{std::vector<Coordinate>{
+                                                                         {-4.1_cm, 3.7_cm},
+                                                                         {3.1_cm, 4.9_cm},
+                                                                         {7.5_cm, 2.3_cm},
+                                                                         {9.2_cm, -3.1_cm},
+                                                                         {4.1_cm, -5.9_cm},
+                                                                         {1_cm, -1.5_cm},
+                                                                         {-2_cm, -4.7_cm},
+                                                                         {-6.3_cm, -2.1_cm}}}));
 
     // rotated
     EXPECT_FALSE(
         (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}) == (Area{std::vector<Coordinate>{
-                                                   {3.1_cm, 4.9_cm, Level{1}},
-                                                   {1_cm, -1.5_cm, Level{1}},
-                                                   {7.5_cm, 2.3_cm, Level{1}},
-                                                   {-4.1_cm, 3.7_cm, Level{1}},
-                                                   {-2_cm, -4.7_cm, Level{1}},
-                                                   {-6.3_cm, -2.1_cm, Level{1}}}}));
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}) == (Area{std::vector<Coordinate>{
+                                         {3.1_cm, 4.9_cm},
+                                         {1_cm, -1.5_cm},
+                                         {7.5_cm, 2.3_cm},
+                                         {-4.1_cm, 3.7_cm},
+                                         {-2_cm, -4.7_cm},
+                                         {-6.3_cm, -2.1_cm}}}));
 
     EXPECT_TRUE(
         (Area{std::vector<Coordinate>{
-            {-4.1_cm, 3.7_cm, Level{1}},
-            {3.1_cm, 4.9_cm, Level{1}},
-            {7.5_cm, 2.3_cm, Level{1}},
-            {1_cm, -1.5_cm, Level{1}},
-            {-2_cm, -4.7_cm, Level{1}},
-            {-6.3_cm, -2.1_cm, Level{1}}}}) == (Area{std::vector<Coordinate>{
-                                                   {1_cm, -1.5_cm, Level{1}},
-                                                   {-2_cm, -4.7_cm, Level{1}},
-                                                   {-6.3_cm, -2.1_cm, Level{1}},
-                                                   {-4.1_cm, 3.7_cm, Level{1}},
-                                                   {3.1_cm, 4.9_cm, Level{1}},
-                                                   {7.5_cm, 2.3_cm, Level{1}}}}));
+            {-4.1_cm, 3.7_cm},
+            {3.1_cm, 4.9_cm},
+            {7.5_cm, 2.3_cm},
+            {1_cm, -1.5_cm},
+            {-2_cm, -4.7_cm},
+            {-6.3_cm, -2.1_cm}}}) == (Area{std::vector<Coordinate>{
+                                         {1_cm, -1.5_cm},
+                                         {-2_cm, -4.7_cm},
+                                         {-6.3_cm, -2.1_cm},
+                                         {-4.1_cm, 3.7_cm},
+                                         {3.1_cm, 4.9_cm},
+                                         {7.5_cm, 2.3_cm}}}));
 }

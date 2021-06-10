@@ -18,16 +18,6 @@ jps::Area::Area(std::vector<Coordinate> p_area_polygon) : m_area_polygon(p_area_
             p_area_polygon.size()));
     }
 
-    // Check if all elements are on same level
-    auto level = p_area_polygon.front().lvl;
-    if(!std::all_of(
-           std::begin(p_area_polygon),
-           std::end(p_area_polygon),
-           [level](const Coordinate & p_coordinate) { return p_coordinate.lvl == level; })) {
-        throw JPSGeometryException(fmt::format(
-            FMT_STRING("Could not create Area. Not all coordinates are on the same level.")));
-    }
-
     // Remove last element if \p p_area_polygon was closed
     if(*std::begin(p_area_polygon) == p_area_polygon.back()) {
         m_area_polygon.pop_back();

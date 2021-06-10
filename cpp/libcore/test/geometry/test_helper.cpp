@@ -26,36 +26,35 @@ TEST(GeometryHelper, sortLineSegments)
         EXPECT_TRUE(empty.empty());
         checkConnectivity(empty);
 
-        std::vector<LineSegment> one_element{
-            {{990_mm, 0.1_dm, Level{1}}, {1_mm, 0.1_km, Level{1}}}};
+        std::vector<LineSegment> one_element{{{990_mm, 0.1_dm}, {1_mm, 0.1_km}}};
         EXPECT_NO_THROW(sortLineSegments(one_element));
         EXPECT_EQ(one_element.size(), 1);
         checkConnectivity(one_element);
 
         std::vector<LineSegment> pre_sorted{
-            {{12_cm, 4_cm, Level{-1}}, {5.1_cm, -0.1_dm, Level{-1}}},
-            {{5.1_cm, -0.1_dm, Level{-1}}, {-0.02_m, -20_mm, Level{-1}}},
-            {{-0.02_m, -20_mm, Level{-1}}, {-15_cm, 30_mm, Level{-1}}},
-            {{-15_cm, 30_mm, Level{-1}}, {12_cm, 4_cm, Level{-1}}}};
+            {{12_cm, 4_cm}, {5.1_cm, -0.1_dm}},
+            {{5.1_cm, -0.1_dm}, {-0.02_m, -20_mm}},
+            {{-0.02_m, -20_mm}, {-15_cm, 30_mm}},
+            {{-15_cm, 30_mm}, {12_cm, 4_cm}}};
         EXPECT_NO_THROW(sortLineSegments(pre_sorted));
         checkConnectivity(pre_sorted);
 
         std::vector<LineSegment> without_rotation{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{-10.8_cm, 31_dm, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {0.1_m, 0.5_m, Level{1}}},
+            {{3.1_m, 57_dm}, {1.1_m, 3_m}},
+            {{0.1_m, 0.5_m}, {3.1_m, 57_dm}},
+            {{-10.8_cm, 31_dm}, {-5.1_m, -2.4_m}},
+            {{1.1_m, 3_m}, {-10.8_cm, 31_dm}},
+            {{-5.1_m, -2.4_m}, {0.1_m, 0.5_m}},
         };
         EXPECT_NO_THROW(sortLineSegments(without_rotation));
         checkConnectivity(without_rotation);
 
         std::vector<LineSegment> with_rotation{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
+            {{3.1_m, 57_dm}, {1.1_m, 3_m}},
+            {{0.1_m, 0.5_m}, {3.1_m, 57_dm}},
+            {{-5.1_m, -2.4_m}, {-10.8_cm, 31_dm}},
+            {{1.1_m, 3_m}, {-10.8_cm, 31_dm}},
+            {{0.1_m, 0.5_m}, {-5.1_m, -2.4_m}},
         };
         EXPECT_NO_THROW(sortLineSegments(with_rotation));
         checkConnectivity(with_rotation);
@@ -64,31 +63,22 @@ TEST(GeometryHelper, sortLineSegments)
     // Not successful
     {
         std::vector<LineSegment> no_connection{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
+            {{3.1_m, 57_dm}, {1.1_m, 3_m}},
+            {{0.1_m, 0.5_m}, {3.1_m, 57_dm}},
+            {{1.1_m, 3_m}, {-10.8_cm, 31_dm}},
+            {{0.1_m, 0.5_m}, {-5.1_m, -2.4_m}},
         };
         EXPECT_THROW(sortLineSegments(no_connection), JPSGeometryException);
 
         std::vector<LineSegment> duplicate_line_segment{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
+            {{3.1_m, 57_dm}, {1.1_m, 3_m}},
+            {{0.1_m, 0.5_m}, {3.1_m, 57_dm}},
+            {{-5.1_m, -2.4_m}, {-10.8_cm, 31_dm}},
+            {{1.1_m, 3_m}, {-10.8_cm, 31_dm}},
+            {{0.1_m, 0.5_m}, {-5.1_m, -2.4_m}},
+            {{0.1_m, 0.5_m}, {-5.1_m, -2.4_m}},
         };
         EXPECT_THROW(sortLineSegments(duplicate_line_segment), JPSGeometryException);
-
-        std::vector<LineSegment> different_levels{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{2}}, {-5.1_m, -2.4_m, Level{2}}},
-        };
-        EXPECT_THROW(sortLineSegments(different_levels), JPSGeometryException); // NOLINTLINE
     }
 }
 
@@ -100,15 +90,15 @@ TEST(GeometryHelper, getPolygonCoordinates) // NOLINTLINE
     // Successful
     {
         std::vector<Coordinate> coordinates{
-            {-3.8_m, 2.5_m, Level{1}},
-            {-0.9_m, 1.2_m, Level{1}},
-            {1.1_m, 5.2_m, Level{1}},
-            {3.7_m, 3.9_m, Level{1}},
-            {5.3_m, 1.1_m, Level{1}},
-            {2.2_m, -.7_m, Level{1}},
-            {2.8_m, -3.6_m, Level{1}},
-            {1.9_m, -3.6_m, Level{1}},
-            {-4.2_m, 0.8_m, Level{1}},
+            {-3.8_m, 2.5_m},
+            {-0.9_m, 1.2_m},
+            {1.1_m, 5.2_m},
+            {3.7_m, 3.9_m},
+            {5.3_m, 1.1_m},
+            {2.2_m, -.7_m},
+            {2.8_m, -3.6_m},
+            {1.9_m, -3.6_m},
+            {-4.2_m, 0.8_m},
         };
 
         std::vector<LineSegment> without_rotation;
@@ -137,33 +127,25 @@ TEST(GeometryHelper, getPolygonCoordinates) // NOLINTLINE
         EXPECT_THROW(getPolygonCoordinates(empty), JPSGeometryException); // NOLINTLINE
 
         std::vector<LineSegment> less_than_three_elements{
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
+            {{0.1_m, 0.5_m}, {3.1_m, 57_dm}},
+            {{-5.1_m, -2.4_m}, {-10.8_cm, 31_dm}},
         };
         // NOLINTNEXTLINE
         EXPECT_THROW(getPolygonCoordinates(less_than_three_elements), JPSGeometryException);
 
-        std::vector<LineSegment> different_levels{
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{2}}, {-5.1_m, -2.4_m, Level{2}}},
-        };
-        EXPECT_THROW(getPolygonCoordinates(different_levels), JPSGeometryException); // NOLINTLINE
-
         std::vector<LineSegment> not_sortable{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {3.1_m, 57_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
+            {{3.1_m, 57_dm}, {1.1_m, 3_m}},
+            {{0.1_m, 0.5_m}, {3.1_m, 57_dm}},
+            {{1.1_m, 3_m}, {-10.8_cm, 31_dm}},
+            {{0.1_m, 0.5_m}, {-5.1_m, -2.4_m}},
         };
         EXPECT_THROW(getPolygonCoordinates(not_sortable), JPSGeometryException); // NOLINTLINE
 
         std::vector<LineSegment> not_closed{
-            {{3.1_m, 57_dm, Level{1}}, {1.1_m, 3_m, Level{1}}},
-            {{-5.1_m, -2.4_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{1.1_m, 3_m, Level{1}}, {-10.8_cm, 31_dm, Level{1}}},
-            {{0.1_m, 0.5_m, Level{1}}, {-5.1_m, -2.4_m, Level{1}}},
+            {{3.1_m, 57_dm}, {1.1_m, 3_m}},
+            {{-5.1_m, -2.4_m}, {-10.8_cm, 31_dm}},
+            {{1.1_m, 3_m}, {-10.8_cm, 31_dm}},
+            {{0.1_m, 0.5_m}, {-5.1_m, -2.4_m}},
         };
         EXPECT_THROW(getPolygonCoordinates(not_closed), JPSGeometryException); // NOLINTLINE
     }
@@ -175,15 +157,15 @@ TEST(GeometryHelper, checkPolygonEquality) // NOLINTLINE
     using namespace geometry;
 
     std::vector<Coordinate> reference_coordinates{
-        {-3.8_m, 2.5_m, Level{1}},
-        {-0.9_m, 1.2_m, Level{1}},
-        {1.1_m, 5.2_m, Level{1}},
-        {3.7_m, 3.9_m, Level{1}},
-        {5.3_m, 1.1_m, Level{1}},
-        {2.2_m, -.7_m, Level{1}},
-        {2.8_m, -3.6_m, Level{1}},
-        {1.9_m, -3.6_m, Level{1}},
-        {-4.2_m, 0.8_m, Level{1}},
+        {-3.8_m, 2.5_m},
+        {-0.9_m, 1.2_m},
+        {1.1_m, 5.2_m},
+        {3.7_m, 3.9_m},
+        {5.3_m, 1.1_m},
+        {2.2_m, -.7_m},
+        {2.8_m, -3.6_m},
+        {1.9_m, -3.6_m},
+        {-4.2_m, 0.8_m},
     };
 
     // same values
