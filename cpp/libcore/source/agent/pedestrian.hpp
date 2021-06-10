@@ -9,7 +9,7 @@ namespace jps
 struct Pedestrian {
 public:
     // NOLINTNEXTLINE
-    Coordinate pos{0_m, 0_m, jps::Level{1}};
+    Coordinate pos{0_m, 0_m};
 
     // NOLINTNEXTLINE
     const UniqueId<Pedestrian> id{};

@@ -1,6 +1,6 @@
 import pytest
 from jpscore import JPSGeometryException
-from jpscore.geometry import Coordinate, LengthUnit, Level, LineSegment, Units
+from jpscore.geometry import Coordinate, LengthUnit, LineSegment, Units
 
 
 class TestLineSegment:
@@ -11,60 +11,50 @@ class TestLineSegment:
                 Coordinate(
                     LengthUnit(0.1, Units.m),
                     LengthUnit(0.65, Units.m),
-                    Level(4),
                 ),
                 Coordinate(
                     LengthUnit(0.45, Units.m),
                     LengthUnit(61.1, Units.m),
-                    Level(4),
                 ),
             ),
             (
                 Coordinate(
                     LengthUnit(1.3, Units.m),
                     LengthUnit(-12.1, Units.m),
-                    Level(54),
                 ),
                 Coordinate(
                     LengthUnit(5.1, Units.m),
                     LengthUnit(-41.0, Units.m),
-                    Level(54),
                 ),
             ),
             (
                 Coordinate(
                     LengthUnit(45.1, Units.m),
                     LengthUnit(-45.11, Units.m),
-                    Level(-1),
                 ),
                 Coordinate(
                     LengthUnit(7.11, Units.m),
                     LengthUnit(45.1, Units.m),
-                    Level(-1),
                 ),
             ),
             (
                 Coordinate(
                     LengthUnit(-56.61, Units.m),
                     LengthUnit(1.34, Units.m),
-                    Level(0),
                 ),
                 Coordinate(
                     LengthUnit(-4.11, Units.m),
                     LengthUnit(7.0001, Units.m),
-                    Level(0),
                 ),
             ),
             (
                 Coordinate(
                     LengthUnit(-41.1111, Units.m),
                     LengthUnit(-324.11, Units.m),
-                    Level(-4),
                 ),
                 Coordinate(
                     LengthUnit(-41.0, Units.m),
                     LengthUnit(-320.11, Units.m),
-                    Level(-4),
                 ),
             ),
         ],
@@ -79,26 +69,12 @@ class TestLineSegment:
         [
             (
                 Coordinate(
-                    LengthUnit(0.1, Units.m),
-                    LengthUnit(0.65, Units.m),
-                    Level(4),
-                ),
-                Coordinate(
-                    LengthUnit(0.45, Units.m),
-                    LengthUnit(61.1, Units.m),
-                    Level(1),
-                ),
-            ),
-            (
-                Coordinate(
                     LengthUnit(1.1, Units.m),
                     LengthUnit(-0.1, Units.m),
-                    Level(0),
                 ),
                 Coordinate(
                     LengthUnit(1.1, Units.m),
                     LengthUnit(-0.1, Units.m),
-                    Level(0),
                 ),
             ),
         ],
@@ -114,48 +90,40 @@ class TestLineSegment:
                 Coordinate(
                     LengthUnit(0.1, Units.m),
                     LengthUnit(0.65, Units.m),
-                    Level(4),
                 ),
                 Coordinate(
                     LengthUnit(0.45, Units.m),
                     LengthUnit(61.1, Units.m),
-                    Level(4),
                 ),
             ),
             LineSegment(
                 Coordinate(
                     LengthUnit(36.1, Units.m),
                     LengthUnit(45.1, Units.m),
-                    Level(1),
                 ),
                 Coordinate(
                     LengthUnit(67.1, Units.m),
                     LengthUnit(56.1, Units.m),
-                    Level(1),
                 ),
             ),
             LineSegment(
                 Coordinate(
                     LengthUnit(-32.54, Units.m),
                     LengthUnit(-61.11, Units.m),
-                    Level(-4),
                 ),
                 Coordinate(
                     LengthUnit(-12.6, Units.m),
                     LengthUnit(-718.3, Units.m),
-                    Level(-4),
                 ),
             ),
             LineSegment(
                 Coordinate(
                     LengthUnit(0.1, Units.m),
                     LengthUnit(-56.1, Units.m),
-                    Level(0),
                 ),
                 Coordinate(
                     LengthUnit(-56.1, Units.m),
                     LengthUnit(0.1, Units.m),
-                    Level(0),
                 ),
             ),
         ],
@@ -177,24 +145,20 @@ class TestLineSegment:
                     Coordinate(
                         LengthUnit(0.1, Units.m),
                         LengthUnit(0.65, Units.m),
-                        Level(4),
                     ),
                     Coordinate(
                         LengthUnit(0.45, Units.m),
                         LengthUnit(61.1, Units.m),
-                        Level(4),
                     ),
                 ),
                 LineSegment(
                     Coordinate(
                         LengthUnit(0.1, Units.m),
                         LengthUnit(0.65, Units.m),
-                        Level(4),
                     ),
                     Coordinate(
                         LengthUnit(0.45, Units.m),
                         LengthUnit(61.1, Units.m),
-                        Level(4),
                     ),
                 ),
                 True,
@@ -204,24 +168,20 @@ class TestLineSegment:
                     Coordinate(
                         LengthUnit(4.145, Units.m),
                         LengthUnit(-3.1, Units.m),
-                        Level(-2),
                     ),
                     Coordinate(
                         LengthUnit(90.1, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(-2),
                     ),
                 ),
                 LineSegment(
                     Coordinate(
                         LengthUnit(90.1, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(-2),
                     ),
                     Coordinate(
                         LengthUnit(4.145, Units.m),
                         LengthUnit(-3.1, Units.m),
-                        Level(-2),
                     ),
                 ),
                 True,
@@ -231,24 +191,20 @@ class TestLineSegment:
                     Coordinate(
                         LengthUnit(-32.5, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(20),
                     ),
                     Coordinate(
                         LengthUnit(-41.1, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(20),
                     ),
                 ),
                 LineSegment(
                     Coordinate(
                         LengthUnit(-32.5, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(20),
                     ),
                     Coordinate(
                         LengthUnit(-41.1, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(20),
                     ),
                 ),
                 True,
@@ -258,51 +214,20 @@ class TestLineSegment:
                     Coordinate(
                         LengthUnit(34.5, Units.m),
                         LengthUnit(56.81, Units.m),
-                        Level(1),
                     ),
                     Coordinate(
                         LengthUnit(0.41, Units.m),
                         LengthUnit(90.1, Units.m),
-                        Level(1),
                     ),
                 ),
                 LineSegment(
                     Coordinate(
                         LengthUnit(0.001, Units.m),
                         LengthUnit(3.1, Units.m),
-                        Level(1),
                     ),
                     Coordinate(
                         LengthUnit(-41.1, Units.m),
                         LengthUnit(8.11, Units.m),
-                        Level(1),
-                    ),
-                ),
-                False,
-            ),
-            (
-                LineSegment(
-                    Coordinate(
-                        LengthUnit(-32.5, Units.m),
-                        LengthUnit(0.11, Units.m),
-                        Level(20),
-                    ),
-                    Coordinate(
-                        LengthUnit(-41.1, Units.m),
-                        LengthUnit(0.11, Units.m),
-                        Level(20),
-                    ),
-                ),
-                LineSegment(
-                    Coordinate(
-                        LengthUnit(-32.5, Units.m),
-                        LengthUnit(0.11, Units.m),
-                        Level(1),
-                    ),
-                    Coordinate(
-                        LengthUnit(-41.1, Units.m),
-                        LengthUnit(0.11, Units.m),
-                        Level(1),
                     ),
                 ),
                 False,
@@ -321,23 +246,19 @@ class TestLineSegment:
                     Coordinate(
                         LengthUnit(-32.5, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(20),
                     ),
                     Coordinate(
                         LengthUnit(-41.1, Units.m),
                         LengthUnit(0.11, Units.m),
-                        Level(20),
                     ),
                 ),
                 Coordinate(
                     LengthUnit(45.1, Units.m),
                     LengthUnit(1.1, Units.m),
-                    Level(20),
                 ),
                 Coordinate(
                     LengthUnit(-41.1, Units.m),
                     LengthUnit(45.1, Units.m),
-                    Level(20),
                 ),
             ),
             (
@@ -345,23 +266,19 @@ class TestLineSegment:
                     Coordinate(
                         LengthUnit(0.1, Units.m),
                         LengthUnit(0.65, Units.m),
-                        Level(4),
                     ),
                     Coordinate(
                         LengthUnit(0.12, Units.m),
                         LengthUnit(61.1, Units.m),
-                        Level(4),
                     ),
                 ),
                 Coordinate(
                     LengthUnit(234.1, Units.m),
                     LengthUnit(0.11, Units.m),
-                    Level(20),
                 ),
                 Coordinate(
                     LengthUnit(-41.1, Units.m),
                     LengthUnit(0.11, Units.m),
-                    Level(20),
                 ),
             ),
         ],

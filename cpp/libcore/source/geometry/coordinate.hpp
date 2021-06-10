@@ -12,9 +12,8 @@ namespace jps
 struct Coordinate {
     LengthUnit x; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
     LengthUnit y; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
-    Level lvl;    // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
 
-    Coordinate(LengthUnit p_x, LengthUnit p_y, Level p_lvl) : x(p_x), y(p_y), lvl(p_lvl){};
+    Coordinate(LengthUnit p_x, LengthUnit p_y) : x(p_x), y(p_y){};
 
     auto operator==(Coordinate const & p_other) const noexcept -> bool;
     auto operator!=(Coordinate const & p_other) const noexcept -> bool;
@@ -39,12 +38,7 @@ struct formatter<jps::Coordinate> {
     template <typename FormatContext>
     auto format(jps::Coordinate const & p_coordinate, FormatContext & p_ctx)
     {
-        return format_to(
-            p_ctx.out(),
-            "COORDINATE: ({}, {}) -- {}",
-            p_coordinate.x,
-            p_coordinate.y,
-            p_coordinate.lvl);
+        return format_to(p_ctx.out(), "COORDINATE: ({}, {})", p_coordinate.x, p_coordinate.y);
     }
 };
 } // namespace fmt
