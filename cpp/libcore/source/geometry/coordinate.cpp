@@ -4,7 +4,7 @@ namespace jps
 {
 auto Coordinate::operator==(const jps::Coordinate & p_other) const noexcept -> bool
 {
-    return x == p_other.x && y == p_other.y && lvl == p_other.lvl;
+    return x == p_other.x && y == p_other.y;
 }
 
 auto Coordinate::operator!=(const jps::Coordinate & p_other) const noexcept -> bool
@@ -14,12 +14,12 @@ auto Coordinate::operator!=(const jps::Coordinate & p_other) const noexcept -> b
 
 auto Coordinate::operator+(SpatialVector const & p_displacement) const noexcept -> Coordinate
 {
-    return Coordinate{this->x + p_displacement.x, this->y + p_displacement.y, this->lvl};
+    return Coordinate{this->x + p_displacement.x, this->y + p_displacement.y};
 }
 
 auto Coordinate::operator-(SpatialVector const & p_displacement) const noexcept -> Coordinate
 {
-    return Coordinate{this->x - p_displacement.x, this->y - p_displacement.y, this->lvl};
+    return Coordinate{this->x - p_displacement.x, this->y - p_displacement.y};
 }
 
 auto Coordinate::operator+=(SpatialVector const & p_displacement) noexcept -> Coordinate &
