@@ -1,50 +1,41 @@
 #include "util/identifiable.hpp"
 
+#include <fmt/format.h>
 #include <gtest/gtest.h>
 #include <memory>
 
+using namespace fmt::literals;
+using ::jps::UniqueId;
 
-TEST(Identifiable, EmptyConstructed)
+TEST(UniqueId, DefaultConstructedIDsAreNotIdentical)
 {
-    class Identified1 : public jps::Identifiable<Identified1>
-    {
-    };
-
-    Identified1 obj1;
-    // UID should start with 0
-    EXPECT_EQ(obj1.getID(), 0);
-
-    // new object should get next UID
-    Identified1 obj2;
-    EXPECT_EQ(obj1.getID(), 0);
-    EXPECT_EQ(obj2.getID(), 1);
-
-    // dynamic allocated gets new UID
-    auto obj_ptr = std::make_unique<Identified1>();
-    EXPECT_EQ(obj1.getID(), 0);
-    EXPECT_EQ(obj2.getID(), 1);
-    EXPECT_EQ(obj_ptr->getID(), 2);
-
-    // gaps of UIDs should not be filled
-    obj_ptr = nullptr;
-    Identified1 obj3;
-    EXPECT_EQ(obj1.getID(), 0);
-    EXPECT_EQ(obj2.getID(), 1);
-    EXPECT_EQ(obj3.getID(), 3);
+    const auto first  = jps::UniqueId<void>{};
+    const auto second = jps::UniqueId<void>{};
+    const auto third  = jps::UniqueId<void>{};
+    ASSERT_NE(first, second);
+    ASSERT_NE(first, third);
+    ASSERT_NE(second, third);
 }
 
-TEST(Identifiable, Move)
+TEST(UniqueId, CanBeMovedAndCopied)
 {
-    // Moving keeps the UID
+    auto first               = jps::UniqueId<void>{};
+    const auto copy_of_first = first;
+    const auto second        = jps::UniqueId<void>{};
+    ASSERT_NE(first, second);
+    ASSERT_NE(copy_of_first, second);
+    ASSERT_EQ(first, copy_of_first);
+    const auto moved_into{std::move(first)};
+    ASSERT_NE(moved_into, second);
+    ASSERT_NE(copy_of_first, second);
+    ASSERT_EQ(moved_into, copy_of_first);
+}
 
-    class Identified1 : public jps::Identifiable<Identified1>
-    {
+TEST(UniqueId, CanBeFormatted)
+{
+    // create this type to ensure the internal counter of id creation for UniqueId<Foo> starts at 0;
+    struct Foo {
     };
-
-
-    Identified1 obj1;
-    EXPECT_EQ(obj1.getID(), 0);
-
-    Identified1 obj2{std::move(obj1)};
-    EXPECT_EQ(obj2.getID(), 0);
+    jps::UniqueId<Foo> id;
+    ASSERT_EQ("1", "{}"_format(id));
 }

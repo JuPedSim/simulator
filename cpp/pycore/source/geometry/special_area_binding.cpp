@@ -6,9 +6,7 @@
 void bind_special_area(pybind11::module_ & m)
 {
     pybind11::class_<jps::SpecialArea>(m, "SpecialArea")
-        .def(pybind11::init<std::uint32_t, jps::Area>())
-        .def_property_readonly(
-            "external_id", &jps::SpecialArea::getExternalID, pybind11::return_value_policy::copy)
+        .def(pybind11::init<jps::Area>())
         .def_property_readonly("id", &jps::SpecialArea::getID, pybind11::return_value_policy::copy)
         .def_property_readonly(
             "area", &jps::SpecialArea::getArea, pybind11::return_value_policy::copy)
