@@ -5,17 +5,6 @@
 
 namespace jps
 {
-auto World::addLineSegment(const Level & p_level, const LineSegment & p_segment) -> void
-{
-    m_level_to_level_storage.at(p_level).m_line_segments.push_back(p_segment);
-}
-
-auto World::addSpecialArea(const Level & p_level, const SpecialArea & p_area) -> void
-{
-    m_level_to_level_storage.at(p_level).m_special_areas.push_back(p_area);
-}
-
-
 auto World::addLevel(Level const & p_level) -> LevelStorage &
 {
     if(m_level_to_level_storage.find(p_level) != m_level_to_level_storage.end()) {

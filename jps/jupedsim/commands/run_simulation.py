@@ -75,6 +75,5 @@ class RunSimulationCommand:
                     Coordinate(
                         LengthUnit(event.event.position[0], Units.m),
                         LengthUnit(event.event.position[1], Units.m),
-                        Level(event.event.level),
                     )
                 )
