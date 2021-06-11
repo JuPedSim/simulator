@@ -1,11 +1,5 @@
 import pytest
-from jpscore.geometry import (
-    Area,
-    Coordinate,
-    LengthUnit,
-    SpecialArea,
-    Units,
-)
+from jpscore.geometry import Area, Coordinate, LengthUnit, SpecialArea, Units
 
 
 class TestSpecialArea:

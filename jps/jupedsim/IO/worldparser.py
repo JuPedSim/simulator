@@ -19,10 +19,9 @@ class WorldParser:
         """
         self.m_input_file = p_input_file
 
-    def parse(self, world: geometry.World):
+    def parse(self, world: geometry.World) -> None:
         """
         Parsing header information and entities on different levels. In case of valid file format Lines and SpecialAreas are parsed.
-        :return: geometry.World object
         :raises IOError, ezdxf.DXFStructureError: if file not found or if invalid dxf format
         """
 
@@ -30,28 +29,22 @@ class WorldParser:
         try:
             doc = ezdxf.readfile(str(self.m_input_file))
         except IOError:
-            log_error(f"{str(self.m_input_file)} not found")
-            return
+            raise JPSGeometryException(f"{str(self.m_input_file)} not found")
         except ezdxf.DXFStructureError:
-            # TODO throw exception. invalid dxf file.
-            log_error("Invalid dxf file format")
-            return
+            raise JPSGeometryException("Invalid dxf file format")
 
         # create modelspace
         self.m_msp = doc.modelspace()
 
         # parse header variables
         WorldParser.checkHeader(doc)
-        self.m_unit = WorldParser.readLengthUnitType(doc)
+        unit = WorldParser.readLengthUnitType(doc)
 
         # build World
         log_info("Building world ...")
-        self.m_jps_world = world
 
         # TODO check if the other parsing functions can be static
-        self.__parseLevels()
-
-        return self.m_jps_world
+        self.__parseLevels(world, unit)
 
     @staticmethod
     def checkMetricUnit(doc: ezdxf.document.Drawing) -> bool:
@@ -121,8 +114,9 @@ class WorldParser:
         if not WorldParser.checkDecimalUnit(doc):
             raise JPSGeometryException("Only decimal format is supported.")
 
-    def __parseCoordinates(
-        self, line: str, p_level: geometry.Level
+    @staticmethod
+    def parseCoordinates(
+        line: str, unit: geometry.Units
     ) -> List[geometry.Coordinate]:
         """
         Method parses a dxf line with coordinates to a list
@@ -131,20 +125,20 @@ class WorldParser:
         """
         start_coord_tmp = re.split(",", str(line.dxf.start))
         start_coord = geometry.Coordinate(
-            geometry.LengthUnit(float(start_coord_tmp[0][1:]), self.m_unit),
-            geometry.LengthUnit(float(start_coord_tmp[1]), self.m_unit),
-            p_level,
+            geometry.LengthUnit(float(start_coord_tmp[0][1:]), unit),
+            geometry.LengthUnit(float(start_coord_tmp[1]), unit),
         )
         end_coord_tmp = re.split(",", str(line.dxf.end))
         end_coord = geometry.Coordinate(
-            geometry.LengthUnit(float(end_coord_tmp[0][1:]), self.m_unit),
-            geometry.LengthUnit(float(end_coord_tmp[1]), self.m_unit),
-            p_level,
+            geometry.LengthUnit(float(end_coord_tmp[0][1:]), unit),
+            geometry.LengthUnit(float(end_coord_tmp[1]), unit),
         )
 
         return [start_coord, end_coord]
 
-    def __parseLevels(self) -> None:
+    def __parseLevels(
+        self, world: geometry.World, unit: geometry.Units
+    ) -> None:
         """
         Method initiates parsing of Lines and Areas for each level provided in the dxf file
         :return:
@@ -152,13 +146,17 @@ class WorldParser:
 
         # TODO: loop over several layer, error handling
         # TODO: extract Level from layer name
-        current_level = geometry.Level(0)
-        self.__parseLineSegment("Level0", current_level)
-        self.__parseSpecialAreas("Level0_SpecialAreas", current_level)
+        level_id = geometry.Level(0)
+        cur_level = world.addLevel(level_id)
+        self.__parseLineSegment("Level0", cur_level, unit)
+        self.__parseSpecialAreas("Level0_SpecialAreas", cur_level, unit)
         # TODO: parse polylines
 
     def __parseLineSegment(
-        self, p_layer_name: str, p_level: geometry.Level
+        self,
+        p_layer_name: str,
+        p_level: geometry.LevelStorage,
+        unit: geometry.Units,
     ) -> None:
         """
         Method parses dxf entities of type LINE that represent a LineSegment at the given layer. Corresponding LineSegments are added to the World.
@@ -167,9 +165,8 @@ class WorldParser:
         :return:
         """
         for line in self.m_msp.query('LINE[layer=="' + p_layer_name + '"]'):
-            coords = WorldParser.parseCoordinates(line, p_level)
-            self.m_jps_world.addLineSegment(
-                p_level,
+            coords = WorldParser.parseCoordinates(line, unit)
+            p_level.addLineSegment(
                 geometry.LineSegment(
                     coords[0],
                     coords[1],
@@ -177,7 +174,10 @@ class WorldParser:
             )
 
     def __parseSpecialAreas(
-        self, p_layer: str, p_level: geometry.Level
+        self,
+        p_layer: str,
+        p_level: geometry.LevelStorage,
+        unit: geometry.Units,
     ) -> None:
         """
         Method parses dxf entities of type LINE that represent Special Areas at the given layer. Corresponding group of LineSegments are added to the World.
@@ -193,7 +193,7 @@ class WorldParser:
                 color_to_segments[line.dxf.color] = []
 
             # append segment to list
-            coords = WorldParser.parseCoordinates(line, p_level)
+            coords = WorldParser.parseCoordinates(line, unit)
             color_to_segments[line.dxf.color].append(
                 geometry.LineSegment(
                     coords[0],
