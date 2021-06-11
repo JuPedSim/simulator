@@ -3,6 +3,7 @@
 #include "geometry/coordinate_binding.hpp"
 #include "geometry/length_unit_binding.hpp"
 #include "geometry/level_binding.hpp"
+#include "geometry/level_storage_binding.hpp"
 #include "geometry/line_segment_binding.hpp"
 #include "geometry/spatial_vector_binding.hpp"
 #include "geometry/special_area_binding.hpp"
@@ -32,6 +33,7 @@ PYBIND11_MODULE(jpscore, m)
     bind_spatial_vector(m_geometry);
     bind_special_area(m_geometry);
     bind_world(m_geometry);
+    bind_level_storage(m_geometry);
 
     /// MODULE jpscore
     bind_agent(m);

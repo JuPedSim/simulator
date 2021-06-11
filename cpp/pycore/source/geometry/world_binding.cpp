@@ -10,6 +10,5 @@ void bind_world(pybind11::module_ & m)
 {
     pybind11::class_<jps::World>(m, "World")
         .def(pybind11::init<>())
-        .def("addLineSegment", &jps::World::addLineSegment, "level"_a, "segment"_a)
-        .def("addSpecialArea", &jps::World::addSpecialArea, "level"_a, "area"_a);
+        .def("addLevel", &jps::World::addLevel, "level"_a);
 }

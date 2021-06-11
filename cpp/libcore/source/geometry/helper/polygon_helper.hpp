@@ -6,9 +6,7 @@
 #include <optional>
 #include <vector>
 
-namespace jps
-{
-namespace geometry
+namespace jps::geometry
 {
 /// @brief Sorts \p p_other, to create a line chain.
 ///
@@ -52,5 +50,4 @@ auto getPolygonCoordinates(std::vector<LineSegment> & p_line_segments) -> std::v
 auto checkPolygonEquality(
     std::vector<Coordinate> const & p_polygon,
     std::vector<Coordinate> const & p_other) -> bool;
-} // namespace geometry
-} // namespace jps
+} // namespace jps::geometry
