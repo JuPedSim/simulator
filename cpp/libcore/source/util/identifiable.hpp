@@ -54,7 +54,7 @@ public:
         return m_value != p_other.m_value;
     };
 
-    friend class fmt::formatter<UniqueId<Tag>>;
+    friend struct fmt::formatter<UniqueId<Tag>>;
 };
 } // namespace jps
 

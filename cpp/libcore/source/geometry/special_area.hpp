@@ -40,7 +40,7 @@ public:
 
     auto getID() const noexcept -> UniqueId<SpecialArea> { return m_id; }
 
-    friend class fmt::formatter<SpecialArea>;
+    friend struct fmt::formatter<SpecialArea>;
 };
 } // namespace jps
 
