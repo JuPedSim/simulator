@@ -2,7 +2,7 @@ add_executable(test-core
     test_simulation.cpp
     test_dependency_availability.cpp
 
-    util/test_identifiable.cpp
+    util/test_unique_id.cpp
     util/test_simulation_clock.cpp
 
     geometry/test_area.cpp

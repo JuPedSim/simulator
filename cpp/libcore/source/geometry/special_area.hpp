@@ -1,7 +1,7 @@
 #pragma once
 
 #include "area.hpp"
-#include "util/identifiable.hpp"
+#include "util/unique_id.hpp"
 
 #include <cstdint>
 #include <fmt/core.h>

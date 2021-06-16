@@ -28,7 +28,7 @@ add_library(core
 
     math/int_pow.hpp
 
-    util/identifiable.hpp
+    util/unique_id.hpp
     util/jpsexception.hpp
     util/simulation_clock.hpp
 
@@ -40,9 +40,6 @@ add_library(core
 
     tactical/result.hpp
     tactical/tactical.hpp
-
-    util/identifiable.hpp
-    util/jpsexception.hpp
 )
 
 target_include_directories(core
