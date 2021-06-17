@@ -6,7 +6,7 @@ def test_agent_interface_has_bindings():
     Make sure that all methods that we want to expose are actually callable.
     """
     import jpscore
-    from jpscore.geometry import Coordinate, Level, LengthUnit, Units
+    from jpscore.geometry import Coordinate, LengthUnit, Level, Units
 
     agent = jpscore.Agent(
         Coordinate(

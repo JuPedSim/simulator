@@ -48,6 +48,11 @@ auto Simulation::addAgent(const Coordinate & p_coordinate) -> void
     m_agents.emplace_back(p_coordinate);
 }
 
+auto Simulation::getAgents() const -> const std::vector<Agent> &
+{
+    return m_agents;
+}
+
 auto Simulation::getWorld() -> World &
 {
     return *m_world;
