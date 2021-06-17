@@ -36,6 +36,8 @@ public:
 
     auto getWorld() -> World &;
 
+    auto getAgents() const -> const std::vector<Agent> &;
+
 private:
     std::unique_ptr<World> m_world;
     std::vector<Agent> m_agents{};

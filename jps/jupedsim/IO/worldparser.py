@@ -152,7 +152,7 @@ class WorldParser:
 
         # TODO: loop over several layer, error handling
         # TODO: extract Level from layer name
-        current_level = geometry.Level()
+        current_level = geometry.Level(0)
         self.__parseLineSegment("Level0", current_level)
         self.__parseSpecialAreas("Level0_SpecialAreas", current_level)
         # TODO: parse polylines
