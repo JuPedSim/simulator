@@ -1,9 +1,9 @@
 #include "simulation_binding.hpp"
 
-#include "geometry/world.hpp"
-
+#include <geometry/world.hpp>
 #include <memory>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #include <simulation.hpp>
 
 void bind_simulation(pybind11::module_ & m)
@@ -16,5 +16,9 @@ void bind_simulation(pybind11::module_ & m)
         .def(
             "get_world",
             &jps::Simulation::getWorld,
+            pybind11::return_value_policy::reference_internal)
+        .def_property_readonly(
+            "agents",
+            &jps::Simulation::getAgents,
             pybind11::return_value_policy::reference_internal);
 }

@@ -15,9 +15,7 @@ void bind_unique_id(pybind11::module_ & m)
         .def(pybind11::detail::self != pybind11::detail::self)
         .def(
             "__str__",
-            [](const jps::UniqueId<jps::Agent> & id) {
-                return fmt::format(FMT_STRING("{}"), id);
-            })
+            [](const jps::UniqueId<jps::Agent> & id) { return fmt::format(FMT_STRING("{}"), id); })
         .def("__repr__", [](const jps::UniqueId<jps::Agent> & id) {
             return fmt::format(FMT_STRING("{}"), id);
         });
