@@ -42,7 +42,7 @@ public:
 
     ~UniqueId() noexcept = default;
 
-    auto getID() const noexcept -> unsigned int { return m_value; }
+    auto getID() const noexcept -> Integer { return m_value; }
 
     auto operator==(const UniqueId & p_other) const noexcept -> bool
     {
