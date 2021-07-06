@@ -34,6 +34,8 @@ add_library(core
 
     operational/operational.hpp
     operational/result.hpp
+    operational/velocity_model.hpp
+    operational/velocity_model.cpp
 
     strategic/result.hpp
     strategic/strategic.hpp
