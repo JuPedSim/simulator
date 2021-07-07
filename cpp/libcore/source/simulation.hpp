@@ -2,9 +2,9 @@
 
 #include "agent/pedestrian.hpp"
 #include "geometry/coordinate.hpp"
+#include "geometry/level.hpp"
 #include "geometry/world.hpp"
 #include "operational/operational.hpp"
-#include "simulation_data.hpp"
 #include "util/simulation_clock.hpp"
 
 #include <memory>
@@ -32,7 +32,7 @@ public:
 
     auto computeNextStep() -> void;
 
-    auto addAgent(const Coordinate & p_coordinate) -> void;
+    auto addAgent(Coordinate const & p_coordinate, Level p_level) -> void;
 
     auto getWorld() -> World &;
 
@@ -40,10 +40,8 @@ public:
 
 private:
     std::unique_ptr<World> m_world;
-    std::vector<Agent> m_agents{};
-    std::vector<OperationalModelResult> m_operational_results{};
-    // NOLINTNEXTLINE
-    // SimulationClock m_simulation_clock{};
+    // NOLINTNEXTLINE[cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]
+    SimulationClock m_simulation_clock{10, std::chrono::milliseconds{10}};
 };
 
 } // namespace jps
