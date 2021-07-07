@@ -148,6 +148,7 @@ class WorldParser:
         # TODO: extract Level from layer name
         level_id = geometry.Level(0)
         cur_level = world.addLevel(level_id)
+        log_debug(f"Parsing {level_id}.")
         self.__parseLineSegment("Level0", cur_level, unit)
         self.__parseSpecialAreas("Level0_SpecialAreas", cur_level, unit)
         # TODO: parse polylines
@@ -166,12 +167,12 @@ class WorldParser:
         """
         for line in self.m_msp.query('LINE[layer=="' + p_layer_name + '"]'):
             coords = WorldParser.parseCoordinates(line, unit)
-            p_level.addLineSegment(
-                geometry.LineSegment(
-                    coords[0],
-                    coords[1],
-                ),
+            line_segment = geometry.LineSegment(
+                coords[0],
+                coords[1],
             )
+            log_debug(f"Adding {line_segment} to the World.")
+            p_level.addLineSegment(line_segment)
 
     def __parseSpecialAreas(
         self,
@@ -203,6 +204,6 @@ class WorldParser:
 
         # add to world builder
         for color in color_to_segments:
-            log_warning("not yet implemented")
+            log_warning("Adding SpecialAreas is not yet implemented")
             # TODO pybind for area-constructor with LineSegments
             # self._jps_world.addSpecialArea(p_level, geometry.SpecialArea(geometry.Area(color_to_segments[color]),int(color)))
