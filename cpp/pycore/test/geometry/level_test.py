@@ -16,7 +16,7 @@ class TestLevel:
     )
     def test_constructor(self, level_id, reference):
         level = Level(level_id)
-        assert level.id() == level_id
+        assert level.id == level_id
         assert level == reference
 
     @pytest.mark.parametrize("level_id", ["str", 12.2, [10, 10]])

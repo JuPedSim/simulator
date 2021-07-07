@@ -7,6 +7,9 @@ pybind11_add_module(jpscore
     logging_binding.hpp
     logging_binding.cpp
 
+    agent/agent_binding.hpp
+    agent/agent_binding.cpp
+
     geometry/area_binding.hpp
     geometry/area_binding.cpp
     geometry/coordinate_binding.hpp
@@ -28,7 +31,8 @@ pybind11_add_module(jpscore
     util/jpsexception_binding.cpp
     util/simulation_clock_binding.hpp
     util/simulation_clock_binding.cpp
-
+    util/unique_id_binding.hpp
+    util/unique_id_binding.cpp
 )
 
 target_link_libraries(jpscore

@@ -45,7 +45,12 @@ auto Simulation::addAgent(const Coordinate & p_coordinate) -> void
     // m_agents.emplace_back(p_coordinate);
     // but requires C++20 to fix the missing aggregate initializaition from paretheses
     // otherwise we have to provide a CTOR to the struct
-    m_agents.push_back({p_coordinate});
+    m_agents.emplace_back(p_coordinate);
+}
+
+auto Simulation::getAgents() const -> const std::vector<Agent> &
+{
+    return m_agents;
 }
 
 auto Simulation::getWorld() -> World &

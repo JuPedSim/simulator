@@ -1,3 +1,4 @@
+#include "agent/agent_binding.hpp"
 #include "geometry/area_binding.hpp"
 #include "geometry/coordinate_binding.hpp"
 #include "geometry/length_unit_binding.hpp"
@@ -10,17 +11,13 @@
 #include "simulation_binding.hpp"
 #include "util/jpsexception_binding.hpp"
 #include "util/simulation_clock_binding.hpp"
+#include "util/unique_id_binding.hpp"
 
 #include <pybind11/pybind11.h>
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 PYBIND11_MODULE(jpscore, m)
 {
-    /// MODULE jpscore
-    bind_simulation(m);
-    bind_jpsexception(m);
-    bind_simulation_clock(m);
-
     /// SUB MODULE logging
     auto m_logging = m.def_submodule("logging");
     bind_logging(m_logging);
@@ -35,4 +32,11 @@ PYBIND11_MODULE(jpscore, m)
     bind_spatial_vector(m_geometry);
     bind_special_area(m_geometry);
     bind_world(m_geometry);
+
+    /// MODULE jpscore
+    bind_agent(m);
+    bind_jpsexception(m);
+    bind_simulation_clock(m);
+    bind_simulation(m);
+    bind_unique_id(m);
 }
