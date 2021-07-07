@@ -13,7 +13,8 @@ namespace jps
 class World
 {
 private:
-    std::unordered_map<Level, LevelStorage> m_level_to_level_storage;
+    using LevelStorageContainer = std::unordered_map<Level, LevelStorage>;
+    LevelStorageContainer m_level_to_level_storage;
 
 public:
     World()  = default;
@@ -30,5 +31,7 @@ public:
     auto addLevel(Level const & p_level) -> LevelStorage &;
     auto getLevel(Level const & p_level) -> LevelStorage &;
     auto getLevel(Level const & p_level) const -> LevelStorage const &;
+    auto getLevels() -> LevelStorageContainer & { return m_level_to_level_storage; };
+    auto getLevels() const -> LevelStorageContainer const & { return m_level_to_level_storage; };
 };
 } // namespace jps

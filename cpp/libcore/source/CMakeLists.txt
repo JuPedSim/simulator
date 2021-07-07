@@ -3,7 +3,6 @@ add_library(core
     log.hpp
     simulation.cpp
     simulation.hpp
-    simulation_data.hpp
 
     agent/agent.hpp
     agent/pedestrian.hpp
