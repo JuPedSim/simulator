@@ -7,6 +7,7 @@
 #include <deque>
 #include <functional>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace jps
@@ -16,6 +17,7 @@ class NeighborhoodSearch
     using AgentRef = std::reference_wrapper<Agent const>;
     using Agents   = std::deque<AgentRef>;
 
+    // TODO replace with Level when #72 is merged
     using LevelAlias = std::int32_t;
 
 private:
