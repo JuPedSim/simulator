@@ -16,7 +16,7 @@ auto LevelStorage::addAgent(Coordinate const & p_coordinate) -> void
 {
     // TODO (kkz) This can be changed to
     // m_agents.emplace_back(p_coordinate);
-    // but requires C++20 to fix the missing aggregate initializaition from paretheses
+    // but requires C++20 to fix the missing aggregate initialization from parentheses
     // otherwise we have to provide a CTOR to the struct
     m_agents.push_back({p_coordinate});
 }
