@@ -25,16 +25,21 @@ auto Simulation::computeNextStep() -> void
     static const DummyTacticalModel tactical_model{};
     static const DummyStrategicModel strategic_model{};
 
+    std::unordered_map<Level, std::vector<OperationalModelResult>> level_to_operational_results{};
     for(auto & ls : m_world->getLevels()) {
-        std::vector<OperationalModelResult> m_operational_results{};
+        std::vector<OperationalModelResult> operational_results{};
         for(auto const & agent : ls.second.getAgents()) {
             auto strategic_result = strategic_model.computeStep(*this, agent);
             auto tactical_result  = tactical_model.computeStep(*this, strategic_result, agent);
-            m_operational_results.emplace_back(
+            operational_results.emplace_back(
                 operational_model.computeStep(*this, tactical_result, agent));
         }
-        auto res_iter = m_operational_results.begin();
-        for(auto & agent : ls.second.getAgents()) {
+        level_to_operational_results.emplace(ls.first, operational_results);
+    }
+
+    for(auto const & [lvl, operational_results] : level_to_operational_results) {
+        auto res_iter = operational_results.begin();
+        for(auto & agent : m_world->getLevelStorage(lvl).getAgents()) {
             agent.pos += *res_iter++;
         }
     }
@@ -42,7 +47,7 @@ auto Simulation::computeNextStep() -> void
 
 auto Simulation::addAgent(const Coordinate & p_coordinate, Level p_level) -> void
 {
-    m_world->getLevel(p_level).addAgent(p_coordinate);
+    m_world->getLevelStorage(p_level).addAgent(p_coordinate);
 }
 
 auto Simulation::getWorld() -> World &

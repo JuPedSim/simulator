@@ -28,10 +28,11 @@ public:
 
     auto addLineSegment(Level const & p_level, LineSegment const & p_segment) -> void;
     auto addSpecialArea(Level const & p_level, SpecialArea const & p_area) -> void;
-    auto addLevel(Level const & p_level) -> LevelStorage &;
-    auto getLevel(Level const & p_level) -> LevelStorage &;
-    auto getLevel(Level const & p_level) const -> LevelStorage const &;
-    auto getLevels() -> LevelStorageContainer & { return m_level_to_level_storage; };
-    auto getLevels() const -> LevelStorageContainer const & { return m_level_to_level_storage; };
+    auto addLevelStorage(Level const & p_level) -> LevelStorage &;
+    auto getLevelStorage(Level const & p_level) -> LevelStorage &;
+    auto getLevelStorage(Level const & p_level) const -> LevelStorage const &;
+    auto getLevelStorages() -> LevelStorageContainer & { return m_level_to_level_storage; };
+    auto getLevelStorages() const -> LevelStorageContainer const & { return m_level_to_level_storage; };
 };
+
 } // namespace jps

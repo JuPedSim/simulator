@@ -5,7 +5,7 @@
 
 namespace jps
 {
-auto World::addLevel(Level const & p_level) -> LevelStorage &
+auto World::addLevelStorage(Level const & p_level) -> LevelStorage &
 {
     if(m_level_to_level_storage.find(p_level) != m_level_to_level_storage.end()) {
         throw JPSGeometryException(
@@ -13,11 +13,11 @@ auto World::addLevel(Level const & p_level) -> LevelStorage &
     }
     return m_level_to_level_storage[p_level];
 }
-auto World::getLevel(Level const & p_level) -> LevelStorage &
+auto World::getLevelStorage(Level const & p_level) -> LevelStorage &
 {
     return m_level_to_level_storage.at(p_level);
 }
-auto World::getLevel(Level const & p_level) const -> LevelStorage const &
+auto World::getLevelStorage(Level const & p_level) const -> LevelStorage const &
 {
     return m_level_to_level_storage.at(p_level);
 }
