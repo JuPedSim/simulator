@@ -36,8 +36,6 @@ public:
 
     auto getWorld() -> World &;
 
-    auto getAgents() const -> const std::vector<Agent> &;
-
 private:
     std::unique_ptr<World> m_world;
     // NOLINTNEXTLINE[cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers]

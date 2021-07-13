@@ -32,7 +32,12 @@ public:
     auto getLevelStorage(Level const & p_level) -> LevelStorage &;
     auto getLevelStorage(Level const & p_level) const -> LevelStorage const &;
     auto getLevelStorages() -> LevelStorageContainer & { return m_level_to_level_storage; };
-    auto getLevelStorages() const -> LevelStorageContainer const & { return m_level_to_level_storage; };
+    auto getLevelStorages() const -> LevelStorageContainer const &
+    {
+        return m_level_to_level_storage;
+    };
+
+    auto getAgents() -> std::vector<Agent>;
 };
 
 } // namespace jps
