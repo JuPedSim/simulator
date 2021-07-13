@@ -26,7 +26,7 @@ auto Simulation::computeNextStep() -> void
     static const DummyStrategicModel strategic_model{};
 
     std::unordered_map<Level, std::vector<OperationalModelResult>> level_to_operational_results{};
-    for(auto & ls : m_world->getLevels()) {
+    for(auto & ls : m_world->getLevelStorages()) {
         std::vector<OperationalModelResult> operational_results{};
         for(auto const & agent : ls.second.getAgents()) {
             auto strategic_result = strategic_model.computeStep(*this, agent);

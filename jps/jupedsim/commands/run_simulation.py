@@ -40,7 +40,7 @@ class RunSimulationCommand:
         self.simulation = Simulation()
         self.events = deque(read_events(self.simulation_files.events_json))
         dxf_parser = WorldParser(self.simulation_files.world_dxf)
-        dxf_parser.parse(self.simulation.get_world())
+        dxf_parser.parse(self.simulation.world)
         self.trajectory_writer = SimpleTrajectoryWriter
 
         self.trajectory_writer.write_header(
@@ -56,7 +56,7 @@ class RunSimulationCommand:
             self.trajectory_writer.write_trajectory(
                 self.simulation_files.trajctory_out,
                 iteration,
-                self.simulation.agents,
+                self.simulation.world.agents,
             )
         return 0
 
