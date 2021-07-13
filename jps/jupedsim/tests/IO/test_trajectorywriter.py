@@ -2,7 +2,7 @@ import re
 
 import pytest
 from jpscore import Agent, JPSGeometryException, Simulation
-from jpscore.geometry import Coordinate, LengthUnit, Level, Units
+from jpscore.geometry import Coordinate, LengthUnit, Units
 from jupedsim.IO.trajectorywriter import (
     SimpleTrajectoryWriter,
     TrajectoryWriter,
@@ -52,16 +52,10 @@ def test_simpletrajectorywriter_writes_header(tmp_path):
         [],
         [
             Agent(
-                Coordinate(
-                    LengthUnit(0.1, Units.m),
-                    LengthUnit(0, Units.m),
-                    Level(-12),
-                )
+                Coordinate(LengthUnit(0.1, Units.m), LengthUnit(0, Units.m))
             ),
             Agent(
-                Coordinate(
-                    LengthUnit(21, Units.m), LengthUnit(12, Units.m), Level(1)
-                )
+                Coordinate(LengthUnit(21, Units.m), LengthUnit(12, Units.m))
             ),
         ],
     ],
@@ -85,16 +79,10 @@ def test_simpletrajectorywriter_writes_trajectories(tmp_path, agents):
         [],
         [
             Agent(
-                Coordinate(
-                    LengthUnit(0.1, Units.m),
-                    LengthUnit(0, Units.m),
-                    Level(-12),
-                )
+                Coordinate(LengthUnit(0.1, Units.m), LengthUnit(0, Units.m))
             ),
             Agent(
-                Coordinate(
-                    LengthUnit(21, Units.m), LengthUnit(12, Units.m), Level(1)
-                )
+                Coordinate(LengthUnit(21, Units.m), LengthUnit(12, Units.m))
             ),
         ],
     ],

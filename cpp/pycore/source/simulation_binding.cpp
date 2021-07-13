@@ -13,12 +13,6 @@ void bind_simulation(pybind11::module_ & m)
             [] { return std::make_unique<jps::Simulation>(std::make_unique<jps::World>()); }))
         .def("compute_next_step", &jps::Simulation::computeNextStep)
         .def("add_agent", &jps::Simulation::addAgent)
-        .def(
-            "get_world",
-            &jps::Simulation::getWorld,
-            pybind11::return_value_policy::reference_internal)
         .def_property_readonly(
-            "agents",
-            &jps::Simulation::getAgents,
-            pybind11::return_value_policy::reference_internal);
+            "world", &jps::Simulation::getWorld, pybind11::return_value_policy::reference_internal);
 }

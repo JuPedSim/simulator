@@ -24,9 +24,9 @@ public:
 
     SpecialArea(const SpecialArea & p_other) = default;
     auto operator=(const SpecialArea & p_other) -> SpecialArea & = default;
-    SpecialArea(SpecialArea && p_other) = default;
+    SpecialArea(SpecialArea && p_other)                          = default;
     auto operator=(SpecialArea && p_other) -> SpecialArea & = default;
-    ~SpecialArea() = default;
+    ~SpecialArea()                                          = default;
 
     auto getArea() const noexcept -> Area const & { return m_area; }
 

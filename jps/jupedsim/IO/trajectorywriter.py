@@ -61,6 +61,6 @@ class SimpleTrajectoryWriter(TrajectoryWriter):
                     id=agent.id,
                     x=agent.pos.x.m,
                     y=agent.pos.y.m,
-                    z=agent.pos.lvl.id,
+                    z=0,  # TODO add correct call to get the height information from the simulation
                 )
                 f.write(row)
