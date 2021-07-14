@@ -19,6 +19,13 @@
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 PYBIND11_MODULE(jpscore, m)
 {
+    /// MODULE jpscore
+    bind_agent(m);
+    bind_jpsexception(m);
+    bind_simulation_clock(m);
+    bind_simulation(m);
+    bind_unique_id(m);
+
     /// SUB MODULE logging
     auto m_logging = m.def_submodule("logging");
     bind_logging(m_logging);
@@ -34,11 +41,4 @@ PYBIND11_MODULE(jpscore, m)
     bind_special_area(m_geometry);
     bind_world(m_geometry);
     bind_level_storage(m_geometry);
-
-    /// MODULE jpscore
-    bind_agent(m);
-    bind_jpsexception(m);
-    bind_simulation_clock(m);
-    bind_simulation(m);
-    bind_unique_id(m);
 }
