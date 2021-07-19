@@ -41,6 +41,9 @@ list(APPEND COMMON_COMPILE_OPTIONS
         $<$<CXX_COMPILER_ID:MSVC>:/W4>
         $<$<AND:$<NOT:$<CONFIG:Debug>>,$<CXX_COMPILER_ID:MSVC>>:/WX>
         $<$<CXX_COMPILER_ID:MSVC>:/EHsc>
+        # turn off C4744 warning: 'var' has different type in 'file1' and 'file2': 'type1' and 'type2'
+        # for further details see https://github.com/JuPedSim/simulator/issues/84
+        $<$<AND:$<NOT:$<CONFIG:Debug>>,$<CXX_COMPILER_ID:MSVC>>:/wd"4744">
         -fPIC
 )
 
