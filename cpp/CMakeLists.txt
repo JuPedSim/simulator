@@ -11,6 +11,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include(helper_functions)
 check_prefix_path()
@@ -44,7 +45,6 @@ list(APPEND COMMON_COMPILE_OPTIONS
         # turn off C4744 warning: 'var' has different type in 'file1' and 'file2': 'type1' and 'type2'
         # for further details see https://github.com/JuPedSim/simulator/issues/84
         $<$<AND:$<NOT:$<CONFIG:Debug>>,$<CXX_COMPILER_ID:MSVC>>:/wd"4744">
-        -fPIC
 )
 
 ################################################################################
