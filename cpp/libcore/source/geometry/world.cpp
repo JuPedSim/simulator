@@ -5,7 +5,7 @@
 
 namespace jps
 {
-auto World::addLevelStorage(Level const & p_level) -> LevelStorage &
+auto World::addLevel(Level const & p_level) -> LevelStorage &
 {
     if(m_level_to_level_storage.find(p_level) != m_level_to_level_storage.end()) {
         throw JPSGeometryException(
@@ -34,13 +34,13 @@ auto World::addSpecialArea(const Level & p_level, const SpecialArea & p_area) ->
     m_level_to_level_storage.at(p_level).addSpecialArea(p_area);
 }
 
-auto World::getAgents() -> std::vector<Agent>
+auto World::getAgents() -> std::unordered_map<Level, AgentsRef>
 {
-    std::vector<Agent> all_agents;
-    for(auto const & [lvl, ls] : m_level_to_level_storage) {
-        std::copy(
-            std::begin(ls.getAgents()), std::end(ls.getAgents()), std::back_inserter(all_agents));
+    std::unordered_map<Level, AgentsRef> agents_per_level;
+    for(auto & [lvl, ls] : m_level_to_level_storage) {
+        agents_per_level.emplace(lvl, ls.getAgents());
     }
-    return all_agents;
+    return agents_per_level;
 }
+
 } // namespace jps

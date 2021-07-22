@@ -1,10 +1,10 @@
 import pathlib
 from abc import ABCMeta, abstractclassmethod, abstractmethod
 from string import Template
-from typing import List
+from typing import Dict, List
 
 from jpscore import Agent
-from jpscore.geometry import LengthUnit, Units
+from jpscore.geometry import LengthUnit, Level, Units
 
 
 class TrajectoryWriter(metaclass=ABCMeta):
@@ -52,15 +52,18 @@ class SimpleTrajectoryWriter(TrajectoryWriter):
             f.write(SimpleTrajectoryWriter.header)
 
     def write_trajectory(
-        trajectory_file: pathlib.Path, step: int, agents: List[Agent]
+        trajectory_file: pathlib.Path,
+        step: int,
+        agents_per_level: Dict[Level, Agent],
     ) -> None:
         with trajectory_file.open("a") as f:
-            for agent in agents:
-                row = SimpleTrajectoryWriter.row_template.substitute(
-                    frame=step,
-                    id=agent.id,
-                    x=agent.pos.x.m,
-                    y=agent.pos.y.m,
-                    z=0,  # TODO add correct call to get the height information from the simulation
-                )
-                f.write(row)
+            for lvl, agents in agents_per_level.items():
+                for agent in agents:
+                    row = SimpleTrajectoryWriter.row_template.substitute(
+                        frame=step,
+                        id=agent.id,
+                        x=agent.pos.x.m,
+                        y=agent.pos.y.m,
+                        z=lvl.id,
+                    )
+                    f.write(row)
