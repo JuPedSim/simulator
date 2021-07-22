@@ -7,6 +7,7 @@
 #include "geometry/special_area.hpp"
 
 #include <vector>
+
 namespace jps
 {
 class LevelStorage

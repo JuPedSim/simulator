@@ -13,6 +13,8 @@ namespace jps
 class World
 {
 private:
+    using Agents                = std::vector<Agent>;
+    using AgentsRef             = std::reference_wrapper<Agents>;
     using LevelStorageContainer = std::unordered_map<Level, LevelStorage>;
     LevelStorageContainer m_level_to_level_storage;
 
@@ -28,7 +30,7 @@ public:
 
     auto addLineSegment(Level const & p_level, LineSegment const & p_segment) -> void;
     auto addSpecialArea(Level const & p_level, SpecialArea const & p_area) -> void;
-    auto addLevelStorage(Level const & p_level) -> LevelStorage &;
+    [[nodiscard]] auto addLevel(Level const & p_level) -> LevelStorage &;
     auto getLevelStorage(Level const & p_level) -> LevelStorage &;
     auto getLevelStorage(Level const & p_level) const -> LevelStorage const &;
     auto getLevelStorages() -> LevelStorageContainer & { return m_level_to_level_storage; };
@@ -37,7 +39,7 @@ public:
         return m_level_to_level_storage;
     };
 
-    auto getAgents() -> std::vector<Agent>;
+    auto getAgents() -> std::unordered_map<Level, AgentsRef>;
 };
 
 } // namespace jps

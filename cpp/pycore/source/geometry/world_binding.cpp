@@ -10,6 +10,8 @@ void bind_world(pybind11::module_ & m)
 {
     pybind11::class_<jps::World>(m, "World")
         .def(pybind11::init<>())
-        .def("add_level", &jps::World::addLevelStorage, "level"_a)
-        .def_property_readonly("agents", &jps::World::getAgents);
+        .def(
+            "add_level", &jps::World::addLevel, "level"_a, pybind11::return_value_policy::reference)
+        .def_property_readonly(
+            "agents", &jps::World::getAgents, pybind11::return_value_policy::reference);
 }

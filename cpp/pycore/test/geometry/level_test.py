@@ -1,3 +1,5 @@
+import collections
+
 import pytest
 from jpscore.geometry import Level
 
@@ -42,3 +44,7 @@ class TestLevel:
     def test_comparison_operators(self, level, other, result):
         assert (level == other) == result
         assert (level != other) != result
+
+    def test_hashable(self):
+        lvl = Level(0)
+        assert isinstance(lvl, collections.Hashable)

@@ -19,6 +19,6 @@ def test_simulator_interface_exposes_all_expected_methods():
     import jpscore
 
     sim = jpscore.Simulation()
+    assert hasattr(sim, "world")
     assert callable(getattr(sim, "compute_next_step"))
     assert callable(getattr(sim, "add_agent"))
-    assert callable(getattr(sim, "get_world"))

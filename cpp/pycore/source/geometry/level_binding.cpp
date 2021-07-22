@@ -12,6 +12,7 @@ void bind_level(pybind11::module_ & m)
         .def(pybind11::detail::self == pybind11::detail::self)
         // NOLINTNEXTLINE(misc-redundant-expression)
         .def(pybind11::detail::self != pybind11::detail::self)
+        .def(hash(pybind11::self))
         .def(
             "__str__",
             [](const jps::Level & level) { return fmt::format(FMT_STRING("{}"), level); })
