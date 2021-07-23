@@ -24,16 +24,6 @@ auto World::getLevelStorage(Level const & p_level) const -> LevelStorage const &
     return m_level_to_level_storage.at(p_level);
 }
 
-auto World::addLineSegment(const Level & p_level, const LineSegment & p_segment) -> void
-{
-    m_level_to_level_storage.at(p_level).addLineSegment(p_segment);
-}
-
-auto World::addSpecialArea(const Level & p_level, const SpecialArea & p_area) -> void
-{
-    m_level_to_level_storage.at(p_level).addSpecialArea(p_area);
-}
-
 auto World::getAgents() -> std::unordered_map<Level, AgentsRef>
 {
     std::unordered_map<Level, AgentsRef> agents_per_level;

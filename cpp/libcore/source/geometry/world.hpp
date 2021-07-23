@@ -28,8 +28,6 @@ public:
     World(World &&) = default;
     auto operator=(World &&) -> World & = default;
 
-    auto addLineSegment(Level const & p_level, LineSegment const & p_segment) -> void;
-    auto addSpecialArea(Level const & p_level, SpecialArea const & p_area) -> void;
     [[nodiscard]] auto addLevel(Level const & p_level) -> LevelStorage &;
     auto getLevelStorage(Level const & p_level) -> LevelStorage &;
     auto getLevelStorage(Level const & p_level) const -> LevelStorage const &;
