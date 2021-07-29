@@ -1,15 +1,15 @@
 import json
 import pathlib
 from typing import List
-
+from jupedsim.util.pedestran_area_generator import generate_spawn_points
 from jupedsim.util.event import (
     DataclassJSONEncoder,
     Event,
     SpawnPedestrianEvent,
 )
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
-
-
+from random import shuffle
+from argparse import ArgumentError
 def generate_spawn_events(args) -> None:
     """
     Generates all spawn events defined in args. Args contains time and position of the pedestrian, and also the
@@ -17,9 +17,21 @@ def generate_spawn_events(args) -> None:
     :param args: Commandline arguments
     :return:
     """
-    events = generate_pedestrian_on_position(
-        args.time, [args.x, args.y], args.level
-    )
+    events:list=[]
+    if args.area is not None:
+        '''if args.number_pedestrans<=0:
+            ArgumentError(,'-n Number of pedestrains has to be >0')
+        if args.pedestrian_distance is None:
+            ArgumentError('select a --pedestrian_distance')'''
+        spawn_points:list=generate_spawn_points(args.area,args.pedestrian_distance)
+        shuffle(spawn_points)
+        for i in range (0, args.number_pedestrans):
+            events.extend(generate_pedestrian_on_position(
+                args.time+(args.delta_t*i), spawn_points[i%(len(spawn_points))], args.level
+            ))
+    else:
+        events = generate_pedestrian_on_position(
+        args.time, [args.x, args.y], args.level)
     write_to_event_file(args.output, events, args.overwrite)
     log_info(f"Generate pedestrian events have been written to: {args.output}")
 
