@@ -32,6 +32,6 @@ Within the polygon, sectors are calculated that ensure the minimum distance betw
 If all possible positions to spawn for pedestrians are used, the positions going to be reused. Spawn events can also be timed, with a delta time between the spawn events.
 
 <div class="align-center">
-  <img src="https://user-images.githubusercontent.com/74569620/127882636-12be0041-dc50-4510-ad52-689acf71960e.png" width="400" height="400">
-  <img src="https://user-images.githubusercontent.com/74569620/127882959-6a017950-fdeb-4abc-aa42-ac0760ba6119.png" width="400" height="400">
+  <img src="https://user-images.githubusercontent.com/74569620/127882636-12be0041-dc50-4510-ad52-689acf71960e.png" width="400">
+  <img src="https://user-images.githubusercontent.com/74569620/127882959-6a017950-fdeb-4abc-aa42-ac0760ba6119.png" width="400">
 </div>
