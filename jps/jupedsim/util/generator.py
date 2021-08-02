@@ -12,24 +12,20 @@ from random import shuffle
 from argparse import ArgumentError
 def generate_spawn_events(args) -> None:
     """
-    Generates all spawn events defined in args. Args contains time and position of the pedestrian, and also the
-    output information (file, overwriting).
+    Generates all spawn events defined in args. Args contains the output information (file, overwriting), time, flag to overwrite
+    and also either position of the pedestrian, or the area specification, a delta time between spawn events and  number of pedestrians.
     :param args: Commandline arguments
     :return:
     """
     events:list=[]
-    if args.area is not None:
-        '''if args.number_pedestrans<=0:
-            ArgumentError(,'-n Number of pedestrains has to be >0')
-        if args.pedestrian_distance is None:
-            ArgumentError('select a --pedestrian_distance')'''
+    if args.generate_mode == 'area':
         spawn_points:list=generate_spawn_points(args.area,args.pedestrian_distance)
         shuffle(spawn_points)
         for i in range (0, args.number_pedestrans):
             events.extend(generate_pedestrian_on_position(
                 args.time+(args.delta_t*i), spawn_points[i%(len(spawn_points))], args.level
             ))
-    else:
+    elif args.generate_mode=='single':
         events = generate_pedestrian_on_position(
         args.time, [args.x, args.y], args.level)
     write_to_event_file(args.output, events, args.overwrite)
