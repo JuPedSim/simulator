@@ -9,7 +9,7 @@ from jupedsim.util.event import (
 )
 from jupedsim.util.loghelper import log_debug, log_error, log_info, log_warning
 from random import shuffle
-from argparse import ArgumentError
+import sys
 def generate_spawn_events(args) -> None:
     """
     Generates all spawn events defined in args. Args contains the output information (file, overwriting), time, flag to overwrite
@@ -19,7 +19,9 @@ def generate_spawn_events(args) -> None:
     """
     events:list=[]
     if args.generate_mode == 'area':
-        spawn_points:list=generate_spawn_points(args.area,args.pedestrian_distance)
+        spawn_points=generate_spawn_points(args.area,args.pedestrian_distance)
+        if isinstance(spawn_points, str):
+            sys.exit(spawn_points)
         shuffle(spawn_points)
         for i in range (0, args.number_pedestrans):
             events.extend(generate_pedestrian_on_position(
