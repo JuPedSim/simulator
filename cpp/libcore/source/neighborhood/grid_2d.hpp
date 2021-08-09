@@ -1,25 +1,34 @@
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
+#include <unordered_map>
 #include <vector>
 
 template <typename T>
 class Grid2D
 {
-private:
-    template <typename element_type>
-    using container_type = std::vector<element_type>;
-
 public:
-    using size_type          = std::size_t;
-    using value_type         = T;
-    using row_type           = container_type<value_type>;
-    using row_container_type = container_type<row_type>;
+    using index_type = std::int64_t;
+    using value_type = T;
 
-    Grid2D(size_type p_num_rows, size_type p_num_columns) :
-        m_rows(p_num_rows, row_type(p_num_columns))
+    class Grid2DRow
     {
-    }
+        std::unordered_map<index_type, value_type> m_elements;
+
+    public:
+        auto operator[](index_type p_col) -> value_type & { return m_elements[p_col]; }
+        auto get(index_type p_col) const -> value_type const &
+        {
+            auto it = m_elements.find(p_col);
+            if(it != m_elements.end()) {
+                return it->second;
+            }
+            return DUMMY_VALUE;
+        }
+    };
+
+    Grid2D() = default;
 
     Grid2D(const Grid2D &)     = default;
     Grid2D(Grid2D &&) noexcept = default;
@@ -29,28 +38,19 @@ public:
 
     ~Grid2D() = default;
 
-    auto operator[](size_type p_row) const -> row_type const & { return m_rows[p_row]; }
-    auto operator[](size_type p_row) -> row_type & { return m_rows[p_row]; }
-
-    void clear()
+    auto operator[](index_type p_row) -> Grid2DRow & { return m_rows[p_row]; }
+    auto get(index_type p_row, index_type p_col) const -> value_type const &
     {
-        for(auto & row : m_rows) {
-            for(auto & elem : row) {
-                elem.clear();
-            }
+        auto it = m_rows.find(p_row);
+        if(it != m_rows.end()) {
+            return it->second.get(p_col);
         }
+        return DUMMY_VALUE;
     }
 
-    auto numRows() const -> size_type { return m_rows.size(); }
-    auto numColumns() const -> size_type
-    {
-        if(m_rows.empty()) {
-            return 0;
-        }
-        return m_rows.front().size();
-    }
-
+    void clear() { m_rows.clear(); }
 
 private:
-    row_container_type m_rows;
+    std::unordered_map<index_type, Grid2DRow> m_rows;
+    inline static value_type const DUMMY_VALUE{};
 };
