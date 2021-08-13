@@ -5,6 +5,9 @@
 #include <unordered_map>
 #include <vector>
 
+/// Grid2D Container for elements of type T
+///
+/// The Grid stores Elements of Type T in two dimensions in a hash map.
 template <typename T>
 class Grid2D
 {
@@ -38,7 +41,15 @@ public:
 
     ~Grid2D() = default;
 
+    /// Returns the Grid2Row with index p_row
+    ///
+    /// If a Grid2DRow with index p_row does not exist, a new one is created.
     auto operator[](index_type p_row) -> Grid2DRow & { return m_rows[p_row]; }
+
+    /// Returns a value_type const reference to the element at index p_row, p_col.
+    ///
+    /// If the element doesn't exist, the DUMMY_VALUE is returned.
+    /// This can be used to iterate over empty grid cells in the neighborhood search.
     auto get(index_type p_row, index_type p_col) const -> value_type const &
     {
         auto it = m_rows.find(p_row);

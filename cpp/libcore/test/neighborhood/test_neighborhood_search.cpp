@@ -1,3 +1,5 @@
+#include "geometry/coordinate.hpp"
+#include "geometry/length_unit.hpp"
 #include "neighborhood/neighborhood_search.hpp"
 
 #include <gmock/gmock-matchers.h>
@@ -7,85 +9,112 @@ TEST(NeighborhoodSearch, EmptyNeighborhood)
 {
     using namespace jps;
 
-    Level lvl{0};
-    NeighborhoodSearch neighborhood_search(0_m, 10_m, 0_m, 20_m, 1_m, {lvl});
+    std::vector<Agent> empty_agents_vector;
 
-    Agent special_agent{{0_m, 0_m, Level(0)}};
-    EXPECT_TRUE(neighborhood_search.getNeighborhood(lvl, special_agent).empty());
+    NeighborhoodSearch neighborhood_search(1_m, empty_agents_vector);
 
-    special_agent.pos = {10_m, 0_m, Level(0)};
-    EXPECT_TRUE(neighborhood_search.getNeighborhood(lvl, special_agent).empty());
+    Agent special_agent{{0_m, 0_m}};
+    EXPECT_TRUE(neighborhood_search.getNeighborhood(special_agent).empty());
 
-    special_agent.pos = {5_m, 5_m, Level(0)};
-    EXPECT_TRUE(neighborhood_search.getNeighborhood(lvl, special_agent).empty());
+    special_agent.pos = {10_m, 0_m};
+    EXPECT_TRUE(neighborhood_search.getNeighborhood(special_agent).empty());
 
-    special_agent.pos = {10_m, 20_m, Level(0)};
-    EXPECT_TRUE(neighborhood_search.getNeighborhood(lvl, special_agent).empty());
+    special_agent.pos = {5_m, 5_m};
+    EXPECT_TRUE(neighborhood_search.getNeighborhood(special_agent).empty());
+
+    special_agent.pos = {10_m, 20_m};
+    EXPECT_TRUE(neighborhood_search.getNeighborhood(special_agent).empty());
 }
 
-TEST(NeighborhoodSearch, NonEmptyNeighborhood)
+TEST(NeighborhoodSearch, LengthUnitToIndex)
 {
-    using namespace jps;
-    using AgentRef = std::reference_wrapper<Agent>;
+    EXPECT_EQ(jps::lengthUnitToIndex(1_m, 1_m), 1);
+    EXPECT_EQ(jps::lengthUnitToIndex(1.1_m, 1_m), 1);
+    EXPECT_EQ(jps::lengthUnitToIndex(0.99_m, 1_m), 0);
 
-    Level lvl{0};
-    LengthUnit cellsize = 1_m;
-    NeighborhoodSearch neighborhood_search(-10_m, 10_m, -10_m, 10_m, cellsize, {lvl});
+    EXPECT_EQ(jps::lengthUnitToIndex(-1_m, 1_m), -1);
+    EXPECT_EQ(jps::lengthUnitToIndex(-1.1_m, 1_m), -2);
+    EXPECT_EQ(jps::lengthUnitToIndex(-0.99_m, 1_m), -1);
+}
 
-    size_t num_agents = 10;
-    std::vector<Agent> agents_others{num_agents, Agent{{0_m, 0_m, Level(0)}}};
-    std::vector<AgentRef> agents_others_ref;
-    for(auto agent : agents_others) {
-        agents_others_ref.emplace_back(std::ref(agent));
+class NeighborhoodSearchTests : public ::testing::Test
+{
+protected:
+    int const m_sqrt_num_agents            = 5;
+    jps::LengthUnit const m_agent_distance = 0.5_m;
+    std::vector<jps::Agent> m_uniform_distributed_agents;
+    jps::Agent m_special_agent{{0_m, 0_m}};
+
+public:
+    NeighborhoodSearchTests()
+    {
+        jps::LengthUnit max_distance = m_agent_distance * m_sqrt_num_agents;
+        for(jps::LengthUnit x = 0_m; x != max_distance; x += m_agent_distance) {
+            for(jps::LengthUnit y = 0_m; y != max_distance; y += m_agent_distance) {
+                m_uniform_distributed_agents.emplace_back(jps::Coordinate{x, y});
+            }
+        }
     }
+};
 
-    // Agents at the same position as the others
-    Agent special_agent{{0_m, 0_m, Level(0)}};
-    std::vector<Agent> agents = agents_others;
-    agents.emplace_back(special_agent);
+TEST_F(NeighborhoodSearchTests, SingleCellNeigborhood)
+{
+    jps::NeighborhoodSearch neighborhood_search(1_m, m_uniform_distributed_agents);
 
-    std::unordered_map<std::int32_t, std::vector<Agent>> agents_per_level{{lvl.id(), agents}};
+    auto neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 0);
+    EXPECT_EQ(neighborhood.size(), 4);
 
-    neighborhood_search.update(agents_per_level);
-    std::vector<Agent> neighborhood;
-    auto neighborhood_ref = neighborhood_search.getNeighborhood(lvl, special_agent);
-    for(auto neighbor : neighborhood_ref) {
-        neighborhood.emplace_back(neighbor.get());
-    }
+    // For single cell Neighborhood no agent is in cell -1, -1.
+    m_special_agent.pos = {-0.1_m, -0.1_m};
+    neighborhood        = neighborhood_search.getNeighborhood(m_special_agent, 0);
+    EXPECT_EQ(neighborhood.size(), 0);
 
-    EXPECT_TRUE(!neighborhood.empty());
-    EXPECT_THAT(neighborhood, ::testing::UnorderedElementsAreArray(agents_others));
-    neighborhood.clear();
-    neighborhood_ref.clear();
+    // Move agent even further away
+    m_special_agent.pos = {-10_m, -10_m};
+    neighborhood        = neighborhood_search.getNeighborhood(m_special_agent, 0);
+    EXPECT_EQ(neighborhood.size(), 0);
+}
 
-    // Move special_agent far away from others
-    special_agent.pos = {10_m, 10_m, Level(0)};
+TEST_F(NeighborhoodSearchTests, LargeNeigborhood)
+{
+    jps::NeighborhoodSearch neighborhood_search(1_m, m_uniform_distributed_agents);
 
-    neighborhood_search.update(agents_per_level);
-    neighborhood_ref = neighborhood_search.getNeighborhood(lvl, special_agent);
-    EXPECT_TRUE(neighborhood_ref.empty());
-    neighborhood.clear();
-    neighborhood_ref.clear();
+    auto neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 1);
+    EXPECT_EQ(neighborhood.size(), 16);
 
-    // Move special_agent closer, but still too far away from others
-    special_agent.pos = {0_m, 2 * cellsize, Level(0)};
+    // For Neighborhood with one cell distance agents can be found.
+    m_special_agent.pos = {-0.1_m, -0.1_m};
+    neighborhood        = neighborhood_search.getNeighborhood(m_special_agent, 1);
+    EXPECT_EQ(neighborhood.size(), 4);
 
-    neighborhood_search.update(agents_per_level);
-    neighborhood_ref = neighborhood_search.getNeighborhood(lvl, special_agent);
-    EXPECT_TRUE(neighborhood_ref.empty());
-    neighborhood.clear();
-    neighborhood_ref.clear();
+    // For far away no agents in neighborhood
+    m_special_agent.pos = {-10_m, -10_m};
+    neighborhood        = neighborhood_search.getNeighborhood(m_special_agent, 1);
+    EXPECT_EQ(neighborhood.size(), 0);
+    neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 2);
+    EXPECT_EQ(neighborhood.size(), 0);
+    neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 3);
+    EXPECT_EQ(neighborhood.size(), 0);
+}
 
-    // Move special agent inside cut off distance
-    special_agent.pos = {0_m, cellsize - 0.1_m, Level(0)};
+TEST_F(NeighborhoodSearchTests, DifferentCellSize)
+{
+    jps::NeighborhoodSearch neighborhood_search(0.5_m, m_uniform_distributed_agents);
 
-    neighborhood_search.update(agents_per_level);
-    neighborhood_ref = neighborhood_search.getNeighborhood(lvl, special_agent);
-    for(auto neighbor : neighborhood_ref) {
-        neighborhood.emplace_back(neighbor.get());
-    }
+    auto neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 1);
+    EXPECT_EQ(neighborhood.size(), 4);
 
-    EXPECT_THAT(neighborhood, ::testing::UnorderedElementsAreArray(agents_others));
-    neighborhood.clear();
-    neighborhood_ref.clear();
+    // For Neighborhood with one cell distance agents can be found.
+    m_special_agent.pos = {-0.1_m, -0.1_m};
+    neighborhood        = neighborhood_search.getNeighborhood(m_special_agent, 1);
+    EXPECT_EQ(neighborhood.size(), 1);
+
+    // For far away no agents in neighborhood
+    m_special_agent.pos = {-10_m, -10_m};
+    neighborhood        = neighborhood_search.getNeighborhood(m_special_agent, 1);
+    EXPECT_EQ(neighborhood.size(), 0);
+    neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 2);
+    EXPECT_EQ(neighborhood.size(), 0);
+    neighborhood = neighborhood_search.getNeighborhood(m_special_agent, 3);
+    EXPECT_EQ(neighborhood.size(), 0);
 }
