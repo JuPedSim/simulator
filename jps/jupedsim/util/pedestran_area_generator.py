@@ -1,5 +1,5 @@
 # a var to check if 2 floats are equal
-accuracy =0.01
+accuracy = 0.01
 # generates a
 def _calc_grid(polygon, distance):
     lines: list = []
@@ -9,9 +9,19 @@ def _calc_grid(polygon, distance):
     x_n = int(x_len / distance) + 1
     y_n = int(y_len / distance) + 1
     for x in range(0, x_n):
-        lines.append([[min_x + distance * x, min_y - distance], [min_x + distance * x, max_y + distance]])
+        lines.append(
+            [
+                [min_x + distance * x, min_y - distance],
+                [min_x + distance * x, max_y + distance],
+            ]
+        )
     for y in range(0, y_n):
-        lines.append([[min_x - distance, min_y + distance * y], [max_x + distance, min_y + distance * y]])
+        lines.append(
+            [
+                [min_x - distance, min_y + distance * y],
+                [max_x + distance, min_y + distance * y],
+            ]
+        )
     return lines
 
 
@@ -23,15 +33,21 @@ def _find_intersection(line_0, line_1):
     s32_x = p3[0] - p2[0]
     s32_y = p3[1] - p2[1]
     denom = float(s10_x * s32_y - s32_x * s10_y)
-    if denom == 0: return None  # collinear
+    if denom == 0:
+        return None  # collinear
     denom_is_positive = denom >= 0
     s02_x = p0[0] - p2[0]
     s02_y = p0[1] - p2[1]
     s_numer = float(s10_x * s02_y - s10_y * s02_x)
-    if (s_numer < 0) == denom_is_positive: return None  # no collision
+    if (s_numer < 0) == denom_is_positive:
+        return None  # no collision
     t_numer = float(s32_x * s02_y - s32_y * s02_x)
-    if (t_numer < 0) == denom_is_positive: return None  # no collision
-    if (s_numer > denom) == denom_is_positive or (t_numer > denom) == denom_is_positive: return None  # no collision
+    if (t_numer < 0) == denom_is_positive:
+        return None  # no collision
+    if (s_numer > denom) == denom_is_positive or (
+        t_numer > denom
+    ) == denom_is_positive:
+        return None  # no collision
     # collision detected
     t = t_numer / denom
     intersection_point = [p0[0] + (t * s10_x), p0[1] + (t * s10_y)]
@@ -45,35 +61,43 @@ def _calc_intersections(lines, polygon):
     point_candidates: list = []
     for i, l0 in enumerate(lines):
         for j, l1 in enumerate(lines):
-            if j == i: continue
+            if j == i:
+                continue
             p = _find_intersection(l0, l1)
-            if p is not None: point_candidates.append(p)
+            if p is not None:
+                point_candidates.append(p)
         p0 = polygon[0]
         for x in range(0, len(polygon)):
             l2 = [(p0), (polygon[len(polygon) - x - 1])]
             p0 = polygon[len(polygon) - x - 1]
             p = _find_intersection(l2, l0)
-            if p is not None: points.append(p)
+            if p is not None:
+                points.append(p)
     for l1 in lines:
         p0 = polygon[0]
         for x in range(0, len(polygon)):
             l2 = [(p0), (polygon[len(polygon) - x - 1])]
             p0 = polygon[len(polygon) - x - 1]
             p = _find_intersection(l2, l1)
-            if p is not None: points.append(p)
+            if p is not None:
+                points.append(p)
     return point_candidates, points
 
 
 # counts how many times a line segment intersects with a polygon
 def _count_intersections(point, polygon, x, y, fx, fy):
-    line = ((x + fx, y + fy), (point[0] - accuracy * fx, point[1] + accuracy * fy))
+    line = (
+        (x + fx, y + fy),
+        (point[0] - accuracy * fx, point[1] + accuracy * fy),
+    )
     intersections = 0
     p0 = polygon[0]
     for x in range(0, len(polygon)):
         l2 = ((p0), (polygon[len(polygon) - x - 1]))
         p0 = polygon[len(polygon) - x - 1]
         p = _find_intersection(l2, line)
-        if p is not None: intersections += 1
+        if p is not None:
+            intersections += 1
     return intersections
 
 
@@ -83,20 +107,33 @@ def _count_intersections(point, polygon, x, y, fx, fy):
 def _is_inside(point, polygon, min_x, min_y, max_x, max_y):
     intersections = _count_intersections(point, polygon, min_x, min_y, -1, -1)
     if (intersections % 2) == 0:
-        intersections = _count_intersections(point, polygon, max_x, min_y, 1, -1)
+        intersections = _count_intersections(
+            point, polygon, max_x, min_y, 1, -1
+        )
     if (intersections % 2) == 0:
-        intersections = _count_intersections(point, polygon, min_x, max_y, -1, 1)
+        intersections = _count_intersections(
+            point, polygon, min_x, max_y, -1, 1
+        )
     return (intersections % 2) != 0
 
 
 # gets the biggest/smallest x/y values of a list of points
 def _get_min_max(geometry):
-    min_x, min_y, max_x, max_y = geometry[0][0], geometry[0][1], geometry[1][0], geometry[1][1]
+    min_x, min_y, max_x, max_y = (
+        geometry[0][0],
+        geometry[0][1],
+        geometry[1][0],
+        geometry[1][1],
+    )
     for point in geometry:
-        if point[0] < min_x: min_x = point[0]
-        if point[1] < min_y: min_y = point[1]
-        if point[0] > max_x: max_x = point[0]
-        if point[1] > max_y: max_y = point[1]
+        if point[0] < min_x:
+            min_x = point[0]
+        if point[1] < min_y:
+            min_y = point[1]
+        if point[0] > max_x:
+            max_x = point[0]
+        if point[1] > max_y:
+            max_y = point[1]
     return min_x, min_y, max_x, max_y
 
 
@@ -135,7 +172,8 @@ def _calc_boxes(points: list, distance: float):
     for i, point in enumerate(points):
         box: list = [point, None, None, None]
         for j, p2 in enumerate(points):
-            if i == j: continue
+            if i == j:
+                continue
             isright, isup = _is_in_distance(point, p2, distance)
             if isup or isright:
                 n_found += 1
@@ -144,7 +182,8 @@ def _calc_boxes(points: list, distance: float):
                 if isup:
                     box[1] = p2
                     for k, p3 in enumerate(points):
-                        if k == j: continue
+                        if k == j:
+                            continue
                         isright, isup = _is_in_distance(p2, p3, distance)
                         if isright:
                             n_found += 1
@@ -169,12 +208,13 @@ def _remove_duplicate_points(points: list):
                 j -= 1
             j += 1
 
+
 # A polygon must met the contition that it has to consist of more than two points and its lines should not cross
-def _find_polygon_err(polygon:list):
-    if len(polygon)<3:
+def _find_polygon_err(polygon: list):
+    if len(polygon) < 3:
         return "Area must consist of more than 2 points"
     ip0 = polygon[0]
-    if len(polygon)>3:
+    if len(polygon) > 3:
         for i in range(0, len(polygon)):
             l0 = [(ip0), (polygon[len(polygon) - i - 1])]
             ip0 = polygon[len(polygon) - i - 1]
@@ -182,13 +222,20 @@ def _find_polygon_err(polygon:list):
             for j in range(0, len(polygon)):
                 l1 = [(jp0), (polygon[len(polygon) - j - 1])]
                 jp0 = polygon[len(polygon) - j - 1]
-                if i == j or i==(j+1)%len(polygon) or i==abs((j-1)%len(polygon)):continue
+                if (
+                    i == j
+                    or i == (j + 1) % len(polygon)
+                    or i == abs((j - 1) % len(polygon))
+                ):
+                    continue
                 p = _find_intersection(l1, l0)
-                if p is not None: return "Polygon lines should not intersect"
+                if p is not None:
+                    return "Polygon lines should not intersect"
     return None
 
+
 def generate_spawn_points(polygon, distance):
-    err=_find_polygon_err(polygon)
+    err = _find_polygon_err(polygon)
     if err is not None:
         return err
     lines = _calc_grid(polygon, distance)

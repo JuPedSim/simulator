@@ -1,19 +1,27 @@
 import pathlib
-from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
-from argparse import ArgumentTypeError
+from argparse import (
+    ArgumentDefaultsHelpFormatter,
+    ArgumentParser,
+    ArgumentTypeError,
+)
+
 from jupedsim.util.generator import generate_spawn_events
+
 
 def points(s):
     try:
-        _points:list=[]
-        _p_strings=list(s.split(' '))
+        _points: list = []
+        _p_strings = list(s.split(" "))
         for _p_string in _p_strings:
-            x,y=_p_string.split(',')
-            x,y=float(x),float(y)
-            _points.append([x,y])
+            x, y = _p_string.split(",")
+            x, y = float(x), float(y)
+            _points.append([x, y])
         return _points
     except:
-        raise ArgumentTypeError("Coordinates must be space seperated x,y points")
+        raise ArgumentTypeError(
+            "Coordinates must be space seperated x,y points"
+        )
+
 
 class GeneratePedestriansCommand:
     def __init__(self, subparsers):
@@ -55,7 +63,7 @@ class GeneratePedestriansCommand:
             default=0,
             help="ID of the level the pedestrian is generated according to the defined geometry",
         )
-        sub_subparsers = parser.add_subparsers(dest='generate_mode')
+        sub_subparsers = parser.add_subparsers(dest="generate_mode")
         parser_single = sub_subparsers.add_parser(
             "single",
             help="Places an agent at a given position.",
@@ -113,7 +121,6 @@ class GeneratePedestriansCommand:
             metavar="distance between pedastrians",
             help="Minumum distance between two points [m]",
         )
-        
 
     def execute(self, args):
         generate_spawn_events(args)
