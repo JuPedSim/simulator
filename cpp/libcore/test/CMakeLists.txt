@@ -15,6 +15,9 @@ add_executable(test-core
     geometry/test_special_area.cpp
 
     math/test_int_pow.cpp
+
+    neighborhood/test_grid_2d.cpp
+    neighborhood/test_neighborhood_search.cpp
 )
 
 target_link_libraries(test-core

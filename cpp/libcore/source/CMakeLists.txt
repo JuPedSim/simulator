@@ -29,6 +29,10 @@ add_library(core
 
     math/int_pow.hpp
 
+    neighborhood/grid_2d.hpp
+    neighborhood/neighborhood_search.cpp
+    neighborhood/neighborhood_search.hpp
+
     util/unique_id.hpp
     util/jpsexception.hpp
     util/simulation_clock.hpp

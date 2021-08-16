@@ -138,6 +138,8 @@ public:
 
     friend constexpr auto operator/(jps::LengthUnit p_lu, double p_scalar) -> jps::LengthUnit;
 
+    friend constexpr auto operator/(jps::LengthUnit p_lu, jps::LengthUnit p_other) -> QuantityType;
+
 private:
     /// Stores the length unit quantity stored in RESOLUTION
     QuantityType m_quantity{};
@@ -192,6 +194,12 @@ constexpr inline auto operator/(jps::LengthUnit p_lu, double p_scalar) -> jps::L
 {
     p_lu.m_quantity /= p_scalar;
     return p_lu;
+}
+
+constexpr inline auto operator/(jps::LengthUnit p_lu, jps::LengthUnit p_other)
+    -> LengthUnit::QuantityType
+{
+    return p_lu.m_quantity / p_other.m_quantity;
 }
 } // namespace jps
 /// User defined literals for all units
