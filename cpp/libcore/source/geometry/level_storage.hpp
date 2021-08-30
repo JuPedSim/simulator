@@ -13,8 +13,10 @@ namespace jps
 /// Struct to hold the information of lower left and upper right corner which define the bounding
 /// box.
 struct BoundingBox {
-    Coordinate lower_left;  // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
-    Coordinate upper_right; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
+    [[maybe_unused]] Coordinate
+        lower_left; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
+    [[maybe_unused]] Coordinate
+        upper_right; // NOLINTLINE(cppcoreguidelines-non-private-member-variables-in-classes)
 
     BoundingBox(Coordinate p_lower_left, Coordinate p_upper_right) :
         lower_left(p_lower_left), upper_right(p_upper_right){};

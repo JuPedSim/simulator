@@ -26,9 +26,9 @@ auto LevelStorage::computeBoundingBox() -> BoundingBox
 
     // extract all coordinates from different components of level storage
     // extract from line segments
-    for(const auto & line_segement : m_line_segments) {
-        all_coordinates.push_back(line_segement.getStart());
-        all_coordinates.push_back(line_segement.getEnd());
+    for(const auto & line_segment : m_line_segments) {
+        all_coordinates.push_back(line_segment.getStart());
+        all_coordinates.push_back(line_segment.getEnd());
     }
 
     // extract from special areas
