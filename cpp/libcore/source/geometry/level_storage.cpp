@@ -43,36 +43,16 @@ auto LevelStorage::computeBoundingBox() -> BoundingBox
     }
 
     // get max/min x- and y-components
-    auto min_x = std::min_element(
-                     all_coordinates.begin(),
-                     all_coordinates.end(),
-                     [](auto p_coord_first, auto p_coord_second) {
-                         return p_coord_first.x < p_coord_second.x;
-                     })
-                     ->x;
-    auto min_y = std::min_element(
-                     all_coordinates.begin(),
-                     all_coordinates.end(),
-                     [](auto p_coord_first, auto p_coord_second) {
-                         return p_coord_first.y < p_coord_second.y;
-                     })
-                     ->y;
-    auto max_x = std::max_element(
-                     all_coordinates.begin(),
-                     all_coordinates.end(),
-                     [](auto p_coord_first, auto p_coord_second) {
-                         return p_coord_first.x > p_coord_second.x;
-                     })
-                     ->x;
-    auto max_y = std::max_element(
-                     all_coordinates.begin(),
-                     all_coordinates.end(),
-                     [](auto p_coord_first, auto p_coord_second) {
-                         return p_coord_first.y > p_coord_second.y;
-                     })
-                     ->y;
+    auto [min_x, max_x] = std::minmax_element(
+        all_coordinates.begin(),
+        all_coordinates.end(),
+        [](auto p_coord_first, auto p_coord_second) { return p_coord_first.x < p_coord_second.x; });
+    auto [min_y, max_y] = std::minmax_element(
+        all_coordinates.begin(),
+        all_coordinates.end(),
+        [](auto p_coord_first, auto p_coord_second) { return p_coord_first.y < p_coord_second.y; });
 
-    return BoundingBox(Coordinate(min_x, min_y), Coordinate(max_x, max_y));
+    return BoundingBox(Coordinate(min_x->x, min_y->y), Coordinate(max_x->x, max_y->y));
 }
 
 } // namespace jps
