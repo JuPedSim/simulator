@@ -1,0 +1,227 @@
+[
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/log.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/log.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/log.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/simulation.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/simulation.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/simulation.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/area.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/area.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/area.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/coordinate.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/coordinate.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/coordinate.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/helper/polygon_helper.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/helper/polygon_helper.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/helper/polygon_helper.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/level.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/level.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/level.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/level_storage.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/level_storage.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/level_storage.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/line_segment.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/line_segment.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/line_segment.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/spatial_vector.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/spatial_vector.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/spatial_vector.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/special_area.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/special_area.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/special_area.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/geometry/world.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/world.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/geometry/world.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/neighborhood/neighborhood_search.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/neighborhood/neighborhood_search.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/test_simulation.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/test_simulation.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/test_simulation.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/test_dependency_availability.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/test_dependency_availability.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/test_dependency_availability.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/util/test_unique_id.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/util/test_unique_id.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/util/test_unique_id.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/util/test_simulation_clock.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/util/test_simulation_clock.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/util/test_simulation_clock.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_area.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_area.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_area.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_coordinate.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_coordinate.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_coordinate.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_helper.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_helper.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_helper.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_level.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_level.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_level.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_length_unit.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_length_unit.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_length_unit.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_line_segment.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_line_segment.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_line_segment.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_spatial_vector.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_spatial_vector.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_spatial_vector.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/geometry/test_special_area.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_special_area.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/geometry/test_special_area.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/math/test_int_pow.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/math/test_int_pow.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/math/test_int_pow.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/neighborhood/test_grid_2d.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/neighborhood/test_grid_2d.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/neighborhood/test_grid_2d.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/neighborhood/test_neighborhood_search.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/neighborhood/test_neighborhood_search.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/jpscore_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/jpscore_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/jpscore_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/simulation_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/simulation_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/simulation_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/logging_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/logging_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/logging_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/agent/agent_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/agent/agent_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/agent/agent_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/area_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/area_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/area_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/coordinate_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/coordinate_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/coordinate_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/length_unit_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/length_unit_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/length_unit_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/level_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/level_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/level_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/level_storage_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/level_storage_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/level_storage_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/line_segment_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/line_segment_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/line_segment_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/spatial_vector_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/spatial_vector_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/spatial_vector_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/special_area_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/special_area_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/special_area_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/geometry/world_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/world_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/geometry/world_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/util/jpsexception_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/util/jpsexception_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/util/jpsexception_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/util/simulation_clock_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/util/simulation_clock_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/util/simulation_clock_binding.cpp"
+},
+{
+  "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -Djpscore_EXPORTS -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /usr/include/python3.8 -isystem /home/fyxy/simulator-deps/include -g -fPIC -fvisibility=hidden -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/jpscore.dir/util/unique_id_binding.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/pycore/source/util/unique_id_binding.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/pycore/source/util/unique_id_binding.cpp"
+}
+]

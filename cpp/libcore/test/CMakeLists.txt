@@ -18,7 +18,7 @@ add_executable(test-core
 
     neighborhood/test_grid_2d.cpp
     neighborhood/test_neighborhood_search.cpp
-)
+        tactical/test_ShortestPathTactical.cpp)
 
 target_link_libraries(test-core
     PRIVATE
