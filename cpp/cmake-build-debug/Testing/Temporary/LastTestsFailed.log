@@ -1,0 +1,10 @@
+43:import_test.py
+44:example_test.py
+45:logging_test.py
+46:geometry/area_test.py
+47:geometry/coordinate_test.py
+48:geometry/level_test.py
+49:geometry/line_segment_test.py
+50:geometry/spatial_vector_test.py
+51:geometry/special_area_test.py
+52:geometry/length_unit_test.py

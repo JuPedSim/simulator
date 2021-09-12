@@ -1,0 +1,63 @@
+Fmt.IsAvailable 7 0.000453342
+UniqueId.DefaultConstructedIDsAreNotIdentical 7 0.000432692
+UniqueId.CanBeMovedAndCopied 7 0.000441023
+UniqueId.CanBeFormatted 7 0.000447548
+SimulationClock.general 7 0.000579471
+SimulationClock.invalid 7 0.000420749
+Area.ConstructorFromCoordinate 7 0.000465846
+Area.ConstructorFromLineSegments 7 0.000477835
+Area.comparisonOperators 7 0.000304971
+Coordinate.Constructors 7 0.000276073
+Coordinate.comparisonOperators 7 0.000258096
+CoordinateDisplace.DsiplacementWithZeroDoesNotChangeCoordinate 7 0.00045441
+CoordinateDisplace.PositiveDisplacementWorksWithSpatialVectorWithPositiveComponents 7 0.00042399
+CoordinateDisplace.NegativeDisplacementWorksWithSpatialVectorWithPositiveComponents 7 0.000401983
+CoordinateDisplace.PositiveDisplacementWorksWithSpatialVectorWithNegativeComponents 7 0.000274109
+CoordinateDisplace.NegativeDisplacementWorksWithSpatialVectorWithNegativeComponents 7 0.000297849
+GeometryHelper.sortLineSegments 7 0.000573505
+GeometryHelper.getPolygonCoordinates 7 0.000283819
+GeometryHelper.checkPolygonEquality 7 0.00047585
+Level.Constructors 7 0.000419809
+Level.comparisonOperators 7 0.000499444
+LengthUnit.NonHelperConstruction 7 0.00043182
+LengthUnit.makeLengthUnit 7 0.000284846
+LengthUnit.UserDefinedLiterals 7 0.000291366
+LengthUnit.arithmetics 7 0.000275023
+LengthUnit.comparisonOperators 7 0.000281778
+LengthUnit.scaleQuantity 7 0.000266626
+LineSegment.Constructor 7 0.000551566
+LineSegment.comparisonOperators 7 0.000419056
+LineSegment.rotate 7 0.000393625
+SpatialVector.Constructors 7 0.00043931
+SpatialVector.comparisonOperators 7 0.000447474
+SpecialArea.Constructor 7 0.000273727
+intPow.BasicTests 7 0.000369101
+import_test.py 0 0
+example_test.py 0 0
+logging_test.py 0 0
+geometry/area_test.py 0 0
+geometry/coordinate_test.py 0 0
+geometry/level_test.py 0 0
+geometry/line_segment_test.py 0 0
+geometry/spatial_vector_test.py 0 0
+geometry/special_area_test.py 0 0
+geometry/length_unit_test.py 0 0
+Grid2D.EmptyConstructor 5 0.000387341
+Grid2D.InsertAndRetreive 5 0.000351446
+Grid2D.ConstAccess 5 0.000365476
+NeighborhoodSearch.EmptyNeighborhood 5 0.000554502
+NeighborhoodSearch.LengthUnitToIndex 5 0.000356397
+NeighborhoodSearchTests.SingleCellNeigborhood 5 0.000384169
+NeighborhoodSearchTests.LargeNeigborhood 5 0.00038444
+NeighborhoodSearchTests.DifferentCellSize 5 0.000687999
+---
+import_test.py
+example_test.py
+logging_test.py
+geometry/area_test.py
+geometry/coordinate_test.py
+geometry/level_test.py
+geometry/line_segment_test.py
+geometry/spatial_vector_test.py
+geometry/special_area_test.py
+geometry/length_unit_test.py
