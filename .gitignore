@@ -73,3 +73,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 pytestdebug.log
+
+# personal folder (must still be deleted)
+.idea/
+cmake-build-debug/
+cpp/cmake-build-debug/

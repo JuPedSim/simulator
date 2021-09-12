@@ -3,10 +3,14 @@
 #include "agent/agent.hpp"
 #include "strategic/result.hpp"
 #include "tactical/result.hpp"
+#include "tactical/shortest_path_tactical.hpp"
+#include <sudo_plugin.h>
 
 namespace jps
 {
 class Simulation;
+
+    ShortestPathTactical shortest_path_tactical;
 
 /// @brief Interface for tactical models
 ///
@@ -44,6 +48,12 @@ struct DummyTacticalModel : TacticalModelInterface {
         [[maybe_unused]] StrategicModelResult const & p_strategic_result,
         [[maybe_unused]] Agent const & p_agent) const -> TacticalModelResult override
     {
+        /*
+         * Calculate algorithm for next step -- > shortest_path_tactical.floodfill(p_simulation, p_strategic_result, p_agent);
+         * change position of p_agent
+         * return p_agent.pos.x & p_agent.pos.y
+         */
+
         return {};
     };
 };
