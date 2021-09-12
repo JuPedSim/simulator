@@ -1,5 +1,4 @@
-#include "tactical/shorthestpathtactical.hpp"
-#include "ShortestPathTactical.hpp"
+#include "tactical/shortest_path_tactical.hpp"
 #include <iostream>
 #include <fstream>
 #include <simulation.hpp>
@@ -7,15 +6,13 @@
 
 
 auto ShortestPathTactical::floodfill(jps::Simulation &p_simulation, jps::StrategicModelResult & p_strategic_result, jps::Agent & p_agent) {
-
-    //Logik
+    //logic
 
     return 0;
-
 }
 
 void ShortestPathTactical::printArray(char c[10][25]) {
-    /** Inhalt ist nicht zu beachten **/
+    /** content is not to be observed **/
     for (int a = 0; a < 10; a++) {
         for (int b = 0; b < 25; b++) {
             std::cout << c[a][b];
@@ -25,7 +22,7 @@ void ShortestPathTactical::printArray(char c[10][25]) {
 }
 
 void ShortestPathTactical::changeColor(char c[10][25], char oldChar, char newChar, int x, int y) {
-    /** Inhalt ist nicht zu beachten **/
+    /** content is not to be observed **/
     if (x < 0 || x>24 || y < 0 || y>9) {
         return;
     }
@@ -42,5 +39,5 @@ void ShortestPathTactical::changeColor(char c[10][25], char oldChar, char newCha
 }
 
 int main() {
-    std::cout << "Start" << std::endl;
+    std::cout << "start" << std::endl;
 }

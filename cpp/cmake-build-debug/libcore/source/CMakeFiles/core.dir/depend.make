@@ -188,14 +188,13 @@ libcore/source/CMakeFiles/core.dir/simulation.cpp.o: \
  ../libcore/source/simulation.cpp \
  ../libcore/source/simulation.hpp \
  ../libcore/source/strategic/strategic.hpp \
- ../libcore/source/tactical/ShortestPathTactical.hpp \
  ../libcore/source/tactical/tactical.hpp \
  ../libcore/source/util/simulation_clock.hpp \
  /home/fyxy/simulator-deps/include/fmt/core.h \
  /home/fyxy/simulator-deps/include/fmt/format-inl.h \
  /home/fyxy/simulator-deps/include/fmt/format.h \
  /home/fyxy/simulator-deps/include/fmt/ostream.h
-libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o: \
+libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o: \
  ../libcore/source/agent/agent.hpp \
  ../libcore/source/agent/pedestrian.hpp \
  ../libcore/source/enum.hpp \
@@ -216,12 +215,12 @@ libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o: \
  ../libcore/source/simulation.hpp \
  ../libcore/source/strategic/result.hpp \
  ../libcore/source/tactical/result.hpp \
+ ../libcore/source/tactical/shortest_path_tactical.hpp \
  ../libcore/source/tactical/tactical.hpp \
  ../libcore/source/util/jpsexception.hpp \
  ../libcore/source/util/simulation_clock.hpp \
  ../libcore/source/util/unique_id.hpp \
- ../libcore/source/tactical/ShortestPathTactical.cpp \
- ../libcore/source/tactical/ShortestPathTactical.hpp \
+ ../libcore/source/tactical/shortest_path_tactical.cpp \
  /home/fyxy/simulator-deps/include/fmt/core.h \
  /home/fyxy/simulator-deps/include/fmt/format-inl.h \
  /home/fyxy/simulator-deps/include/fmt/format.h \

@@ -261,18 +261,18 @@ libcore/test/CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.s"
 	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/neighborhood/test_neighborhood_search.cpp -o CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.s
 
-libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o: libcore/test/CMakeFiles/test-core.dir/flags.make
-libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o: ../libcore/test/tactical/test_ShortestPathTactical.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o"
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && $(CMAKE_COMMAND) -E __run_co_compile --tidy="/usr/bin/clang-tidy-11;--extra-arg-before=--driver-mode=g++" --source=/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp -- /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp
+libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o: libcore/test/CMakeFiles/test-core.dir/flags.make
+libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o: ../libcore/test/tactical/test_shortest_path_tactical.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o"
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && $(CMAKE_COMMAND) -E __run_co_compile --tidy="/usr/bin/clang-tidy-11;--extra-arg-before=--driver-mode=g++" --source=/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_shortest_path_tactical.cpp -- /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_shortest_path_tactical.cpp
 
-libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.i"
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp > CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.i
+libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.i"
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_shortest_path_tactical.cpp > CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.i
 
-libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.s"
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp -o CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.s
+libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.s"
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_shortest_path_tactical.cpp -o CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.s
 
 # Object files for target test-core
 test__core_OBJECTS = \
@@ -291,7 +291,7 @@ test__core_OBJECTS = \
 "CMakeFiles/test-core.dir/math/test_int_pow.cpp.o" \
 "CMakeFiles/test-core.dir/neighborhood/test_grid_2d.cpp.o" \
 "CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.o" \
-"CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o"
+"CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o"
 
 # External object files for target test-core
 test__core_EXTERNAL_OBJECTS =
@@ -311,7 +311,7 @@ bin/test-core: libcore/test/CMakeFiles/test-core.dir/geometry/test_special_area.
 bin/test-core: libcore/test/CMakeFiles/test-core.dir/math/test_int_pow.cpp.o
 bin/test-core: libcore/test/CMakeFiles/test-core.dir/neighborhood/test_grid_2d.cpp.o
 bin/test-core: libcore/test/CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.o
-bin/test-core: libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o
+bin/test-core: libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o
 bin/test-core: libcore/test/CMakeFiles/test-core.dir/build.make
 bin/test-core: lib/libcore.a
 bin/test-core: /home/fyxy/simulator-deps/lib/libfmt.a

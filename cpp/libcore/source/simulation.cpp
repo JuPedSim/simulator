@@ -30,9 +30,8 @@ auto Simulation::computeNextStep() -> void
         std::vector<OperationalModelResult> operational_results{};
         for(auto const & agent : ls.second.getAgents()) {
             auto strategic_result = strategic_model.computeStep(*this, agent);
-            /*
-             * Nächster Schritt wird in computeStep berechnet und in result gespeichert
-             *
+             /*
+             * Next step is calculated in computeStep and stored in result
              */
             auto tactical_result  = tactical_model.computeStep(*this, strategic_result, agent);
             operational_results.emplace_back(

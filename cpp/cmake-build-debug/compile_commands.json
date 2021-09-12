@@ -61,8 +61,8 @@
 },
 {
   "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source",
-  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp",
-  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp"
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIC -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -std=c++17 -o CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp"
 },
 {
   "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
@@ -141,8 +141,8 @@
 },
 {
   "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test",
-  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp",
-  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_ShortestPathTactical.cpp"
+  "command": "/usr/bin/c++ -DFMT_LOCALE -I/home/fyxy/Schreibtisch/simulator/cpp/libcore/source -isystem /home/fyxy/simulator-deps/include -g -fPIE -Wall -Wextra -Wconversion -Wimplicit-fallthrough -Wsign-conversion -fdiagnostics-color=always -fPIC -std=c++17 -o CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_shortest_path_tactical.cpp",
+  "file": "/home/fyxy/Schreibtisch/simulator/cpp/libcore/test/tactical/test_shortest_path_tactical.cpp"
 },
 {
   "directory": "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/pycore/source",

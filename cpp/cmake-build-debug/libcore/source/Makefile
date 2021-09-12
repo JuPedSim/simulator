@@ -428,29 +428,29 @@ simulation.cpp.s:
 	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/simulation.cpp.s
 .PHONY : simulation.cpp.s
 
-tactical/ShortestPathTactical.o: tactical/ShortestPathTactical.cpp.o
-.PHONY : tactical/ShortestPathTactical.o
+tactical/shortest_path_tactical.o: tactical/shortest_path_tactical.cpp.o
+.PHONY : tactical/shortest_path_tactical.o
 
 # target to build an object file
-tactical/ShortestPathTactical.cpp.o:
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o
-.PHONY : tactical/ShortestPathTactical.cpp.o
+tactical/shortest_path_tactical.cpp.o:
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o
+.PHONY : tactical/shortest_path_tactical.cpp.o
 
-tactical/ShortestPathTactical.i: tactical/ShortestPathTactical.cpp.i
-.PHONY : tactical/ShortestPathTactical.i
+tactical/shortest_path_tactical.i: tactical/shortest_path_tactical.cpp.i
+.PHONY : tactical/shortest_path_tactical.i
 
 # target to preprocess a source file
-tactical/ShortestPathTactical.cpp.i:
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.i
-.PHONY : tactical/ShortestPathTactical.cpp.i
+tactical/shortest_path_tactical.cpp.i:
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.i
+.PHONY : tactical/shortest_path_tactical.cpp.i
 
-tactical/ShortestPathTactical.s: tactical/ShortestPathTactical.cpp.s
-.PHONY : tactical/ShortestPathTactical.s
+tactical/shortest_path_tactical.s: tactical/shortest_path_tactical.cpp.s
+.PHONY : tactical/shortest_path_tactical.s
 
 # target to generate assembly for a file
-tactical/ShortestPathTactical.cpp.s:
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.s
-.PHONY : tactical/ShortestPathTactical.cpp.s
+tactical/shortest_path_tactical.cpp.s:
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/source/CMakeFiles/core.dir/build.make libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.s
+.PHONY : tactical/shortest_path_tactical.cpp.s
 
 # Help Target
 help:
@@ -498,9 +498,9 @@ help:
 	@echo "... simulation.o"
 	@echo "... simulation.i"
 	@echo "... simulation.s"
-	@echo "... tactical/ShortestPathTactical.o"
-	@echo "... tactical/ShortestPathTactical.i"
-	@echo "... tactical/ShortestPathTactical.s"
+	@echo "... tactical/shortest_path_tactical.o"
+	@echo "... tactical/shortest_path_tactical.i"
+	@echo "... tactical/shortest_path_tactical.s"
 .PHONY : help
 
 

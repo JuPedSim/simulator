@@ -45,7 +45,7 @@ add_library(core
 
     tactical/result.hpp
     tactical/tactical.hpp
-        tactical/ShortestPathTactical.cpp tactical/ShortestPathTactical.hpp)
+        tactical/shortest_path_tactical.hpp tactical/shortest_path_tactical.cpp)
 
 target_include_directories(core
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}

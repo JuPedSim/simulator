@@ -222,18 +222,18 @@ libcore/source/CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.s"
 	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/neighborhood/neighborhood_search.cpp -o CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.s
 
-libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o: libcore/source/CMakeFiles/core.dir/flags.make
-libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o: ../libcore/source/tactical/ShortestPathTactical.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o"
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && $(CMAKE_COMMAND) -E __run_co_compile --tidy="/usr/bin/clang-tidy-11;--extra-arg-before=--driver-mode=g++" --source=/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp -- /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp
+libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o: libcore/source/CMakeFiles/core.dir/flags.make
+libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o: ../libcore/source/tactical/shortest_path_tactical.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o"
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && $(CMAKE_COMMAND) -E __run_co_compile --tidy="/usr/bin/clang-tidy-11;--extra-arg-before=--driver-mode=g++" --source=/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp -- /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o -c /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp
 
-libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.i"
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp > CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.i
+libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.i"
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp > CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.i
 
-libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.s"
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp -o CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.s
+libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.s"
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/source && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp -o CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.s
 
 # Object files for target core
 core_OBJECTS = \
@@ -249,7 +249,7 @@ core_OBJECTS = \
 "CMakeFiles/core.dir/geometry/special_area.cpp.o" \
 "CMakeFiles/core.dir/geometry/world.cpp.o" \
 "CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.o" \
-"CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o"
+"CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o"
 
 # External object files for target core
 core_EXTERNAL_OBJECTS =
@@ -266,7 +266,7 @@ lib/libcore.a: libcore/source/CMakeFiles/core.dir/geometry/spatial_vector.cpp.o
 lib/libcore.a: libcore/source/CMakeFiles/core.dir/geometry/special_area.cpp.o
 lib/libcore.a: libcore/source/CMakeFiles/core.dir/geometry/world.cpp.o
 lib/libcore.a: libcore/source/CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.o
-lib/libcore.a: libcore/source/CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o
+lib/libcore.a: libcore/source/CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o
 lib/libcore.a: libcore/source/CMakeFiles/core.dir/build.make
 lib/libcore.a: libcore/source/CMakeFiles/core.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX static library ../../lib/libcore.a"

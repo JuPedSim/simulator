@@ -404,29 +404,29 @@ neighborhood/test_neighborhood_search.cpp.s:
 	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.s
 .PHONY : neighborhood/test_neighborhood_search.cpp.s
 
-tactical/test_ShortestPathTactical.o: tactical/test_ShortestPathTactical.cpp.o
-.PHONY : tactical/test_ShortestPathTactical.o
+tactical/test_shortest_path_tactical.o: tactical/test_shortest_path_tactical.cpp.o
+.PHONY : tactical/test_shortest_path_tactical.o
 
 # target to build an object file
-tactical/test_ShortestPathTactical.cpp.o:
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o
-.PHONY : tactical/test_ShortestPathTactical.cpp.o
+tactical/test_shortest_path_tactical.cpp.o:
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o
+.PHONY : tactical/test_shortest_path_tactical.cpp.o
 
-tactical/test_ShortestPathTactical.i: tactical/test_ShortestPathTactical.cpp.i
-.PHONY : tactical/test_ShortestPathTactical.i
+tactical/test_shortest_path_tactical.i: tactical/test_shortest_path_tactical.cpp.i
+.PHONY : tactical/test_shortest_path_tactical.i
 
 # target to preprocess a source file
-tactical/test_ShortestPathTactical.cpp.i:
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.i
-.PHONY : tactical/test_ShortestPathTactical.cpp.i
+tactical/test_shortest_path_tactical.cpp.i:
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.i
+.PHONY : tactical/test_shortest_path_tactical.cpp.i
 
-tactical/test_ShortestPathTactical.s: tactical/test_ShortestPathTactical.cpp.s
-.PHONY : tactical/test_ShortestPathTactical.s
+tactical/test_shortest_path_tactical.s: tactical/test_shortest_path_tactical.cpp.s
+.PHONY : tactical/test_shortest_path_tactical.s
 
 # target to generate assembly for a file
-tactical/test_ShortestPathTactical.cpp.s:
-	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.s
-.PHONY : tactical/test_ShortestPathTactical.cpp.s
+tactical/test_shortest_path_tactical.cpp.s:
+	cd /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f libcore/test/CMakeFiles/test-core.dir/build.make libcore/test/CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.s
+.PHONY : tactical/test_shortest_path_tactical.cpp.s
 
 test_dependency_availability.o: test_dependency_availability.cpp.o
 .PHONY : test_dependency_availability.o
@@ -567,9 +567,9 @@ help:
 	@echo "... neighborhood/test_neighborhood_search.o"
 	@echo "... neighborhood/test_neighborhood_search.i"
 	@echo "... neighborhood/test_neighborhood_search.s"
-	@echo "... tactical/test_ShortestPathTactical.o"
-	@echo "... tactical/test_ShortestPathTactical.i"
-	@echo "... tactical/test_ShortestPathTactical.s"
+	@echo "... tactical/test_shortest_path_tactical.o"
+	@echo "... tactical/test_shortest_path_tactical.i"
+	@echo "... tactical/test_shortest_path_tactical.s"
 	@echo "... test_dependency_availability.o"
 	@echo "... test_dependency_availability.i"
 	@echo "... test_dependency_availability.s"

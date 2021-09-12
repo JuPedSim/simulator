@@ -184,6 +184,18 @@ memory
 
 ../libcore/source/tactical/result.hpp
 
+../libcore/source/tactical/shortest_path_tactical.hpp
+agent/agent.hpp
+../libcore/source/tactical/agent/agent.hpp
+strategic/result.hpp
+../libcore/source/tactical/strategic/result.hpp
+tactical/result.hpp
+../libcore/source/tactical/tactical/result.hpp
+tactical/tactical.hpp
+../libcore/source/tactical/tactical/tactical.hpp
+string
+-
+
 ../libcore/source/tactical/tactical.hpp
 sudo_plugin.h
 -
@@ -386,11 +398,9 @@ agent/agent.hpp
 strategic/result.hpp
 /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/strategic/strategic/result.hpp
 
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.cpp
-tactical/shorthestpathtactical.hpp
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/tactical/shorthestpathtactical.hpp
-ShortestPathTactical.hpp
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.hpp
+/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/shortest_path_tactical.cpp
+tactical/shortest_path_tactical.hpp
+/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/tactical/shortest_path_tactical.hpp
 iostream
 -
 fstream
@@ -399,16 +409,6 @@ simulation.hpp
 -
 strategic/result.hpp
 -
-
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/ShortestPathTactical.hpp
-agent/agent.hpp
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/agent/agent.hpp
-strategic/result.hpp
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/strategic/result.hpp
-tactical/result.hpp
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/tactical/result.hpp
-tactical/tactical.hpp
-/home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/tactical/tactical.hpp
 
 /home/fyxy/Schreibtisch/simulator/cpp/libcore/source/tactical/tactical.hpp
 sudo_plugin.h

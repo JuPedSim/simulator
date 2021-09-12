@@ -1,4 +1,4 @@
-#include "tactical/ShortestPathTactical.hpp"
+#include "tactical/shortest_path_tactical.hpp"
 
 #include <gtest/gtest.h>
 #include <tuple>

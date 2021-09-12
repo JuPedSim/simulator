@@ -13,7 +13,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/core.dir/log.cpp.o"
   "CMakeFiles/core.dir/neighborhood/neighborhood_search.cpp.o"
   "CMakeFiles/core.dir/simulation.cpp.o"
-  "CMakeFiles/core.dir/tactical/ShortestPathTactical.cpp.o"
+  "CMakeFiles/core.dir/tactical/shortest_path_tactical.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

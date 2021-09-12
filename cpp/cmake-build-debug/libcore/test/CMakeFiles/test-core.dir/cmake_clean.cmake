@@ -12,7 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/test-core.dir/math/test_int_pow.cpp.o"
   "CMakeFiles/test-core.dir/neighborhood/test_grid_2d.cpp.o"
   "CMakeFiles/test-core.dir/neighborhood/test_neighborhood_search.cpp.o"
-  "CMakeFiles/test-core.dir/tactical/test_ShortestPathTactical.cpp.o"
+  "CMakeFiles/test-core.dir/tactical/test_shortest_path_tactical.cpp.o"
   "CMakeFiles/test-core.dir/test_dependency_availability.cpp.o"
   "CMakeFiles/test-core.dir/test_simulation.cpp.o"
   "CMakeFiles/test-core.dir/util/test_simulation_clock.cpp.o"
