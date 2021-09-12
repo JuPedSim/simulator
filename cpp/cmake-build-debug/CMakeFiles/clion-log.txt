@@ -1,6 +1,0 @@
-/snap/clion/163/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=~/simulator-deps -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/fyxy/Schreibtisch/simulator/cpp
--- Found clang-tidy /usr/bin/clang-tidy-11 [11.0.0]
--- Found pybind11: /home/fyxy/simulator-deps/include (found version "2.6.1" )
--- Configuring done
--- Generating done
--- Build files have been written to: /home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug

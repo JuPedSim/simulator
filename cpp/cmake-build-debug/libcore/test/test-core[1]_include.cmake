@@ -1,5 +1,0 @@
-if(EXISTS "/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test/test-core[1]_tests.cmake")
-  include("/home/fyxy/Schreibtisch/simulator/cpp/cmake-build-debug/libcore/test/test-core[1]_tests.cmake")
-else()
-  add_test(test-core_NOT_BUILT test-core_NOT_BUILT)
-endif()
