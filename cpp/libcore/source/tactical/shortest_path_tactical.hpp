@@ -15,6 +15,6 @@ private:
 public:
     auto floodfill(jps::Simulation&, jps::StrategicModelResult&, jps::Agent&);
     /** just a test **/
-    void printArray(char [10][25]);
-    void changeColor(char [10][25], char, char, int, int);
+    void printArray(std::string []);
+    void changeColor(std::string []), std::string, std::string, int, int);
 };
