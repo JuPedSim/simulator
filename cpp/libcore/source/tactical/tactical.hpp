@@ -3,14 +3,10 @@
 #include "agent/agent.hpp"
 #include "strategic/result.hpp"
 #include "tactical/result.hpp"
-#include "tactical/shortest_path_tactical.hpp"
-#include <sudo_plugin.h>
 
 namespace jps
 {
 class Simulation;
-
-    ShortestPathTactical shortest_path_tactical;
 
 /// @brief Interface for tactical models
 ///
