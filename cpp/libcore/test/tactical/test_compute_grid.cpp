@@ -1,4 +1,4 @@
-#include "tactical/compute_grid.hpp"
+#include "tactical/floodfill.hpp"
 
 #include <gtest/gtest.h>
 #include <tuple>

@@ -3,6 +3,7 @@
 #include "agent/agent.hpp"
 #include "strategic/result.hpp"
 #include "tactical/result.hpp"
+#include "floodfill.hpp"
 
 namespace jps
 {
@@ -44,6 +45,8 @@ struct DummyTacticalModel : TacticalModelInterface {
         [[maybe_unused]] StrategicModelResult const & p_strategic_result,
         [[maybe_unused]] Agent const & p_agent) const -> TacticalModelResult override
     {
+        Floodfill f;
+        f.computeGrid(p_simulation, p_agent);
         return {};
     };
 };
