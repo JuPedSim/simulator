@@ -46,7 +46,7 @@ struct DummyTacticalModel : TacticalModelInterface {
         [[maybe_unused]] Agent const & p_agent) const -> TacticalModelResult override
     {
         Floodfill f;
-        f.computeGrid(p_simulation, p_agent);
+        f.computeGrid(p_simulation);
         return {};
     };
 };
