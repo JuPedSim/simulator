@@ -15,8 +15,7 @@ namespace jps {
     class Floodfill {
 
     private:
-        Grid2D<int> m_flood_grid;
-        mutable std::shared_mutex m_grid_mutex;
+        std::vector<Grid2D<int>> m_grids;
     public:
         /// Constructor
         Floodfill();
@@ -25,9 +24,6 @@ namespace jps {
         auto operator=(const Floodfill &) -> Floodfill & = delete;
         Floodfill(Floodfill &&) = delete;
         auto operator=(Floodfill &&) -> Floodfill & = delete;
-
-        /// Getter
-        auto getGrid();
 
         /// Important to replace individual fields later in the grid
         /// @param p_grid The grid which was filled with the environment

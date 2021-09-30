@@ -8,12 +8,7 @@ TEST(ComputeGrid, Constructors)
 
 }
 
-TEST(ComputeGrid, floodfill)
-{
-
-}
-
-TEST(ComputeGrid, computeNextStep)
+TEST(Floodfill, computeGrid)
 {
 
 }
