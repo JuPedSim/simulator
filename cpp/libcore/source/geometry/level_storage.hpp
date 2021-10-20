@@ -22,5 +22,7 @@ public:
     auto getAgents() -> std::vector<Agent> & { return m_agents; };
     auto getAgents() const -> std::vector<Agent> const & { return m_agents; };
     auto addAgent(Coordinate const & p_coordinate) -> void;
+    auto getSpecialAreas() -> std::vector<SpecialArea> & { return m_special_areas; };
+    auto getLineSegments() -> std::vector<LineSegment> & { return m_line_segments; };
 };
 } // namespace jps
