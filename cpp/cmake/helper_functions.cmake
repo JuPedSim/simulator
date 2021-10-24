@@ -36,7 +36,7 @@ macro(add_clang_tidy_support_option)
         find_program(
             CLANG_TIDY
             NAMES
-                clang-tidy-11
+                clang-tidy-13
                 clang-tidy
             REQUIRED
         )
@@ -53,7 +53,7 @@ macro(add_clang_tidy_support_option)
                 clang_tidy_version
                 "${clang_tidy_version_output}"
             )
-            if(clang_tidy_version MATCHES "^11.*")
+            if(clang_tidy_version MATCHES "^13.*")
                 message(STATUS "Found clang-tidy ${CLANG_TIDY} [${clang_tidy_version}]")
                 set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
                 set(CMAKE_C_CLANG_TIDY ${CLANG_TIDY})
