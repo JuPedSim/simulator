@@ -15,9 +15,9 @@ To build, you will need the following system dependencies installed:
 
 * Python 3.8 headers
 
-* clang-format-10
+* clang-format-13
 
-* clang-tidy-10
+* clang-tidy-13
 
 * parallel
 
