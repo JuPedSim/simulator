@@ -82,7 +82,7 @@ is the actual *jps* application written in python. The python layer is used to
 handle all the non-resource / compute-intensive parts of the application, i.e.
 initial setup, file handling, etc.
 
-```bash
+```text
 +----------------+
 |      jps       | -> jps/
 +----------------+
@@ -96,7 +96,7 @@ initial setup, file handling, etc.
 
 The above separation can be seen in the folder structure as well:
 
-```bash
+```text
 .
 ├── container     <= dockerfile for CI environment
 ├── cpp           <= hosts the main CMakeLists.txt
