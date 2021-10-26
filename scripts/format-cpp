@@ -4,4 +4,4 @@ set -e
 
 origin=$(dirname "$(readlink -f "$0")")
 cpp_source_root=$(readlink -f ${origin}/..)
-find ${cpp_source_root} -type f -regex "^.*\.\(hpp\|cpp\|h\|c\)$" | parallel clang-format-11 -i
+find ${cpp_source_root} -type f -regex "^.*\.\(hpp\|cpp\|h\|c\)$" | parallel clang-format-13 -i

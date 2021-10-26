@@ -5,4 +5,4 @@ set -e
 origin=$(dirname "$(readlink -f "$0")")
 root=$(readlink -f ${origin}/..)
 find ${root} -type f -regex "^.*\.\(hpp\|cpp\|h\|c\)$" \
-    | parallel clang-format-11 --dry-run -Werror
+    | parallel clang-format-13 --dry-run -Werror

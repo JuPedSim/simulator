@@ -2,22 +2,22 @@
 
 ## Developing
 
-Main development platform is Linux although we aim to provide MacOS and Windows
-binaries as well. Of the many Linux distributions we aim to support Ubuntu 20.04
+The main development platform is Linux, although we aim to provide MacOS and Windows
+binaries as well. Of the many Linux distributions, we aim to support Ubuntu 20.04
 primarily but every distribution should work where you have access to the
 required dependencies.
 
 ### Dependencies
 
-To build you will need the following system dependencies installed:
+To build, you will need the following system dependencies installed:
 
 * Python 3.8 binaries
 
 * Python 3.8 headers
 
-* clang-format-10
+* clang-format-13
 
-* clang-tidy-10
+* clang-tidy-13
 
 * parallel
 
@@ -25,7 +25,7 @@ To build you will need the following system dependencies installed:
 
 * gcc or clang (c++17 support is required)
 
-Additionally you will need a few python packages. It is recommended to install all
+Additionally, you will need a few python packages. It is recommended to install all
 dependencies listed in `requirements.txt` into a virtual environment, e.g.:
 
 ```bash
@@ -56,14 +56,14 @@ cmake -DCMAKE_PREFIX_PATH=~/simulator-deps -DCMAKE_BUILD_TYPE=Debug <path-to-rep
 cmake --build . -j
 ```
 
-The command above assumes that the third party dependencies that you build with
+The command above assumes that the third-party dependencies built with
 `setup-dependencies.sh` have been installed into `~/simulator-deps`. If you
-selected a different location, make sure to substitute the location in the above
+select a different location, make sure to substitute it in the above
 call.
 
 ### Running tests
 
-To run all tests at once call `ctest -j$(nproc)` in the build folder.
+To run all tests at once, call `ctest -j$(nproc)` in the build folder.
 
 ### Running jps
 
@@ -72,16 +72,17 @@ To run *jps* the location of the jpscore library (e.g., on Linux `jpscore.so`) n
 ```bash
 PYTHONPATH=~/simulator-build/bin ./jps/jps --help
 ```
+
 ### Repository Layout
 
-The repository layout follows the high level architecture of the *jps* tool. The
+The repository layout follows the high-level architecture of the *jps* tool. The
 core is a C++ library for pedestrian simulation. It is wrapped
 with `pybind11` to allow the use of the simulation library with python. Lastly, there
 is the actual *jps* application written in python. The python layer is used to
-handle all the non-resource / compute intensive parts of the application, i.e.
-initial setup, file handling etc.
+handle all the non-resource / compute-intensive parts of the application, i.e.
+initial setup, file handling, etc.
 
-```
+```text
 +----------------+
 |      jps       | -> jps/
 +----------------+
@@ -92,9 +93,10 @@ initial setup, file handling etc.
 |   Simulation   | -> cpp/libcore/
 +----------------+
 ```
+
 The above separation can be seen in the folder structure as well:
 
-```
+```text
 .
 ├── container     <= dockerfile for CI environment
 ├── cpp           <= hosts the main CMakeLists.txt
